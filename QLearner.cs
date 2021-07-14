@@ -63,8 +63,11 @@ namespace CatchTheCheese
         public void demoGame()
         {
             Level level = new();
-            while (level.gameStatus != GameStatus.WIN && level.gameStatus != GameStatus.LOSS)
+            bool gameOver = false;
+            while (!gameOver)
             {
+                gameOver = level.gameStatus == GameStatus.WIN || level.gameStatus == GameStatus.LOSS;
+
                 Console.WriteLine(level);
                 Console.WriteLine(qTable.levelDataAsString(level));
                 Console.ReadKey();
