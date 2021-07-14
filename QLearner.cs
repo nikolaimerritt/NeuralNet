@@ -67,10 +67,10 @@ namespace CatchTheCheese
             while (!gameOver)
             {
                 gameOver = level.gameStatus == GameStatus.WIN || level.gameStatus == GameStatus.LOSS;
-
+                Console.Clear();
                 Console.WriteLine(level);
-                Console.WriteLine(qTable.levelDataAsString(level));
-                Console.ReadKey();
+                //Console.WriteLine(qTable.levelDataAsString(level));
+                Thread.Sleep(500);
                 level.makeMove(qTable.moveWithMaxQValue(level));
             }
         }
