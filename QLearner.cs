@@ -10,61 +10,42 @@ namespace CatchTheCheese
     {
         private double learningRate;
         private double futureDiscount;
-        private double propRandomGames;
-        private double exploreProb;
 
         private QTable qTable = new();
         private Random rng = new();
 
 
-        public QLearner(double learningRate, double futureDiscount, double exploreProb)
+        public QLearner(double learningRate, double futureDiscount)
         {
             this.learningRate = learningRate;
             this.futureDiscount = futureDiscount;
-            this.exploreProb = exploreProb;
         }
 
 
-        private Move chooseRandomMove(Level level)
+        private Move chooseMoveExploreExploit(Level level, double exploreProb)
         {
-            return level.validMoves[rng.Next(level.validMoves.Length)];
-        }
 
-
-        private Move chooseMoveExploreExploit(Level level)
-        {
             if (rng.NextDouble() <= exploreProb)
             {
-                return chooseRandomMove(level);
+                return level.validMoves[rng.Next(level.validMoves.Length)];
             }
             else
             {
-                return qTable.bestMove(level);
-            }
-        }
-
-        private Move readMoveFromUser(Level level)
-        {
-            switch (Console.ReadKey().Key)
-            {
-                case ConsoleKey.A or ConsoleKey.LeftArrow:
-                    return Move.BACKWARDS;
-                default:
-                    return Move.FORWARDS;
+                return qTable.moveWithMaxQValue(level);
             }
         }
 
 
-        private void learnFromGame(Func<Level, Move> chooseMove)
+        private void learnFromGame(double exploreProb)
         {
             Level level = new Level();
             bool gameOver = false;
             while (!gameOver)
             {
                 Level levelBeforeMove = level.deepCopy();
-                Move move = chooseMove(levelBeforeMove);
+                Move move = chooseMoveExploreExploit(levelBeforeMove, exploreProb);
                 level.makeMove(move);
-                qTable.updateEntry(levelBeforeMove, move, level.gameStatus, learningRate, futureDiscount);
+                qTable.updateEntry(levelBeforeMove, move, level, learningRate, futureDiscount);
 
                 gameOver = level.gameStatus == GameStatus.LOSS || level.gameStatus == GameStatus.WIN;
             }
@@ -72,18 +53,10 @@ namespace CatchTheCheese
 
         public void learnFromGames(int numGames)
         {
-            int numRandomGames = (int)Math.Round(0.3 * numGames);
-            this.exploreProb = 0.9;
-            for (int gameNum = 1; gameNum <= numRandomGames; gameNum++)
+            for (int gameNum = 1; gameNum <= numGames; gameNum++)
             {
                 Console.WriteLine(gameNum);
-                learnFromGame(chooseMoveExploreExploit);
-            }
-            this.exploreProb = 0.1;
-            for (int gameNum = numRandomGames + 1; gameNum <= numGames; gameNum++)
-            {
-                Console.WriteLine(gameNum);
-                learnFromGame(chooseMoveExploreExploit);
+                learnFromGame(exploreProb: 0.1);
             }
         }
 
@@ -95,7 +68,7 @@ namespace CatchTheCheese
                 Console.WriteLine(level);
                 Console.WriteLine(qTable.levelDataAsString(level));
                 Console.ReadKey();
-                level.makeMove(qTable.bestMove(level));
+                level.makeMove(qTable.moveWithMaxQValue(level));
             }
         }
     }

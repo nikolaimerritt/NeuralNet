@@ -6,7 +6,7 @@ namespace CatchTheCheese
 {
     public enum CellType
     {
-        EMPTY = 1, BLOCK = 2, PLAYER = 3, ENEMY = 4, GOAL = 5
+        EMPTY, BLOCK, ENEMY, PLAYER, GOAL
     }
     public record Cell
     {

@@ -17,7 +17,7 @@ namespace CatchTheCheese
         private static Dictionary<GameStatus, double> rewards = new()
         {
             [GameStatus.LOSS] = -10,
-            [GameStatus.NEUTRAL] = -0.01,
+            [GameStatus.NEUTRAL] = 0,
             [GameStatus.WIN] = 10
         };
 
@@ -32,7 +32,7 @@ namespace CatchTheCheese
                 LookupRow lookupRow = new();
 				foreach (Move move in level.validMoves)
                 {
-					lookupRow[move] = 10 * rng.NextDouble();
+					lookupRow[move] = rng.NextDouble();
                 }
 				lookupTable[level] = lookupRow;
             }
@@ -53,73 +53,24 @@ namespace CatchTheCheese
         }
 
 
-        public Move bestMove(Level level)
+        public Move moveWithMaxQValue(Level level)
         {
-            if (this.containsLevel(level))
-            {
-                LookupRow lookupRow = lookupTable[level];
-                return lookupRow.Keys.Aggregate((mv1, mv2) => lookupRow[mv1] > lookupRow[mv2] ? mv1 : mv2);
-            }
-            throw new KeyNotFoundException($"QTable does not contain a row for level \n{level}");
+            LookupRow lookupRow = lookupTable[level];
+            return lookupRow.Keys.Aggregate((move1, move2) => lookupRow[move1] > lookupRow[move2] ? move1 : move2);
         }
 
-        private double maxFutureQVal(Level level)
-        {
-            double max = 0;
-            LookupRow lookupRow;
-            if (this.lookupTable.TryGetValue(level, out lookupRow))
-            {
-                foreach (Move possibleMove in lookupRow.Keys)
-                {
-                    Level futureLevel = level.deepCopy();
-                    futureLevel.makeMove(possibleMove);
-                    LookupRow futureLookupRow;
-                    if (lookupTable.TryGetValue(futureLevel, out futureLookupRow))
-                    {
-                        double maxFutureQVal = futureLookupRow.Values.Max();
-                        if (maxFutureQVal > max)
-                        {
-                            max = maxFutureQVal;
-                        }
-                    }
-                }
-            }
-            return max;
-        }
+        private double maxQValue(Level level)
+            => lookupTable[level][moveWithMaxQValue(level)];
 
-        private double updatedQValue(Level level, Move move, GameStatus response, double learningRate, double futureDiscount)
+        public void updateEntry(Level levelBeforeMove, Move move, Level levelAfterMove, double learningRate, double futureDiscount)
         {
-            double oldQVal = 0;
-            if (lookupTable.ContainsKey(level) && lookupTable[level].ContainsKey(move))
-            {
-                // should always happen as lookup table initialised with all levels and all valid moves
-                oldQVal = lookupTable[level][move];
-            }
-            else
-            {
-                throw new KeyNotFoundException($"QTable does not have entry for level\n{level} with hash code {level.GetHashCode()}");
-            }
-            double reward = rewards[response];
+            double oldValue = lookupTable[levelBeforeMove][move];
+            double reward = rewards[levelAfterMove.gameStatus];
+            double learnedValue = reward + futureDiscount * maxQValue(levelAfterMove);
 
-            double oldQValWeighting = (1 - learningRate) * oldQVal;
-            double futureQValWeighting = learningRate * (reward + futureDiscount * maxFutureQVal(level));
-            return oldQValWeighting + futureQValWeighting;
-        }
+            double newValue = (1 - learningRate) * oldValue + learningRate * learnedValue;
 
-        public void updateEntry(Level level, Move move, GameStatus response, double learningRate, double futureDiscount)
-        {
-            if (lookupTable.ContainsKey(level) && lookupTable[level].ContainsKey(move))
-            {
-                double newQVal = updatedQValue(level, move, response, learningRate, futureDiscount);
-                lookupTable[level][move] = newQVal;
-            }
-            else
-            {
-                // should never happen as lookup table initialised with all possible levels
-                // not sure what to do about that
-                throw new KeyNotFoundException($"QTable has no entry for level \n{level}");
-                // lookupTable[level] = new LookupRow() { [move] = newQVal };
-            }
+            lookupTable[levelBeforeMove][move] = newValue;
         }
 
         #region YUCKY_BOILERPLATE
