@@ -36,6 +36,13 @@ namespace CatchTheCheese
         }
 
 
+        private void displayLevel(Level level)
+        {
+            Console.Clear();
+            Console.WriteLine(level);
+            Thread.Sleep(500);
+        }
+
         private void learnFromGame(double exploreProb)
         {
             Level level = new Level();
@@ -60,18 +67,29 @@ namespace CatchTheCheese
             }
         }
 
+
+
         public void demoGame()
         {
             Level level = new();
             bool gameOver = false;
+            string header = "\n============================================\n";
+
+            displayLevel(level);
             while (!gameOver)
             {
-                gameOver = level.gameStatus == GameStatus.WIN || level.gameStatus == GameStatus.LOSS;
-                Console.Clear();
-                Console.WriteLine(level);
-                //Console.WriteLine(qTable.levelDataAsString(level));
-                Thread.Sleep(500);
                 level.makeMove(qTable.moveWithMaxQValue(level));
+                gameOver = level.gameStatus == GameStatus.WIN || level.gameStatus == GameStatus.LOSS;
+                displayLevel(level);
+            }
+
+            if (level.gameStatus == GameStatus.WIN)
+            {
+                Console.WriteLine($"{header}\tHe found the cheese!{header}");
+            }
+            else if (level.gameStatus == GameStatus.LOSS)
+            {
+                Console.WriteLine($"{header}\tNooooo he died :({header}");
             }
         }
     }
