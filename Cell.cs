@@ -14,11 +14,11 @@ namespace CatchTheCheese
 
         private static readonly Dictionary<CellType, string> cellTypeToStr = new Dictionary<CellType, string>()
         {
-            [CellType.EMPTY] = "⬛",
-            [CellType.BLOCK] = "🧱",
+            [CellType.EMPTY]  = "⬛",
+            [CellType.BLOCK]  = "🧱",
             [CellType.PLAYER] = "🐁",
-            [CellType.ENEMY] = "💀",
-            [CellType.GOAL] = "🧀"
+            [CellType.ENEMY]  = "💀",
+            [CellType.GOAL]   = "🧀"
         };
 
         public Cell(CellType cellType) 

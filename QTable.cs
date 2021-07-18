@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-using LookupRow = System.Collections.Generic.Dictionary<CatchTheCheese.Move, double>;
-using LookupTable = System.Collections.Generic.Dictionary<CatchTheCheese.Level, System.Collections.Generic.Dictionary<CatchTheCheese.Move, double>>;
-
 namespace CatchTheCheese
 {
-	public class QTable
+    using LookupRow = Dictionary<Move, double>;
+    using LookupTable = Dictionary<Level, Dictionary<Move, double>>;
+
+    public class QTable
 	{
 		private LookupTable lookupTable;
 		private Random rng = new();

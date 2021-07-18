@@ -19,23 +19,29 @@ namespace CatchTheCheese
 			get
             {
 				double weightsSquaredNorm = weights
-					.Select(weight => Math.Pow(weight.FrobeniusNorm(), 2))
-					.Sum();
+					.Sum(weight => Math.Pow(weight.FrobeniusNorm(), 2));
+
 				double biasesSquaredNorm = biases
-					.Select(bias => Math.Pow(bias.L2Norm(), 2))
-					.Sum();
+					.Sum(bias => Math.Pow(bias.L2Norm(), 2));
+
 				return weightsSquaredNorm + biasesSquaredNorm;
             }
         }
 
-		private Parameters((Matrix<double>[], Vector<double>[]) weightsAndBiases)
+		private Parameters((Matrix<double>[] weights, Vector<double>[] biases) weightsAndBiases)
 		{
-			this.weights = weightsAndBiases.Item1;
-			this.biases = weightsAndBiases.Item2;
-			this.count = weightsAndBiases.Item1.Length;
+			this.weights = weightsAndBiases.weights;
+			this.biases = weightsAndBiases.biases;
+			this.count = weightsAndBiases.weights.Length;
 		}
 
-		public Parameters(params int[] layerSizes) : this(randomWeightsAndBiases(layerSizes)) { }
+		public Parameters(params int[] layerSizes)
+		{
+			(Matrix<double>[] weights, Vector<double>[] biases) = randomWeightsAndBiases(layerSizes);
+			this.weights = weights;
+			this.biases = biases;
+			this.count = weights.Length;
+		}
 
 		public Parameters(string directoryPath) : this(readWeightsAndBiasesFromDir(directoryPath)) { }
 
@@ -110,6 +116,7 @@ namespace CatchTheCheese
 			Matrix<double>[] weights = Enumerable.Range(0, left.count)
 				.Select(i => left.weights[i] + right.weights[i])
 				.ToArray();
+
 			Vector<double>[] biases = Enumerable.Range(0, left.count)
 				.Select(i => left.biases[i] + right.biases[i])
 				.ToArray();
@@ -122,9 +129,11 @@ namespace CatchTheCheese
 			Matrix<double>[] weights = parameters.weights
 				.Select(weight => scalar * weight)
 				.ToArray();
+
 			Vector<double>[] biases = parameters.biases
 				.Select(bias => scalar * bias)
 				.ToArray();
+
 			return new Parameters((weights, biases));
         }
 
@@ -133,9 +142,11 @@ namespace CatchTheCheese
 			Matrix<double>[] weights = parameters.weights
 				.Select(weight => weight / scalar)
 				.ToArray();
+
 			Vector<double>[] biases = parameters.biases
 				.Select(bias => bias / scalar)
 				.ToArray();
+
 			return new Parameters((weights, biases));
 		}
 
@@ -148,7 +159,6 @@ namespace CatchTheCheese
 		public static Parameters operator -(Parameters left, Parameters right)
 			=> left + (-right);
 
-		// not defined as (1/scalar) * parameters because computing 1/scalar first can be lossy
         #endregion OPERATORS
     }
 }

@@ -4,6 +4,14 @@ using System.Text;
 
 namespace CatchTheCheese
 {
+    public interface IWasteman
+    {
+
+    }
+
+    public class Nikolai : IWasteman { public void poo() { } }
+    public class DizzyNikolai : Nikolai { }
+
     public record Coord
     {
         public int x;
@@ -23,5 +31,22 @@ namespace CatchTheCheese
 
         public static Coord operator -(Coord fstCoord, Coord sndCoord)
             => new Coord(fstCoord.x - sndCoord.x, fstCoord.y - sndCoord.y);
+
+        public static void Test()
+        {
+            IWasteman waste = new DizzyNikolai();
+            switch (waste)
+            {
+                case DizzyNikolai dizzy: break;
+                case Nikolai nikolai: break;
+                default: break;
+            }
+
+            Dictionary<int, string> poo = new();
+            if (poo.TryGetValue(5, out string res))
+            {
+
+            }
+        }
     }
 }
