@@ -2,7 +2,7 @@
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 
-namespace MachineLearning
+namespace NeuralNetLearning
 {
 	using VectorFn = Func<Vector<double>, Vector<double>>;
 

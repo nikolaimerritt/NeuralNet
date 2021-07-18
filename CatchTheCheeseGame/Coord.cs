@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CatchTheCheese
+namespace CatchTheCheeseGame
 {
     public interface IWasteman
     {

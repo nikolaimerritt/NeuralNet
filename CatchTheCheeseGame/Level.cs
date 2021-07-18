@@ -4,7 +4,7 @@ using System.Text;
 using System.Linq;
 using Microsoft.VisualBasic.FileIO;
 
-namespace CatchTheCheese
+namespace CatchTheCheeseGame
 {
     public enum Move
     {

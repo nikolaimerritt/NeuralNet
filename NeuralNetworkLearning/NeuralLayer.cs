@@ -4,7 +4,7 @@ using MathNet.Numerics.Distributions;
 using MathNet.Numerics.Data.Text;
 
 
-namespace MachineLearning
+namespace NeuralNetLearning
 {
 
 	public class NeuralLayer

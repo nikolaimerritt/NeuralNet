@@ -4,8 +4,9 @@ using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
 
-namespace MachineLearning
+namespace NeuralNetLearning
 {
+    using CostFn = Func<Vector<double>, Vector<double>>;
 	public class NeuralNetwork
 	{
 		private readonly NeuralLayer[] _layers;
@@ -36,9 +37,9 @@ namespace MachineLearning
 
         public NeuralNetwork(string directoryPath)
         {
-            List<string> weightPaths = Directory.GetFiles(directoryPath, "weight_*.csv").ToList();
+            List<string> weightPaths = Directory.GetFiles(directoryPath, "weight *.csv").ToList();
             weightPaths.Sort();
-            List<string> biasPaths = Directory.GetFiles(directoryPath, "bias_*.csv").ToList();
+            List<string> biasPaths = Directory.GetFiles(directoryPath, "bias *.csv").ToList();
             biasPaths.Sort();
 
             List<NeuralLayer> layers = new();
@@ -67,8 +68,8 @@ namespace MachineLearning
         {
             for (int i = 0; i < LayerCount; i++)
             {
-                string weightPath = $"{directoryPath}/weight_{i}.csv";
-                string biasPath = $"{directoryPath}/bias_{i}.csv";
+                string weightPath = $"{directoryPath}/weight {i+1}.csv";
+                string biasPath = $"{directoryPath}/bias {i+1}.csv";
                 _layers[i].Write(weightPath, biasPath);
             }
         }
@@ -81,6 +82,11 @@ namespace MachineLearning
                 output = layer.LayerValue(output);
             }
             return output;
+        }
+
+        public void StochasticGradientDescent(Vector<double>[] inputs, Vector<double>[] desiredOutputs, CostFn costFunction)
+        {
+
         }
     }
 }

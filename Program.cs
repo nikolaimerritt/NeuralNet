@@ -1,8 +1,10 @@
 ﻿using System;
 using MathNet.Numerics.LinearAlgebra;
-using MachineLearning;
+using CatchTheCheeseGame;
+using QTableLearning;
+using NeuralNetLearning;
 
-namespace CatchTheCheese
+namespace CatchTheCheeseGame
 {
     class Program
     {
@@ -19,7 +21,10 @@ namespace CatchTheCheese
         }
         static void Main(string[] args)
         {
-            NeuralNetwork net = new("../../../layers");
+            NeuralNetwork net = new(10, 10, 5);
+            net.WriteToDirectory("../../../NeuralNetworkLearning/layers");
+            net = new("../../../NeuralNetworkLearning/layers");
+
             Vector<double> input = Vector<double>.Build.Random(10);
             Console.WriteLine(net.Output(input));
         }
