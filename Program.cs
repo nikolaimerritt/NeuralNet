@@ -21,12 +21,11 @@ namespace CatchTheCheeseGame
         }
         static void Main(string[] args)
         {
-            NeuralNetwork net = new(10, 10, 5);
-            net.WriteToDirectory("../../../NeuralNetworkLearning/layers");
-            net = new("../../../NeuralNetworkLearning/layers");
+            NeuralNetwork net = net = new("../../../NeuralNetworkLearning/layers");
 
             Vector<double> input = Vector<double>.Build.Random(10);
-            Console.WriteLine(net.Output(input));
+            Vector<double> desiredOutput = Vector<double>.Build.Random(5);
+            net.StochasticGradientDescent(input, desiredOutput, NeuralLayerConfig.MSEderiv, 0.001);
         }
     }
 }

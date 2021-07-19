@@ -6,6 +6,8 @@ using MathNet.Numerics.Data.Text;
 
 namespace NeuralNetLearning
 {
+	using Matrix = Matrix<double>;
+	using Vector = Vector<double>;
 
 	public class NeuralLayer
 	{
@@ -13,11 +15,11 @@ namespace NeuralNetLearning
 		public int OutputDim { get; private set; }
 		public NeuralLayerConfig Config { get; private set; }
 
-		private readonly Matrix<double> _weight;
-		private readonly Vector<double> _bias;
+		private Matrix _weight;
+		private Vector _bias;
 
         #region CONSTRUCTORS
-        private NeuralLayer(Matrix<double> weight, Vector<double> bias, NeuralLayerConfig config)
+        private NeuralLayer(Matrix weight, Vector bias, NeuralLayerConfig config)
 		{
 			if (weight.RowCount != bias.Count)
             {
@@ -43,21 +45,21 @@ namespace NeuralNetLearning
         #endregion CONSTRUCTORS
 
         #region CONSTRUCTOR_HELPERS
-        private static Matrix<double> StdNormalMatrix(int inputDim, int outputDim)
-			=> Matrix<double>.Build.Random(outputDim, inputDim, new Normal());
+        private static Matrix StdNormalMatrix(int inputDim, int outputDim)
+			=> Matrix.Build.Random(outputDim, inputDim, new Normal());
 
 
-		private static Vector<double> StdNormalVector(int dim)
+		private static Vector StdNormalVector(int dim)
 			=> StdNormalMatrix(1, dim).Column(0);
 
 
-		private static Matrix<double> ReadMatrixFromFile(string filepath)
+		private static Matrix ReadMatrixFromFile(string filepath)
 			=> DelimitedReader.Read<double>(filepath, delimiter: "\t");
 
 
-		private static Vector<double> ReadVectorFromFile(string filepath)
+		private static Vector ReadVectorFromFile(string filepath)
         {
-			Matrix<double> biasAsMatrix = ReadMatrixFromFile(filepath);
+			Matrix biasAsMatrix = ReadMatrixFromFile(filepath);
 			if (biasAsMatrix.RowCount == 1)
             {
 				return biasAsMatrix.Row(0);
@@ -78,24 +80,40 @@ namespace NeuralNetLearning
         {
 			DelimitedWriter.Write(pathToWeight, _weight, delimiter: "\t");
 
-			Matrix<double> biasAsColMatrix = CreateMatrix.DenseOfColumnVectors(_bias);
+			Matrix biasAsColMatrix = CreateMatrix.DenseOfColumnVectors(_bias);
 			DelimitedWriter.Write(pathToBias, biasAsColMatrix, delimiter: "\t");
         }
 
-		public Vector<double> LayerValue(Vector<double> previousLayer)
+		public Vector LayerValue(Vector layerBehind)
         {
-			if (previousLayer.Count != _weight.ColumnCount)
+			if (layerBehind.Count != _weight.ColumnCount)
             {
-				throw new Exception($"The input dimension supplied to the layer ({previousLayer.Count}) differs from the input dimension of the layer ({InputDim})");
+				throw new Exception($"The input dimension supplied to the layer ({layerBehind.Count}) differs from the input dimension of the layer ({InputDim})");
             }
-			return Config.Activator(_weight * previousLayer + _bias);
+			return _weight * Config.Activator(layerBehind) + _bias;
         }
 
-		public Vector<double> CostDerivWrtLayer(Vector<double> previousLayer, Vector<double> costGradWrtPrevLayer)
+
+		private Vector CostGradWrtLayerBehind(Vector costGradWrtLayer, Vector layerBehind)
         {
-			Vector<double> lhs = Config.ActivatorDeriv(LayerValue(previousLayer));
-			Vector<double> rhs = _weight.TransposeThisAndMultiply(costGradWrtPrevLayer);
-            return Vector<double>.op_DotMultiply(lhs, rhs); // pointwise multiplication
+			Vector fstProduct = _weight.TransposeThisAndMultiply(costGradWrtLayer);
+			Vector sndProduct = Config.ActivatorDeriv(layerBehind);
+			return Vector.op_DotMultiply(fstProduct, sndProduct); // element-wise multiplication
+        }
+
+		private void GradientDescent(Matrix costGradWrtWeight, Vector costGradWrtBias, double learningRate)
+        {
+			_weight += (-learningRate) * costGradWrtWeight;
+			_bias += (-learningRate) * costGradWrtBias;
+        }
+
+		public void GradientDescent(Vector costGradWrtLayer, Vector layerBehind, double learningRate, out Vector costGradWrtLayerBehind)
+        {
+			costGradWrtLayerBehind = CostGradWrtLayerBehind(costGradWrtLayer, layerBehind);
+
+			Matrix costGradWrtWeight = Vector.OuterProduct(costGradWrtLayer, Config.Activator(layerBehind));
+			Vector costGradWrtBias = costGradWrtLayer;
+			GradientDescent(costGradWrtWeight, costGradWrtBias, learningRate);
 		}
 	}
 }

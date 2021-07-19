@@ -6,10 +6,13 @@ using System.IO;
 
 namespace NeuralNetLearning
 {
-    using CostFn = Func<Vector<double>, Vector<double>>;
+    using Matrix = Matrix<double>;
+    using Vector = Vector<double>;
+
 	public class NeuralNetwork
 	{
 		private readonly NeuralLayer[] _layers;
+        private readonly NeuralLayerConfig processFinalLayer = NeuralLayerConfig.SigmoidConfig;
         public int LayerCount
         {
             get => _layers.Length;
@@ -74,19 +77,30 @@ namespace NeuralNetLearning
             }
         }
 
-        public Vector<double> Output(Vector<double> input)
+        private Vector[] LayerValues(Vector input)
         {
-            Vector<double> output = input;
+            List<Vector> layerValues = new() { input };
             foreach (NeuralLayer layer in _layers)
             {
-                output = layer.LayerValue(output);
+                layerValues.Add(layer.LayerValue(layerValues.Last()));
             }
-            return output;
+            return layerValues.ToArray();
         }
 
-        public void StochasticGradientDescent(Vector<double>[] inputs, Vector<double>[] desiredOutputs, CostFn costFunction)
-        {
+        public Vector Output(Vector input)
+            => processFinalLayer.Activator(LayerValues(input).Last());
 
+        public void StochasticGradientDescent(Vector input, Vector desiredOutput, Func<Vector, Vector, Vector> costDeriv, double learningRate)
+        {
+            Vector[] layerValues = LayerValues(input);
+            Vector output = processFinalLayer.Activator(layerValues.Last());
+
+            Vector costGradWrtLayer = costDeriv(output, desiredOutput);
+            for (int i = LayerCount - 1; i >= 0; i--)
+            {
+                Vector layerBehind = layerValues[i];
+                _layers[i].GradientDescent(costGradWrtLayer, layerBehind, learningRate, out costGradWrtLayer);
+            }
         }
     }
 }

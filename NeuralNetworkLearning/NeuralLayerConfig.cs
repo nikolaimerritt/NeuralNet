@@ -4,21 +4,19 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace NeuralNetLearning
 {
-	using VectorFn = Func<Vector<double>, Vector<double>>;
+	using Vector = Vector<double>;
 
 	public class NeuralLayerConfig
 	{
-		public readonly VectorFn Activator;
-		public readonly VectorFn ActivatorDeriv;
+		public readonly Func<Vector, Vector> Activator;
+		public readonly Func<Vector, Vector> ActivatorDeriv;
 
-		public static VectorFn PiecewiseVectorFn(Func<double, double> applyToEachEl)
+		public static Func<Vector, Vector> PiecewiseVectorFn(Func<double, double> applyToEachEl)
         {
-			return new VectorFn(vector =>
-				Vector<double>.Build.DenseOfEnumerable(vector.Select(applyToEachEl))
-			);
+			return new(vec => Vector<double>.Build.DenseOfEnumerable(vec.Select(applyToEachEl)));
         }
 
-		public NeuralLayerConfig(VectorFn activator, VectorFn activatorDeriv)
+		public NeuralLayerConfig(Func<Vector, Vector> activator, Func<Vector, Vector> activatorDeriv)
 		{
 			Activator = activator;
 			ActivatorDeriv = activatorDeriv;
@@ -38,13 +36,19 @@ namespace NeuralNetLearning
 		public static readonly NeuralLayerConfig SigmoidConfig = new
 		(
 			activator: PiecewiseVectorFn(Sigmoid),
-			activatorDeriv: PiecewiseVectorFn(x => Sigmoid(x) * (1 - Sigmoid(x)))
+			activatorDeriv: PiecewiseVectorFn(x => Sigmoid(x) * (1 - Sigmoid(x)))	// will prob cache Sigmoid(x) so this isnt silly
 		);
 
 		public static readonly NeuralLayerConfig IdentityConfig = new
 		(
-			activator: new VectorFn(vector => vector),
+			activator: new (vector => vector),
 			activatorDeriv: PiecewiseVectorFn(x => 1)
 		);
+
+		public static double MSE(Vector obtainedValue, Vector desiredValue)
+			=> (obtainedValue - desiredValue).DotProduct(obtainedValue - desiredValue);
+
+		public static Vector MSEderiv(Vector obtainedValue, Vector desiredValue)
+			=> 2 * (obtainedValue - desiredValue);
     }
 }
