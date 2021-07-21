@@ -98,8 +98,9 @@ namespace NeuralNetLearning
             Vector costGradWrtLayer = costDeriv(output, desiredOutput);
             for (int i = LayerCount - 1; i >= 0; i--)
             {
+                string filepathPrefix = $"../../../NeuralNetworkLearning/{i}";
                 Vector layerBehind = layerValues[i];
-                _layers[i].GradientDescent(costGradWrtLayer, layerBehind, learningRate, out costGradWrtLayer);
+                _layers[i].GradientDescent(filepathPrefix, costGradWrtLayer, layerBehind, learningRate, out costGradWrtLayer);
             }
         }
     }
