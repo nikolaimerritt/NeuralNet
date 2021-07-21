@@ -25,11 +25,13 @@ namespace NeuralNetLearning
 			activatorDeriv: VectorFunctions.Piecewise(ScalarFunctions.ReluDeriv)
 		);
 
+
 		public static readonly NeuralLayerConfig SigmoidConfig = new
 		(
 			activator: VectorFunctions.Piecewise(ScalarFunctions.Sigmoid),
 			activatorDeriv: VectorFunctions.Piecewise(ScalarFunctions.SigmoidDeriv)	
 		);
+
 
 		public static readonly NeuralLayerConfig IdentityConfig = new
 		(

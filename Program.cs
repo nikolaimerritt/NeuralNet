@@ -5,6 +5,7 @@ using MathNet.Numerics.LinearAlgebra;
 using CatchTheCheeseGame;
 using QTableLearning;
 using NeuralNetLearning;
+using Maths;
 
 namespace CatchTheCheeseGame
 {
@@ -25,7 +26,7 @@ namespace CatchTheCheeseGame
 
         static (Vector, Vector) RandomTrainingPair()
         {
-            Vector input = NeuralLayer.StdUniformVector(1);
+            Vector input = VectorFunctions.StdUniform(1);
             Vector desiredOutput = Vector.Build.DenseOfArray(new double[] { input[0] * input[0] });
             return (input, desiredOutput);
         }
@@ -46,7 +47,7 @@ namespace CatchTheCheeseGame
 
                 foreach ((Vector input, Vector desiredOutput) in RandomTrainingPairs(numTrainingPairs))
                 {
-                    net.StochasticGradientDescent(input, desiredOutput, NeuralLayerConfig.MSEderiv, learningRate: 10e-2);
+                    net.StochasticGradientDescent(input, desiredOutput, VectorFunctions.MSEderiv, learningRate: 10e-2);
                 }
             }
             net.WriteToDirectory("../../../NeuralNetworkLearning/layers");
@@ -58,7 +59,7 @@ namespace CatchTheCheeseGame
             foreach ((Vector input, Vector desiredOutput) in trainingPairs)
             {
                 Vector output = net.Output(input);
-                costs.Add(NeuralLayerConfig.MSE(output, desiredOutput));
+                costs.Add(VectorFunctions.MSE(output, desiredOutput));
             }
             return costs.Average();
         }
