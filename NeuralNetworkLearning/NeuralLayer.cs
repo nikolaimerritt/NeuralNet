@@ -16,8 +16,8 @@ namespace NeuralNetLearning
 		public int OutputDim { get; private set; }
 		public NeuralLayerConfig Config { get; private set; }
 
-		private Matrix _weight;
-		private Vector _bias;
+		public Matrix _weight;
+		public Vector _bias;
 
         #region CONSTRUCTORS
         private NeuralLayer(Matrix weight, Vector bias, NeuralLayerConfig config)
@@ -67,8 +67,14 @@ namespace NeuralNetLearning
 			return _weight * Config.Activator(layerBehind) + _bias;
         }
 
+		// UNCOMMENT FOR DEBUGGING 
+		public void SetWeight(Matrix weight)
+			=> _weight = weight;
+		public void SetBias(Vector bias)
+			=> _bias = bias;
+		
 
-		private Vector CostGradWrtLayerBehind(Vector costGradWrtLayer, Vector layerBehind)
+		public Vector CostGradWrtLayerBehind(Vector costGradWrtLayer, Vector layerBehind)
         {
 			Vector fstProduct = _weight.TransposeThisAndMultiply(costGradWrtLayer);
 			Vector sndProduct = Config.ActivatorDeriv(layerBehind);
@@ -81,18 +87,33 @@ namespace NeuralNetLearning
 			_bias += (-learningRate) * costGradWrtBias;
         }
 
-		public void GradientDescent(string filepathPrefix, Vector costGradWrtLayer, Vector layerBehind, double learningRate, out Vector costGradWrtLayerBehind)
+		public (Matrix, Vector) GradientDescent(Vector costGradWrtLayer, Vector layerBehind, double learningRate, out Vector costGradWrtLayerBehind)
         {
 			costGradWrtLayerBehind = CostGradWrtLayerBehind(costGradWrtLayer, layerBehind);
 
 			Matrix costGradWrtWeight = Vector.OuterProduct(costGradWrtLayer, Config.Activator(layerBehind));
 			Vector costGradWrtBias = costGradWrtLayer;
 
-			string pathToWeight = $"{filepathPrefix}_weight.csv";
-			string pathToBias = $"{filepathPrefix}_bias.csv";
-			// Write(pathToWeight, pathToBias);
-
 			GradientDescent(costGradWrtWeight, costGradWrtBias, learningRate);
+			return (costGradWrtWeight, costGradWrtBias);
 		}
+
+		public NeuralLayer DeepCopy()
+			=> new(_weight.Clone(), _bias.Clone(), Config); // Config is immutable so passing it in by ref is okay
+
+
+		public NeuralLayer DeepCopyWithReplacement(Matrix newWeight)
+        {
+			NeuralLayer deepCopy = DeepCopy();
+			deepCopy._weight = newWeight;
+			return deepCopy;
+        }
+
+		public NeuralLayer DeepCopyWithReplacement(Vector newBias)
+        {
+			NeuralLayer deepCopy = DeepCopy();
+			deepCopy._bias = newBias;
+			return deepCopy;
+        }
 	}
 }

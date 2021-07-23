@@ -6,10 +6,12 @@ using CatchTheCheeseGame;
 using QTableLearning;
 using NeuralNetLearning;
 using Maths;
+using Tests;
 
 namespace CatchTheCheeseGame
 {
     using Vector = Vector<double>;
+    using Matrix = Matrix<double>;
     class Program
     {
         static void CatchTheCheeseQTableDemo(string[] args)
@@ -26,7 +28,7 @@ namespace CatchTheCheeseGame
 
         static (Vector, Vector) RandomTrainingPair()
         {
-            Vector input = VectorFunctions.StdUniform(1);
+            Vector input = 1 * VectorFunctions.StdUniform(1);
             Vector desiredOutput = Vector.Build.DenseOfArray(new double[] { input[0] * input[0] });
             return (input, desiredOutput);
         }
@@ -47,7 +49,7 @@ namespace CatchTheCheeseGame
 
                 foreach ((Vector input, Vector desiredOutput) in RandomTrainingPairs(numTrainingPairs))
                 {
-                    net.StochasticGradientDescent(input, desiredOutput, VectorFunctions.MSEderiv, learningRate: 10e-2);
+                    net.WeightsAndBiasesOfGradDescent(input, desiredOutput, learningRate: 10e-2);
                 }
             }
             net.WriteToDirectory("../../../NeuralNetworkLearning/layers");
@@ -66,18 +68,7 @@ namespace CatchTheCheeseGame
 
         static void Main(string[] args)
         {
-            NeuralNetwork net = new(1, 8, 8, 1);
-            TrainNet(net, numTrainingPairs: (int) 10e4, numEpochs: 100, numTestingPairs: (int) 10e2);
-
-            List<(Vector, Vector)> finalTests = RandomTrainingPairs(10);
-            Console.WriteLine("\n\n\n===================== demo =====================");
-            foreach ((Vector input, Vector desiredOutput) in finalTests)
-            {
-                double output = net.Output(input)[0];
-                Console.WriteLine($"{input[0]:0.###} \t --> \t {output:0.###} \t \t (correct answer was {desiredOutput[0]:0.###})");
-            }
-
-            net.WriteToDirectory("../../../NeuralNetworkLearning/");
+            TestDerivatives.TestWeightsAndBiases(3);
         }
     }
 }

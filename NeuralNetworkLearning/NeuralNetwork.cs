@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
+using Maths;
 
 namespace NeuralNetLearning
 {
@@ -11,8 +12,9 @@ namespace NeuralNetLearning
 
 	public class NeuralNetwork
 	{
-		private readonly NeuralLayer[] _layers;
-        private readonly NeuralLayerConfig processFinalLayer = NeuralLayerConfig.SigmoidConfig;
+		public readonly NeuralLayer[] _layers;
+        private readonly NeuralLayerConfig processFinalLayer = NeuralLayerConfig.ReluConfig;
+        public static readonly string DefaultDirectory = "../../../NeuralNetworkLearning/layers";
         public int LayerCount
         {
             get => _layers.Length;
@@ -31,14 +33,14 @@ namespace NeuralNetLearning
             {
                 int inputDim = layerSizes[i];
                 int outputDim = layerSizes[i + 1];
-                NeuralLayerConfig config = DefaultConfig(i, layerSizes.Length - 1);
+                NeuralLayerConfig config = NeuralLayerConfig.ReluConfig;
 
                 layers.Add(new(inputDim, outputDim, config));
             }
             _layers = layers.ToArray();
         }
 
-        public NeuralNetwork(string directoryPath)
+        public static NeuralNetwork ReadFromDirectory(string directoryPath)
         {
             List<string> weightPaths = Directory.GetFiles(directoryPath, "weight *.csv").ToList();
             weightPaths.Sort();
@@ -48,24 +50,17 @@ namespace NeuralNetLearning
             List<NeuralLayer> layers = new();
             for (int i = 0; i < weightPaths.Count; i++)
             {
-                NeuralLayerConfig config = DefaultConfig(layerPosition: i, maxLayerPosition: weightPaths.Count - 1);
+                NeuralLayerConfig config = NeuralLayerConfig.ReluConfig;
                 layers.Add(new(weightPaths[i], biasPaths[i], config));
             }
-            _layers = layers.ToArray();
+            return new NeuralNetwork(layers.ToArray());
         }
+
+        public static NeuralNetwork ReadFromDirectory()
+            => ReadFromDirectory(DefaultDirectory);
         #endregion Constructors
 
-        private static NeuralLayerConfig DefaultConfig(int layerPosition, int maxLayerPosition)
-        {
-            if (layerPosition == 0)
-                return NeuralLayerConfig.IdentityConfig;
 
-            if (layerPosition == maxLayerPosition)
-                return NeuralLayerConfig.SigmoidConfig;
-
-            else
-                return NeuralLayerConfig.ReluConfig;
-        }
 
         public void WriteToDirectory(string directoryPath)
         {
@@ -77,6 +72,9 @@ namespace NeuralNetLearning
             }
         }
 
+        public void WriteToDirectory()
+            => WriteToDirectory(DefaultDirectory);
+
         private Vector[] LayerValues(Vector input)
         {
             List<Vector> layerValues = new() { input };
@@ -87,21 +85,69 @@ namespace NeuralNetLearning
             return layerValues.ToArray();
         }
 
+
+        public void SetWeight(int layerIdx, Matrix weight)
+            => _layers[layerIdx].SetWeight(weight);
+        public void SetBias(int layerIdx, Vector bias)
+            => _layers[layerIdx].SetBias(bias);
+
+
         public Vector Output(Vector input)
             => processFinalLayer.Activator(LayerValues(input).Last());
 
-        public void StochasticGradientDescent(Vector input, Vector desiredOutput, Func<Vector, Vector, Vector> costDeriv, double learningRate)
+
+        public double Cost(Vector input, Vector desiredOutput)
+            => VectorFunctions.MSE(Output(input), desiredOutput);
+
+        private Vector CostGradWrtFinalLayer(Vector finalLayer, Vector desiredOutput)
+        {
+            Vector output = processFinalLayer.Activator(finalLayer);
+            Vector outerDeriv = VectorFunctions.MSEderiv(output, desiredOutput);
+            Vector innerDeriv = processFinalLayer.ActivatorDeriv(finalLayer);
+            return Vector.op_DotMultiply(outerDeriv, innerDeriv);
+        }
+
+        public (Matrix[], Vector[]) WeightsAndBiasesOfGradDescent(Vector input, Vector desiredOutput, double learningRate)
         {
             Vector[] layerValues = LayerValues(input);
-            Vector output = processFinalLayer.Activator(layerValues.Last());
 
-            Vector costGradWrtLayer = costDeriv(output, desiredOutput);
+            Vector costGradWrtLayer = CostGradWrtFinalLayer(layerValues.Last(), desiredOutput);
+            List<Matrix> weightCostGrads = new();
+            List<Vector> biasCostGrads = new();
+
             for (int i = LayerCount - 1; i >= 0; i--)
             {
-                string filepathPrefix = $"../../../NeuralNetworkLearning/{i}";
                 Vector layerBehind = layerValues[i];
-                _layers[i].GradientDescent(filepathPrefix, costGradWrtLayer, layerBehind, learningRate, out costGradWrtLayer);
+                (Matrix weightGrad, Vector biasGrad) = _layers[i].GradientDescent(costGradWrtLayer, layerBehind, learningRate, out Vector costGradWrtLayerBehind);
+                weightCostGrads.Add(weightGrad);
+                biasCostGrads.Add(biasGrad);
+
+                costGradWrtLayer = costGradWrtLayerBehind;
             }
+
+            weightCostGrads.Reverse();
+            biasCostGrads.Reverse();
+            return (weightCostGrads.ToArray(), biasCostGrads.ToArray());
+        }
+
+        public NeuralNetwork DeepCopy()
+        {
+            NeuralLayer[] newLayers = _layers.Select(layer => layer.DeepCopy()).ToArray();
+            return new(newLayers);
+        }
+
+        public NeuralNetwork DeepCopyWithReplacement(int layerIdxToReplace, Matrix newWeight)
+        {
+            NeuralNetwork deepCopy = DeepCopy();
+            deepCopy._layers[layerIdxToReplace] = deepCopy._layers[layerIdxToReplace].DeepCopyWithReplacement(newWeight);
+            return deepCopy;
+        }
+
+        public NeuralNetwork DeepCopyWithReplacement(int layerIdxToReplace, Vector newBias)
+        {
+            NeuralNetwork deepCopy = DeepCopy();
+            deepCopy._layers[layerIdxToReplace] = deepCopy._layers[layerIdxToReplace].DeepCopyWithReplacement(newBias);
+            return deepCopy;
         }
     }
 }

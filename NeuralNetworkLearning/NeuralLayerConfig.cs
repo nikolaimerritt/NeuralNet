@@ -35,10 +35,8 @@ namespace NeuralNetLearning
 
 		public static readonly NeuralLayerConfig IdentityConfig = new
 		(
-			activator: new(vector => vector),
+			activator: new Func<Vector, Vector>(vector => vector),
 			activatorDeriv: VectorFunctions.Piecewise(x => 1)
 		);
-
-
     }
 }
