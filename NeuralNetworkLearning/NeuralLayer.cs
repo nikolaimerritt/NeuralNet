@@ -102,7 +102,7 @@ namespace NeuralNetLearning
 			=> new(_weight.Clone(), _bias.Clone(), Config); // Config is immutable so passing it in by ref is okay
 
 
-		public NeuralLayer DeepCopyWithReplacement(Matrix newWeight)
+		public NeuralLayer DeepCopyWithModification(Matrix newWeight)
         {
 			NeuralLayer deepCopy = DeepCopy();
 			deepCopy._weight = newWeight;

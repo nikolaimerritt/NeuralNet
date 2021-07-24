@@ -17,7 +17,7 @@ namespace Tests
     {
         private static void Compare(double analytic, double approx)
         {
-            double tolerance = 1e-5;
+            double tolerance = 1e-7;
             double error = Math.Abs(approx - analytic);
             Console.WriteLine($"error: {error:E2}");
             if (error > tolerance)
@@ -103,7 +103,7 @@ namespace Tests
 
             double costAsFnOfWeight(Matrix newWeight)
             {
-                NeuralNetwork net = blankNet.DeepCopyWithReplacement(layerIdx, newWeight);
+                NeuralNetwork net = blankNet.DeepCopyWithModification(newWeight, layerIdx);
                 return net.Cost(input, desiredOutput);
             }
 
@@ -126,7 +126,7 @@ namespace Tests
 
             double costAsFnOfBias(Vector newBias)
             {
-                NeuralNetwork net = blankNet.DeepCopyWithReplacement(layerIdx, newBias);
+                NeuralNetwork net = blankNet.DeepCopyWithModification(newBias, layerIdx);
                 return net.Cost(input, desiredOutput);
             }
 

@@ -136,17 +136,17 @@ namespace NeuralNetLearning
             return new(newLayers);
         }
 
-        public NeuralNetwork DeepCopyWithReplacement(int layerIdxToReplace, Matrix newWeight)
+        public NeuralNetwork DeepCopyWithModification(Matrix newWeight, int layerIdxToModify)
         {
             NeuralNetwork deepCopy = DeepCopy();
-            deepCopy._layers[layerIdxToReplace] = deepCopy._layers[layerIdxToReplace].DeepCopyWithReplacement(newWeight);
+            deepCopy._layers[layerIdxToModify] = deepCopy._layers[layerIdxToModify].DeepCopyWithModification(newWeight);
             return deepCopy;
         }
 
-        public NeuralNetwork DeepCopyWithReplacement(int layerIdxToReplace, Vector newBias)
+        public NeuralNetwork DeepCopyWithModification(Vector newBias, int layerIdxToModify)
         {
             NeuralNetwork deepCopy = DeepCopy();
-            deepCopy._layers[layerIdxToReplace] = deepCopy._layers[layerIdxToReplace].DeepCopyWithReplacement(newBias);
+            deepCopy._layers[layerIdxToModify] = deepCopy._layers[layerIdxToModify].DeepCopyWithReplacement(newBias);
             return deepCopy;
         }
     }
