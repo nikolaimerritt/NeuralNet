@@ -12,7 +12,7 @@ namespace Maths
 
     static class VectorFunctions
     {
-        private static readonly VectorBuilder<double> builder = Vector<double>.Build;
+        private static readonly VectorBuilder<double> builder = Vector.Build;
         public static double MSE(Vector obtainedValue, Vector desiredValue)
             => (obtainedValue - desiredValue).DotProduct(obtainedValue - desiredValue) / obtainedValue.Count;
 

@@ -15,14 +15,20 @@ namespace Tests
 
     static class TestDerivatives
     {
-        private static void Compare(double analytic, double approx)
+        private static DifferentiableFunction[] DefaultActivators(Parameter parameters)
+            => Enumerable
+                .Range(0, parameters.LayerCount)
+                .Select(_ => DifferentiableFunction.Relu)
+                .ToArray();
+
+        private static void Compare(double analytic, double numeric)
         {
             double tolerance = 1e-7;
-            double error = Math.Abs(approx - analytic);
+            double error = Math.Abs(numeric - analytic);
             Console.WriteLine($"error: {error:E2}");
             if (error > tolerance)
             {
-                throw new Exception($"\nError of {error:E2} is greater than the error tolerance of {tolerance:E2}");
+                throw new Exception($"Error of {error:E2} is greater than the error tolerance of {tolerance:E2}");
             }
         }
 
@@ -90,50 +96,54 @@ namespace Tests
             TestScalarFunction(ScalarFunctions.Sigmoid, ScalarFunctions.SigmoidDeriv, "sigmoid");
         }
 
+
+        private static double NumericCostGrad(Vector input, Vector desiredOutput, Parameter param, Parameter basisParam)
+        {
+            double epsilon = 1e-7;
+            double cost(Parameter param)
+                => param.Cost(input, desiredOutput, DefaultActivators(param));
+
+            double difference = cost(param + epsilon * basisParam) - cost(param - epsilon * basisParam);
+            return difference / (2 * epsilon); // approximation has error of order cost''(x) * epsilon^2 ~ 1e-14
+        }
+
         private static void TestWeight(int numLayers, int layerIdx)
         {
             int[] layerSizes = Enumerable.Range(0, numLayers+1).Select(_ => 5).ToArray();
-            NeuralNetwork blankNet = new (layerSizes);
-
-            Matrix weight = blankNet._layers[layerIdx]._weight;
-            blankNet.WriteToDirectory();
-
+            Parameter param = new(layerSizes);
             Vector input = VectorFunctions.StdUniform(5);
             Vector desiredOutput = VectorFunctions.StdUniform(5);
 
-            double costAsFnOfWeight(Matrix newWeight)
+            for (int r = 0; r < layerSizes[layerIdx+1]; r++)
             {
-                NeuralNetwork net = blankNet.DeepCopyWithModification(newWeight, layerIdx);
-                return net.Cost(input, desiredOutput);
+                for (int c = 0; c < layerSizes[layerIdx]; c++)
+                {
+                    Matrix basisMatrix = MatrixFunctions.BasisMatrix(layerSizes[layerIdx + 1], layerSizes[layerIdx], r, c);
+                    Parameter basisParam = (0 * param).CopyWithWeight(basisMatrix, layerIdx);
+                    double analytic = param.CostGrad(input, desiredOutput, DefaultActivators(param)).WeightEntry(layerIdx, r, c);
+                    double numeric = NumericCostGrad(input, desiredOutput, param, basisParam);
+
+                    Compare(analytic, numeric);
+                }
             }
-
-            NeuralNetwork net = blankNet.DeepCopy();
-            (Matrix[] analyticGrads, var _) = net.WeightsAndBiasesOfGradDescent(input, desiredOutput, learningRate: 0);
-
-            TestMatrixFunction(costAsFnOfWeight, weight, analyticGrads[layerIdx], $"Cost as a function of weight {layerIdx+1}");
         }
 
         public static void TestBias(int numLayers, int layerIdx)
         {
-
-            int[] layerSizes = Enumerable.Range(0, numLayers+1).Select(_ => 5).ToArray();
-            
-            NeuralNetwork blankNet = new(layerSizes);
-
-            Vector bias = blankNet._layers[layerIdx]._bias;
+            int[] layerSizes = Enumerable.Range(0, numLayers + 1).Select(_ => 5).ToArray();
+            Parameter param = new(layerSizes);
             Vector input = VectorFunctions.StdUniform(5);
             Vector desiredOutput = VectorFunctions.StdUniform(5);
 
-            double costAsFnOfBias(Vector newBias)
+            for (int i = 0; i < layerSizes[layerIdx]; i++)
             {
-                NeuralNetwork net = blankNet.DeepCopyWithModification(newBias, layerIdx);
-                return net.Cost(input, desiredOutput);
+                Vector basisVector = VectorFunctions.BasisVector(layerSizes[layerIdx], i);
+                Parameter basisParam = (0 * param).CopyWithBias(basisVector, layerIdx);
+                double analytic = param.CostGrad(input, desiredOutput, DefaultActivators(param)).BiasEntry(layerIdx, i);
+                double numeric = NumericCostGrad(input, desiredOutput, param, basisParam);
+
+                Compare(analytic, numeric);
             }
-
-            NeuralNetwork net = blankNet.DeepCopy();
-            (var _, Vector[] analyticGrads) = net.WeightsAndBiasesOfGradDescent(input, desiredOutput, learningRate: 0);
-
-            TestVectorFunction(costAsFnOfBias, bias, analyticGrads[layerIdx], $"Cost as a function of bias {layerIdx+1}");
         }
 
         public static void TestWeightsAndBiases(int numLayers)

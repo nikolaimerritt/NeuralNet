@@ -14,13 +14,13 @@ namespace NeuralNetLearning
 	{
 		public int InputDim { get; private set; }
 		public int OutputDim { get; private set; }
-		public NeuralLayerConfig Config { get; private set; }
+		public DifferentiableFunction Config { get; private set; }
 
 		public Matrix _weight;
 		public Vector _bias;
 
         #region CONSTRUCTORS
-        private NeuralLayer(Matrix weight, Vector bias, NeuralLayerConfig config)
+        private NeuralLayer(Matrix weight, Vector bias, DifferentiableFunction config)
 		{
 			if (weight.RowCount != bias.Count)
             {
@@ -35,7 +35,7 @@ namespace NeuralNetLearning
 		}
 
 
-		public NeuralLayer(int inputDim, int outputDim, NeuralLayerConfig config) :
+		public NeuralLayer(int inputDim, int outputDim, DifferentiableFunction config) :
 			this (
 				MatrixFunctions.StdUniform(inputDim, outputDim), 
 				VectorFunctions.StdUniform(outputDim), 
@@ -44,7 +44,7 @@ namespace NeuralNetLearning
 		{ }
 
 
-		public NeuralLayer(string pathToWeight, string pathToBias, NeuralLayerConfig config) : 
+		public NeuralLayer(string pathToWeight, string pathToBias, DifferentiableFunction config) : 
 			this (
 				MatrixFunctions.Read(pathToWeight), 
 				VectorFunctions.Read(pathToBias), 
@@ -64,7 +64,7 @@ namespace NeuralNetLearning
             {
 				throw new Exception($"The input dimension supplied to the layer ({layerBehind.Count}) differs from the input dimension of the layer ({InputDim})");
             }
-			return _weight * Config.Activator(layerBehind) + _bias;
+			return _weight * Config.Apply(layerBehind) + _bias;
         }
 
 		// UNCOMMENT FOR DEBUGGING 
@@ -77,7 +77,7 @@ namespace NeuralNetLearning
 		public Vector CostGradWrtLayerBehind(Vector costGradWrtLayer, Vector layerBehind)
         {
 			Vector fstProduct = _weight.TransposeThisAndMultiply(costGradWrtLayer);
-			Vector sndProduct = Config.ActivatorDeriv(layerBehind);
+			Vector sndProduct = Config.ApplyDerivative(layerBehind);
 			return Vector.op_DotMultiply(fstProduct, sndProduct); // element-wise multiplication
         }
 
@@ -91,7 +91,7 @@ namespace NeuralNetLearning
         {
 			costGradWrtLayerBehind = CostGradWrtLayerBehind(costGradWrtLayer, layerBehind);
 
-			Matrix costGradWrtWeight = Vector.OuterProduct(costGradWrtLayer, Config.Activator(layerBehind));
+			Matrix costGradWrtWeight = Vector.OuterProduct(costGradWrtLayer, Config.Apply(layerBehind));
 			Vector costGradWrtBias = costGradWrtLayer;
 
 			GradientDescent(costGradWrtWeight, costGradWrtBias, learningRate);

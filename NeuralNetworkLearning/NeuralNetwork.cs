@@ -4,7 +4,7 @@ using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
 using Maths;
-
+/*
 namespace NeuralNetLearning
 {
     using Matrix = Matrix<double>;
@@ -12,100 +12,54 @@ namespace NeuralNetLearning
 
 	public class NeuralNetwork
 	{
-		public readonly NeuralLayer[] _layers;
-        private readonly NeuralLayerConfig processFinalLayer = NeuralLayerConfig.ReluConfig;
+        private readonly Parameters _parameters;
+        private readonly Activator[] _activators;
         public static readonly string DefaultDirectory = "../../../NeuralNetworkLearning/layers";
         public int LayerCount
         {
-            get => _layers.Length;
+            get => _parameters.LayerCount;
         }
 
-        #region Constructors
-        public NeuralNetwork(NeuralLayer[] layers)
+        public NeuralNetwork(Parameters parameters, IEnumerable<Activator> activators)
 		{
-			_layers = layers;
+            _parameters = parameters;
+            _activators = activators.ToArray();
 		}
 
-        public NeuralNetwork(params int[] layerSizes)
-        {
-            List<NeuralLayer> layers = new();
-            for (int i = 0; i < layerSizes.Length - 1; i++)
-            {
-                int inputDim = layerSizes[i];
-                int outputDim = layerSizes[i + 1];
-                NeuralLayerConfig config = NeuralLayerConfig.ReluConfig;
 
-                layers.Add(new(inputDim, outputDim, config));
-            }
-            _layers = layers.ToArray();
-        }
+        public NeuralNetwork(Parameters parameters)
+            : this(parameters, DefaultActivators(parameters.LayerCount)) { }
+
+
+        public NeuralNetwork(params int[] layerSizes)
+            : this(new Parameters(layerSizes), DefaultActivators(layerSizes.Length)) { }
+
+
+        private static IEnumerable<Activator> DefaultActivators(int layerCount)
+            => Enumerable
+            .Range(0, layerCount)
+            .Select(i => i == 0 ? Activator.Identity : Activator.Relu);
+
 
         public static NeuralNetwork ReadFromDirectory(string directoryPath)
-        {
-            List<string> weightPaths = Directory.GetFiles(directoryPath, "weight *.csv").ToList();
-            weightPaths.Sort();
-            List<string> biasPaths = Directory.GetFiles(directoryPath, "bias *.csv").ToList();
-            biasPaths.Sort();
-
-            List<NeuralLayer> layers = new();
-            for (int i = 0; i < weightPaths.Count; i++)
-            {
-                NeuralLayerConfig config = NeuralLayerConfig.ReluConfig;
-                layers.Add(new(weightPaths[i], biasPaths[i], config));
-            }
-            return new NeuralNetwork(layers.ToArray());
-        }
+            => new (Parameters.ReadFromDirectory(directoryPath));
+        
 
         public static NeuralNetwork ReadFromDirectory()
             => ReadFromDirectory(DefaultDirectory);
-        #endregion Constructors
 
 
 
         public void WriteToDirectory(string directoryPath)
-        {
-            for (int i = 0; i < LayerCount; i++)
-            {
-                string weightPath = $"{directoryPath}/weight {i+1}.csv";
-                string biasPath = $"{directoryPath}/bias {i+1}.csv";
-                _layers[i].Write(weightPath, biasPath);
-            }
-        }
+           => _parameters.WriteToDirectory(directoryPath);
 
         public void WriteToDirectory()
             => WriteToDirectory(DefaultDirectory);
-
-        private Vector[] LayerValues(Vector input)
-        {
-            List<Vector> layerValues = new() { input };
-            foreach (NeuralLayer layer in _layers)
-            {
-                layerValues.Add(layer.LayerValue(layerValues.Last()));
-            }
-            return layerValues.ToArray();
-        }
-
-
-        public void SetWeight(int layerIdx, Matrix weight)
-            => _layers[layerIdx].SetWeight(weight);
-        public void SetBias(int layerIdx, Vector bias)
-            => _layers[layerIdx].SetBias(bias);
-
-
-        public Vector Output(Vector input)
-            => processFinalLayer.Activator(LayerValues(input).Last());
 
 
         public double Cost(Vector input, Vector desiredOutput)
             => VectorFunctions.MSE(Output(input), desiredOutput);
 
-        private Vector CostGradWrtFinalLayer(Vector finalLayer, Vector desiredOutput)
-        {
-            Vector output = processFinalLayer.Activator(finalLayer);
-            Vector outerDeriv = VectorFunctions.MSEderiv(output, desiredOutput);
-            Vector innerDeriv = processFinalLayer.ActivatorDeriv(finalLayer);
-            return Vector.op_DotMultiply(outerDeriv, innerDeriv);
-        }
 
         public (Matrix[], Vector[]) WeightsAndBiasesOfGradDescent(Vector input, Vector desiredOutput, double learningRate)
         {
@@ -151,3 +105,4 @@ namespace NeuralNetLearning
         }
     }
 }
+*/

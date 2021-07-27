@@ -26,45 +26,6 @@ namespace CatchTheCheeseGame
             learner.demoGame();
         }
 
-        static (Vector, Vector) RandomTrainingPair()
-        {
-            Vector input = 1 * VectorFunctions.StdUniform(1);
-            Vector desiredOutput = Vector.Build.DenseOfArray(new double[] { input[0] * input[0] });
-            return (input, desiredOutput);
-        }
-
-        static List<(Vector, Vector)> RandomTrainingPairs(int amount)
-            =>  Enumerable
-                .Range(0, amount)
-                .Select(i => RandomTrainingPair())
-                .ToList();
-
-        static void TrainNet(in NeuralNetwork net, int numTrainingPairs, int numEpochs, int numTestingPairs)
-        {
-            List<(Vector, Vector)> testingPairs = RandomTrainingPairs(numTestingPairs);
-            for (int epoch = 1; epoch <= numEpochs; epoch++)
-            {
-                double meanCost = MeanCost(net, testingPairs);
-                Console.WriteLine($"Mean test cost at epoch {epoch} / {numEpochs}: \t {meanCost:0.#####}");
-
-                foreach ((Vector input, Vector desiredOutput) in RandomTrainingPairs(numTrainingPairs))
-                {
-                    net.WeightsAndBiasesOfGradDescent(input, desiredOutput, learningRate: 10e-2);
-                }
-            }
-            net.WriteToDirectory("../../../NeuralNetworkLearning/layers");
-        }
-
-        public static double MeanCost(NeuralNetwork net, List<(Vector, Vector)> trainingPairs)
-        {
-            List<double> costs = new();
-            foreach ((Vector input, Vector desiredOutput) in trainingPairs)
-            {
-                Vector output = net.Output(input);
-                costs.Add(VectorFunctions.MSE(output, desiredOutput));
-            }
-            return costs.Average();
-        }
 
         static void Main(string[] args)
         {

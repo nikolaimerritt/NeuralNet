@@ -7,33 +7,33 @@ namespace NeuralNetLearning
 {
 	using Vector = Vector<double>;
 
-	public class NeuralLayerConfig
+	public class DifferentiableFunction
 	{
-		public readonly Func<Vector, Vector> Activator;
-		public readonly Func<Vector, Vector> ActivatorDeriv;
+		public readonly Func<Vector, Vector> Apply;
+		public readonly Func<Vector, Vector> ApplyDerivative;
 
-		public NeuralLayerConfig(Func<Vector, Vector> activator, Func<Vector, Vector> activatorDeriv)
+		public DifferentiableFunction(Func<Vector, Vector> activator, Func<Vector, Vector> activatorDeriv)
 		{
-			Activator = activator;
-			ActivatorDeriv = activatorDeriv;
+			Apply = activator;
+			ApplyDerivative = activatorDeriv;
 		}
 
 
-		public static readonly NeuralLayerConfig ReluConfig = new
+		public static readonly DifferentiableFunction Relu = new
 		(
 			activator: VectorFunctions.Piecewise(ScalarFunctions.Relu), 
 			activatorDeriv: VectorFunctions.Piecewise(ScalarFunctions.ReluDeriv)
 		);
 
 
-		public static readonly NeuralLayerConfig SigmoidConfig = new
+		public static readonly DifferentiableFunction Sigmoid = new
 		(
 			activator: VectorFunctions.Piecewise(ScalarFunctions.Sigmoid),
 			activatorDeriv: VectorFunctions.Piecewise(ScalarFunctions.SigmoidDeriv)	
 		);
 
 
-		public static readonly NeuralLayerConfig IdentityConfig = new
+		public static readonly DifferentiableFunction Identity = new
 		(
 			activator: new Func<Vector, Vector>(vector => vector),
 			activatorDeriv: VectorFunctions.Piecewise(x => 1)
