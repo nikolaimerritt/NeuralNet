@@ -15,12 +15,12 @@ namespace Maths
 		private static readonly MatrixBuilder<double> _builder = Matrix.Build;
 
 
-		public static Matrix StdNormal(int inputDim, int outputDim)
-			=> Matrix.Build.Random(outputDim, inputDim, _stdNormal);
+		public static Matrix StdNormal(int rows, int cols)
+			=> Matrix.Build.Random(rows, cols, _stdNormal);
 
 
-		public static Matrix StdUniform(int inputDim, int outputDim) // [-1, 1]
-			=> Matrix.Build.Random(outputDim, inputDim, _stdUniform);
+		public static Matrix StdUniform(int rows, int cols) // [-1, 1]
+			=> Matrix.Build.Random(rows, cols, _stdUniform);
 
 
 		public static Matrix Read(string filepath)

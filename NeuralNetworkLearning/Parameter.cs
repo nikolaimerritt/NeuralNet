@@ -36,12 +36,12 @@ namespace NeuralNetLearning
 
         public Parameter(params int[] layerSizes)
         {
-            _weights = Enumerable.Range(1, layerSizes.Length - 1)
-                .Select(i => MatrixFunctions.StdUniform(inputDim: layerSizes[i], outputDim: layerSizes[i-1]))
+            _weights = Enumerable.Range(0, layerSizes.Length - 1)
+                .Select(i => MatrixFunctions.StdUniform(rows: layerSizes[i+1], cols: layerSizes[i]))
                 .ToArray();
 
-            _biases = Enumerable.Range(1, layerSizes.Length - 1)
-                .Select(i => VectorFunctions.StdUniform(layerSizes[i]))
+            _biases = Enumerable.Range(0, layerSizes.Length - 1)
+                .Select(i => VectorFunctions.StdUniform(layerSizes[i+1]))
                 .ToArray();
         }
 
@@ -74,7 +74,7 @@ namespace NeuralNetLearning
         private static void CheckForIncompatibleOperands(Parameter lhs, Parameter rhs, string operation)
         {
             if (lhs.LayerCount != rhs.LayerCount)
-                throw new ArithmeticException($"Could not {operation} a parameters object with {lhs.LayerCount} layers and a parameters object with {rhs.LayerCount} layers.");
+                throw new ArithmeticException($"Could not {operation} a parameter object with {lhs.LayerCount} layers and a parameter object with {rhs.LayerCount} layers.");
 
             for (int i = 0; i < lhs.LayerCount; i++)
             {
@@ -82,29 +82,27 @@ namespace NeuralNetLearning
                 Matrix rhsWeight = rhs._weights[i];
 
                 if (lhsWeight.RowCount != rhsWeight.RowCount || lhsWeight.ColumnCount != rhsWeight.ColumnCount)
-                    throw new ArithmeticException($"Could not {operation} a parameters object with weight {i} of dimension ({lhsWeight.RowCount}, {lhsWeight.ColumnCount}) and a parameters object with weight {i} of dimension ({rhsWeight.RowCount}, {rhsWeight.ColumnCount})");
+                    throw new ArithmeticException($"Could not {operation} a parameter object with weight {i} of dimension ({lhsWeight.RowCount}, {lhsWeight.ColumnCount}) and a parameter object with weight {i} of dimension ({rhsWeight.RowCount}, {rhsWeight.ColumnCount})");
 
                 Vector lhsBias = lhs._biases[i];
                 Vector rhsBias = rhs._biases[i];
 
                 if (lhsBias.Count != rhsBias.Count)
-                    throw new ArithmeticException($"Could not {operation} a parameters object with bias {i} of length {lhsBias.Count} and a parameters object with bias {i} of length {rhsBias.Count}");
+                    throw new ArithmeticException($"Could not {operation} a parameter object with bias {i} of length {lhsBias.Count} and a parameter object with bias {i} of length {rhsBias.Count}");
             }
         }
 
         private static void CheckForConstructionError(IEnumerable<Matrix> weights, IEnumerable<Vector> biases)
         {
             if (weights.Count() != biases.Count())
-                throw new ArithmeticException($"Could not construct a parameters object with {weights.Count()} weights and {biases.Count()} biases, as the amount of weights must match the amount of biases.");
+                throw new ArithmeticException($"Could not construct a parameter object with {weights.Count()} weights and {biases.Count()} biases, as the amount of weights must match the amount of biases.");
 
             foreach ((Matrix weight, Vector bias) in weights.Zip(biases))
             {
                 if (weight.RowCount != bias.Count)
-                    throw new ArithmeticException($"Could not construct a parameters object with a weight of dimension {(weight.RowCount, weight.ColumnCount)} and a corresponding bias of dimension {bias.Count}. The bias's dimension must match the amount of rows of the weight.");
+                    throw new ArithmeticException($"Could not construct a parameter object with a weight of dimension {(weight.RowCount, weight.ColumnCount)} and a corresponding bias of dimension {bias.Count}. The bias's dimension must match the amount of rows of the weight.");
             }
         }
-
-
 
         public static Parameter operator +(Parameter lhs, Parameter rhs)
         {
@@ -119,12 +117,12 @@ namespace NeuralNetLearning
             return new Parameter(newWeights, newBiases);
         }
 
-        public static Parameter operator *(double scalar, Parameter parameters)
+        public static Parameter operator *(double scalar, Parameter parameter)
         {
-            var newWeights = parameters._weights
+            var newWeights = parameter._weights
                 .Select(weight => scalar * weight);
 
-            var newBiases = parameters._biases
+            var newBiases = parameter._biases
                 .Select(bias => scalar * bias);
 
             return new Parameter(newWeights, newBiases);
@@ -143,8 +141,8 @@ namespace NeuralNetLearning
             return new Parameter(newWeights, newBiases);
         }
 
-        public static Parameter operator -(Parameter parameters)
-            => (-1.0) * parameters;
+        public static Parameter operator -(Parameter parameter)
+            => (-1.0) * parameter;
 
         public static Parameter operator -(Parameter lhs, Parameter rhs)
         {
@@ -152,39 +150,47 @@ namespace NeuralNetLearning
             return lhs + (-rhs);
         }
 
-        public static Parameter operator /(Parameter parameters, double scalar)
+        public static Parameter operator /(Parameter parameter, double scalar)
         {
             if (scalar == 0)
-                throw new ArithmeticException($"Could not divide a parameters object by zero.");
+                throw new ArithmeticException($"Could not divide a parameter object by zero.");
 
-            return (1 / scalar) * parameters;
+            return (1 / scalar) * parameter;
         }
 
 
-        public Vector[] LayerValuesBeforeActivation(Vector input, DifferentiableFunction[] activators)
+        private Vector[] Layers(Vector input, DifferentiableFunction[] activators, out Vector[] layersBeforeActivation)
         {
-            if (input.Count != _biases[0].Count)
-                throw new ArithmeticException($"The input has dimension {input.Count}, which does not match the required dimension of {_biases[0].Count}");
+            if (input.Count != _weights[0].ColumnCount)
+                throw new ArithmeticException($"The input has dimension {input.Count}, which does not match the required dimension of {_weights[0].ColumnCount}");
 
             if (LayerCount != activators.Length)
-                throw new ArgumentException($"{activators.Length} activators were supplied, which does not match the amount {LayerCount} of layers of the parameters object.");
+                throw new ArgumentException($"{activators.Length} activators were supplied, which does not match the amount {LayerCount} of layers of the parameter object.");
 
-            Vector prevLayerValue = input;
-            List<Vector> layerValues = new();
+            Vector[] layers = new Vector[LayerCount];
+            layersBeforeActivation = new Vector[LayerCount];
+            Vector prevLayer = input;
 
             for (int i = 0; i < LayerCount; i++)
             {
-                Vector layerValue = _weights[i] * prevLayerValue + _biases[i];
-                layerValues.Add(layerValue);
-                prevLayerValue = activators[i].Apply(layerValue);
-            }
+                Vector beforeActivation = _weights[i] * prevLayer + _biases[i];
+                layersBeforeActivation[i] = beforeActivation;
+                layers[i] = activators[i].Apply(beforeActivation);
 
-            return layerValues.ToArray();
+                prevLayer = layers[i];
+            }
+            return layers;
         }
 
 
+        private Vector[] DifferentiatedLayers(Vector[] layersBeforeActivation, DifferentiableFunction[] activators)
+            => activators
+                .Zip(layersBeforeActivation, (activator, layer) => activator.ApplyDerivative(layer))
+                .ToArray();
+
+
         public Vector Output(Vector input, DifferentiableFunction[] activators)
-            => activators.Last().Apply(LayerValuesBeforeActivation(input, activators).Last());
+            => Layers(input, activators, out _).Last();
 
 
         public double Cost(Vector input, Vector desiredOutput, DifferentiableFunction[] activators)
@@ -216,145 +222,26 @@ namespace NeuralNetLearning
 
         public Parameter CostGrad(Vector input, Vector desiredOutput, DifferentiableFunction[] activators)
         {
-            Vector[] layersBeforeActivation = LayerValuesBeforeActivation(input, activators);
-            Vector[] layersAfterActivation = activators
-                .Zip(layersBeforeActivation)
-                .Select(pair => pair.First.Apply(pair.Second))
-                .ToArray();
+            Vector[] layers = Layers(input, activators, out Vector[] layersBeforeActivation);
+            Vector[] differentiatedLayers = DifferentiatedLayers(layersBeforeActivation, activators);
 
-            Vector[] differeniatedLayers = activators
-                .Zip(layersBeforeActivation)
-                .Select(pair => pair.First.ApplyDerivative(pair.Second))
-                .ToArray();
-
-            Vector costGradWrtLayer = CostGradWrtFinalLayer(layersAfterActivation.Last(), desiredOutput);
-            List<Matrix> weightCostGrads = new();
-            List<Vector> biasCostGrads = new();
+            Vector costGradWrtLayer = CostGradWrtFinalLayer(output: layers.Last(), desiredOutput);
+            Matrix[] weightCostGrads = new Matrix[LayerCount];
+            Vector[] biasCostGrads = new Vector[LayerCount];
 
             for (int i = LayerCount - 1; i >= 0; i--)
             {
-                Vector layerBehind = i > 0 ? layersAfterActivation[i - 1] : input;
-                Matrix costGradWrtWeight = CostGradWrtWeight(costGradWrtLayer, differeniatedLayers[i], layerBehind);
-                weightCostGrads.Insert(0, costGradWrtWeight);
+                Vector layerBehind = i > 0 ? layers[i - 1] : input;
+                Matrix costGradWrtWeight = CostGradWrtWeight(costGradWrtLayer, differentiatedLayers[i], layerBehind);
+                weightCostGrads[i] = costGradWrtWeight;
 
-                Vector costGradWrtBias = CostGradWrtBias(costGradWrtLayer, differeniatedLayers[i]);
-                biasCostGrads.Insert(0, costGradWrtBias);
+                Vector costGradWrtBias = CostGradWrtBias(costGradWrtLayer, differentiatedLayers[i]);
+                biasCostGrads[i] = costGradWrtBias;
 
-                costGradWrtLayer = CostGradWrtLayerBehind(costGradWrtLayer, differeniatedLayers[i], _weights[i]);
+                costGradWrtLayer = CostGradWrtLayerBehind(costGradWrtLayer, differentiatedLayers[i], _weights[i]);
             }
 
             return new Parameter(weightCostGrads, biasCostGrads);
-        }
-
-        /*
-        public bool ValueEquals(Parameter other)
-        {
-            if (this == other) // reference equals
-                return true;
-
-            if (LayerCount != other.LayerCount)
-                return false;
-
-            if (EntriesCount != other.EntriesCount)
-                return false;
-
-            foreach ((var weight, var otherWeight) in _weights.Zip(other._weights))
-            {
-                if (weight != otherWeight)
-                    return false;
-            }
-
-            foreach ((var bias, var otherBias) in _biases.Zip(other._biases))
-            {
-                if (bias != otherBias)
-                    return false;
-            }
-
-            return true;
-
-        } */
-
-        public double WeightEntry(int layerIdx, int row, int col)
-        {
-            if (LayerCount <= layerIdx)
-                throw new ArgumentException($"Could not access a layer at index {layerIdx}, as there are {LayerCount} layers");
-
-            if (_weights[layerIdx].RowCount <= row || _weights[layerIdx].ColumnCount <= col)
-                throw new ArgumentException($"Could not access an entry of the weight at index {(row, col)} as the weight has dimensions {(_weights[layerIdx].RowCount, _weights[layerIdx].ColumnCount)}");
-
-            return _weights[layerIdx][row, col];
-        }
-
-        public double BiasEntry(int layerIdx, int biasIdx)
-        {
-            if (LayerCount <= layerIdx)
-                throw new ArgumentException($"Could not access a layer at index {layerIdx}, as there are {LayerCount} layers");
-
-            if (_biases[layerIdx].Count <= biasIdx)
-                throw new ArgumentException($"Could not access an entry of the bias at index {biasIdx} as the bias has {_biases[layerIdx].Count} entries");
-
-            return _biases[layerIdx][biasIdx];
-        }
-
-        public Parameter DeepCopy()
-        {
-            var newWeights = _weights.Select(weight => weight.Clone());
-            var newBiases = _biases.Select(bias => bias.Clone());
-            return new Parameter(newWeights, newBiases);
-        }
-        /*
-        public Parameters[] BasisParameters()
-        {
-            List<Parameters> basisParameters = new(EntriesCount);
-
-            var zeroBiases = _biases.Select(b => 0 * b);
-            for (int i = 0; i < _weights.Length; i++)
-            {
-                for (int r = 0; r < _weights[i].RowCount; r++)
-                {
-                    for (int c = 0; c < _weights[i].ColumnCount; c++)
-                    {
-                        Matrix[] newWeights = _weights.Select(w => 0 * w).ToArray();
-                        newWeights[i][r, c] = 1;
-                        basisParameters.Add(new Parameters(newWeights, zeroBiases));
-                    }
-                }
-            }
-
-            var zeroWeights = _weights.Select(w => 0 * w);
-            for (int i = 0; i < _biases.Length; i++)
-            {
-                for (int c = 0; c < _biases[i].Count; c++)
-                {
-                    Vector[] newBiases = _biases.Select(b => 0 * b).ToArray();
-                    newBiases[i][c] = 1;
-                    basisParameters.Add(new Parameters(zeroWeights, newBiases));
-                }
-            }
-
-            return basisParameters.ToArray();
-        }*/
-
-        public Parameter CopyWithWeight(Matrix weight, int idx)
-        {
-            Parameter copy = DeepCopy();
-            Matrix weightToReplace = copy._weights[idx];
-            if (weightToReplace.RowCount != weight.RowCount || weightToReplace.ColumnCount != weight.ColumnCount)
-                throw new ArgumentException($"Could not substitute a matrix of dimension {(weightToReplace.RowCount, weightToReplace.ColumnCount)} with a matrix of dimension {(weight.RowCount, weight.ColumnCount)}");
-
-            copy._weights[idx] = weight;
-            return copy;
-        }
-
-        public Parameter CopyWithBias(Vector bias, int idx)
-        {
-            Parameter copy = DeepCopy();
-            Vector biasToReplace = copy._biases[idx];
-            if (biasToReplace.Count != bias.Count)
-                throw new ArgumentException($"Could not substitute a vector of dimension {biasToReplace.Count} with a vector of dimension {bias.Count}");
-
-            copy._biases[idx] = bias;
-            return copy;
         }
     }
 }

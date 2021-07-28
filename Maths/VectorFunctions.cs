@@ -28,11 +28,11 @@ namespace Maths
 
 
         public static Vector StdNormal(int dim) // Normal(mean = 0, var = 1)
-            => MatrixFunctions.StdNormal(1, dim).Column(0);
+            => MatrixFunctions.StdNormal(dim, 1).Column(0);
 
 
         public static Vector StdUniform(int dim) // [-1, 1]
-            => MatrixFunctions.StdUniform(1, dim).Column(0);
+            => MatrixFunctions.StdUniform(dim, 1).Column(0);
 
 
         public static Vector Read(string filepath)
