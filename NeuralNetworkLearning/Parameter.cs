@@ -34,15 +34,17 @@ namespace NeuralNetLearning
             _biases = biases.ToArray();
         }
 
-        public Parameter(params int[] layerSizes)
+        public static Parameter StdUniform(params int[] layerSizes)
         {
-            _weights = Enumerable.Range(0, layerSizes.Length - 1)
-                .Select(i => MatrixFunctions.StdUniform(rows: layerSizes[i+1], cols: layerSizes[i]))
-                .ToArray();
+            var weights = Enumerable
+                .Range(0, layerSizes.Length - 1)
+                .Select(i => MatrixFunctions.StdUniform(rows: layerSizes[i + 1], cols: layerSizes[i]));
 
-            _biases = Enumerable.Range(0, layerSizes.Length - 1)
-                .Select(i => VectorFunctions.StdUniform(layerSizes[i+1]))
-                .ToArray();
+            var biases = Enumerable
+                .Range(0, layerSizes.Length - 1)
+                .Select(i => VectorFunctions.StdUniform(layerSizes[i + 1]));
+
+            return new Parameter(weights, biases);
         }
 
         public static Parameter ReadFromDirectory(string directoryPath)
@@ -57,6 +59,9 @@ namespace NeuralNetLearning
 
             return new Parameter(weights, biases);
         }
+
+        public static Parameter Zero(Parameter parameter)
+            => 0 * parameter;
 
         public void WriteToDirectory(string directoryPath)
         {
@@ -108,22 +113,16 @@ namespace NeuralNetLearning
         {
             CheckForIncompatibleOperands(lhs, rhs, "add");
 
-            var newWeights = lhs._weights.Zip(rhs._weights)
-                .Select(weightsPair => weightsPair.First + weightsPair.Second);
-
-            var newBiases = lhs._biases.Zip(rhs._biases)
-                .Select(biasPair => biasPair.First + biasPair.Second);
+            var newWeights = lhs._weights.Zip(rhs._weights, (w1, w2) => w1 + w2);
+            var newBiases = lhs._biases.Zip(rhs._biases, (b1, b2) => b1 + b2);
 
             return new Parameter(newWeights, newBiases);
         }
 
         public static Parameter operator *(double scalar, Parameter parameter)
         {
-            var newWeights = parameter._weights
-                .Select(weight => scalar * weight);
-
-            var newBiases = parameter._biases
-                .Select(bias => scalar * bias);
+            var newWeights = parameter._weights.Select(w => scalar * w);
+            var newBiases = parameter._biases.Select(b => scalar * b);
 
             return new Parameter(newWeights, newBiases);
         }
@@ -132,11 +131,8 @@ namespace NeuralNetLearning
         {
             CheckForIncompatibleOperands(lhs, rhs, "multiply");
 
-            var newWeights = lhs._weights.Zip(rhs._weights)
-                .Select(weightPair => Matrix.op_DotMultiply(weightPair.First, weightPair.Second));
-
-            var newBiases = lhs._biases.Zip(rhs._biases)
-                .Select(biasPair => Vector.op_DotMultiply(biasPair.First, biasPair.Second));
+            var newWeights = lhs._weights.Zip(rhs._weights, Matrix.op_DotMultiply);
+            var newBiases = lhs._biases.Zip(rhs._biases, Vector.op_DotMultiply);
 
             return new Parameter(newWeights, newBiases);
         }
@@ -155,9 +151,37 @@ namespace NeuralNetLearning
             if (scalar == 0)
                 throw new ArithmeticException($"Could not divide a parameter object by zero.");
 
-            return (1 / scalar) * parameter;
+            var newWeights = parameter._weights.Select(w => w / scalar);
+            var newBiases = parameter._biases.Select(b => b / scalar);
+            return new Parameter(newWeights, newBiases);
         }
 
+
+        public static Parameter operator /(Parameter left, Parameter right)
+        {
+            CheckForIncompatibleOperands(left, right, "divide");
+
+            var newWeights = left._weights.Zip(right._weights, Matrix.op_DotDivide);
+            var newBiases = left._biases.Zip(right._biases, Vector.op_DotDivide);
+
+            return new Parameter(newWeights, newBiases);
+        }
+
+        public Parameter Pow(double power)
+        {
+            var newWeights = _weights.Select(w => w.PointwisePower(power));
+            var neweBiases = _biases.Select(b => b.PointwisePower(power));
+
+            return new(newWeights, neweBiases);
+        }
+
+        public Parameter Add(double scalar)
+        {
+            var newWeights = _weights.Select(w => w.Add(scalar));
+            var newBiases = _biases.Select(b => b.Add(scalar));
+
+            return new Parameter(newWeights, newBiases);
+        }
 
         private Vector[] Layers(Vector input, DifferentiableFunction[] activators, out Vector[] layersBeforeActivation)
         {

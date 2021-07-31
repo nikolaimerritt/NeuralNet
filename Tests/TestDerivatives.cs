@@ -70,7 +70,7 @@ namespace Tests
         private static void TestWeight(int numLayers, int layerIdx)
         {
             int[] layerSizes = Enumerable.Range(0, numLayers+1).Select(i => numLayers + 10 - i).ToArray();
-            Parameter param = new(layerSizes);
+            Parameter param = Parameter.StdUniform(layerSizes);
             Vector input = VectorFunctions.StdUniform(layerSizes.First());
             Vector desiredOutput = VectorFunctions.StdUniform(layerSizes.Last());
 
@@ -97,7 +97,7 @@ namespace Tests
         public static void TestBias(int numLayers, int layerIdx)
         {
             int[] layerSizes = Enumerable.Range(0, numLayers + 1).Select(i => numLayers + 10 - i).ToArray();
-            Parameter param = new(layerSizes);
+            Parameter param = Parameter.StdUniform(layerSizes);
             Vector input = VectorFunctions.StdUniform(layerSizes.First());
             Vector desiredOutput = VectorFunctions.StdUniform(layerSizes.Last());
 

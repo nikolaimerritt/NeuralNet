@@ -4,105 +4,112 @@ using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
 using Maths;
-/*
+
 namespace NeuralNetLearning
 {
     using Matrix = Matrix<double>;
     using Vector = Vector<double>;
+    using TrainingPairs = List<(Vector<double>, Vector<double>)>;
 
 	public class NeuralNetwork
-	{
-        private readonly Parameters _parameters;
-        private readonly Activator[] _activators;
-        public static readonly string DefaultDirectory = "../../../NeuralNetworkLearning/layers";
+    {
+        private Parameter _param;
+        private DifferentiableFunction[] _activators;
+        private static Random _rng = new();
+
         public int LayerCount
         {
-            get => _parameters.LayerCount;
+            get => _param.LayerCount;
         }
 
-        public NeuralNetwork(Parameters parameters, IEnumerable<Activator> activators)
-		{
-            _parameters = parameters;
-            _activators = activators.ToArray();
-		}
+        public NeuralNetwork(Parameter param, DifferentiableFunction[] activators)
+        {
+            if (activators.Length != param.LayerCount - 1)
+                throw new ArgumentException($"Expected {param.LayerCount - 1} activators, but received {activators.Length}");
 
+            _param = param;
+            _activators = activators;
+        }
 
-        public NeuralNetwork(Parameters parameters)
-            : this(parameters, DefaultActivators(parameters.LayerCount)) { }
+        public NeuralNetwork(int[] layerSizes, DifferentiableFunction[] activators)
+            : this(Parameter.StdUniform(layerSizes), activators) { }
 
-
-        public NeuralNetwork(params int[] layerSizes)
-            : this(new Parameters(layerSizes), DefaultActivators(layerSizes.Length)) { }
-
-
-        private static IEnumerable<Activator> DefaultActivators(int layerCount)
-            => Enumerable
-            .Range(0, layerCount)
-            .Select(i => i == 0 ? Activator.Identity : Activator.Relu);
-
-
-        public static NeuralNetwork ReadFromDirectory(string directoryPath)
-            => new (Parameters.ReadFromDirectory(directoryPath));
         
-
-        public static NeuralNetwork ReadFromDirectory()
-            => ReadFromDirectory(DefaultDirectory);
-
-
-
-        public void WriteToDirectory(string directoryPath)
-           => _parameters.WriteToDirectory(directoryPath);
-
-        public void WriteToDirectory()
-            => WriteToDirectory(DefaultDirectory);
-
-
-        public double Cost(Vector input, Vector desiredOutput)
-            => VectorFunctions.MSE(Output(input), desiredOutput);
-
-
-        public (Matrix[], Vector[]) WeightsAndBiasesOfGradDescent(Vector input, Vector desiredOutput, double learningRate)
+        private Parameter AverageGradient(Parameter param, TrainingPairs trainingPairs) // assuming that trainingPairs.Count() is not extremely large
         {
-            Vector[] layerValues = LayerValues(input);
+            var gradients = trainingPairs
+                .Select(pair => param.CostGrad(input: pair.Item1, desiredOutput: pair.Item2, _activators));
 
-            Vector costGradWrtLayer = CostGradWrtFinalLayer(layerValues.Last(), desiredOutput);
-            List<Matrix> weightCostGrads = new();
-            List<Vector> biasCostGrads = new();
+            return gradients.Aggregate((left, right) => left + right) / gradients.Count();
+        }
 
-            for (int i = LayerCount - 1; i >= 0; i--)
+        private Parameter VanillaGradDescentStep(Parameter param, TrainingPairs trainingPairs, double learningRate)
+        {
+            return learningRate * -AverageGradient(param, trainingPairs);
+        }
+
+        private Parameter NesterovGradDescentStep(Parameter param, TrainingPairs trainingPairs, Parameter prevParam, Parameter nesterovParam, double learningRate, int stepNumber, out Parameter nextNesterovParam)
+        {
+            Parameter nextParam = nesterovParam + learningRate * -AverageGradient(nesterovParam, trainingPairs);
+            nextNesterovParam = nextParam + (stepNumber / (stepNumber + 3)) * (nextParam - param);
+
+            return nextParam - param;
+        }
+
+        private Parameter AdamGradDescentStep(Parameter param, TrainingPairs trainingPairs, Parameter momentum, Parameter variance, double learningRate, double momentDecay, double varianceDecay, int stepNumber)
+        {
+            Parameter grad = AverageGradient(param, trainingPairs);
+            momentum = momentDecay * momentum + (1 - momentDecay) * grad;
+            momentum /= (1 - Math.Pow(momentDecay, stepNumber));
+
+            variance = varianceDecay * variance + (1 - varianceDecay) * grad.Pow(2);
+            variance /= (1 - Math.Pow(varianceDecay, stepNumber));
+
+            return -learningRate * momentum / variance.Pow(0.5).Add(1e-8);
+        }
+
+        public void VanillaGradientDescent(TrainingPairs trainingPairs, double learningRate = 1e-3, int batchSize = 256)
+        {
+            for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
             {
-                Vector layerBehind = layerValues[i];
-                (Matrix weightGrad, Vector biasGrad) = _layers[i].GradientDescent(costGradWrtLayer, layerBehind, learningRate, out Vector costGradWrtLayerBehind);
-                weightCostGrads.Add(weightGrad);
-                biasCostGrads.Add(biasGrad);
-
-                costGradWrtLayer = costGradWrtLayerBehind;
+                var trainingBatch = trainingPairs.GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+                _param += VanillaGradDescentStep(_param, trainingBatch, learningRate);
             }
-
-            weightCostGrads.Reverse();
-            biasCostGrads.Reverse();
-            return (weightCostGrads.ToArray(), biasCostGrads.ToArray());
         }
 
-        public NeuralNetwork DeepCopy()
+        public void NesterovGradientDescent(TrainingPairs trainingPairs, double learningRate = 1e-3, int batchSize = 256)
         {
-            NeuralLayer[] newLayers = _layers.Select(layer => layer.DeepCopy()).ToArray();
-            return new(newLayers);
+            Parameter nesterovParam = _param;
+            for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
+            {
+                var trainingBatch = trainingPairs.GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+                _param += NesterovGradDescentStep(_param, trainingBatch, _param, nesterovParam, learningRate, batchIdx, out nesterovParam);
+            }
         }
 
-        public NeuralNetwork DeepCopyWithModification(Matrix newWeight, int layerIdxToModify)
+        public void AdamGradientDescent(TrainingPairs trainingPairs, double learningRate = 1e-3, double momentDecay = 0.9, double varianceDecay = 0.99, int batchSize = 256)
         {
-            NeuralNetwork deepCopy = DeepCopy();
-            deepCopy._layers[layerIdxToModify] = deepCopy._layers[layerIdxToModify].DeepCopyWithModification(newWeight);
-            return deepCopy;
+            Parameter momentum = Parameter.Zero(_param);
+            Parameter variance = Parameter.Zero(_param);
+
+            for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
+            {
+                var trainingBatch = trainingPairs.GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+                _param += AdamGradDescentStep(_param, trainingBatch, momentum, variance, learningRate, momentDecay, varianceDecay, batchIdx);
+            }
         }
 
-        public NeuralNetwork DeepCopyWithModification(Vector newBias, int layerIdxToModify)
+        private static void Shuffle<T>(IList<T> list)
         {
-            NeuralNetwork deepCopy = DeepCopy();
-            deepCopy._layers[layerIdxToModify] = deepCopy._layers[layerIdxToModify].DeepCopyWithReplacement(newBias);
-            return deepCopy;
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = _rng.Next(n + 1); // 0 <= k <= n
+                T putAtPosN = list[k];
+                list[k] = list[n];
+                list[n] = putAtPosN;
+            }
         }
     }
 }
-*/
