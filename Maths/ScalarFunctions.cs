@@ -37,7 +37,6 @@ namespace Maths
 
         public static double NumericDerivative(Func<double, double> f, double differentiateAt)
         {
-            return Differentiate.FirstDerivative(f, differentiateAt);
             double difference = f(differentiateAt + Epsilon) - f(differentiateAt - Epsilon);
             return difference / (2 * Epsilon);
         }

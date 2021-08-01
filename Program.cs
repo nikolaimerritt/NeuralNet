@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
-using CatchTheCheeseGame;
-using QTableLearning;
 using NeuralNetLearning;
 using Maths;
 using Tests;
@@ -12,22 +10,33 @@ namespace CatchTheCheeseGame
 {
     using Vector = Vector<double>;
     using Matrix = Matrix<double>;
+    using TrainingPairs = List<(Vector<double>, Vector<double>)>;
+
     class Program
     {
-        static void CatchTheCheeseQTableDemo(string[] args)
+        static readonly Random rng = new();
+        static TrainingPairs GetTrainingPairs(int amount)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            QLearner learner = new QLearner(learningRate: 0.2, futureDiscount: 0.9);
-            learner.learnFromGames(numGames: args.Length == 0 ? 1000 : int.Parse(args[0]));
-
-            Console.WriteLine("do you want to see the demo?");
-            Console.ReadKey();
-
-            learner.demoGame();
+            TrainingPairs trainingPairs = new();
+            for (int i = 0; i < amount; i++)
+            {
+                double x = 50 * 2*(rng.NextDouble() - 0.5);
+                Vector input = Vector.Build.Dense(1, x);
+                Vector desiredOutput = Vector.Build.Dense(1, x * x);
+                trainingPairs.Add((input, desiredOutput));
+            }
+            return trainingPairs;
         }
 
+        static void Demo(NeuralNet net, TrainingPairs trainingPairs)
+        {
+            foreach ((Vector input, Vector desiredOutput) in trainingPairs)
+            {
+                Console.WriteLine($"{input[0]:0.###} --> {net.Output(input)[0]:0.###} \t\t (correct: {desiredOutput[0]:0.###})");
+            }
+        }
 
-        static void Main(string[] args)
+        static void Main()
         {
             TestDerivatives.TestWeightsAndBiases(3);
         }

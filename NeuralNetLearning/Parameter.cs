@@ -16,6 +16,16 @@ namespace NeuralNetLearning
             get => _weights.Length;
         }
 
+        public int[] LayerSizes
+        {
+            get 
+            {
+                List<int> layerSizes = new() { _weights.First().RowCount };
+                layerSizes.AddRange(_biases.Select(b => b.Count));
+                return layerSizes.ToArray();
+            }
+        }
+
         public int EntriesCount
         {
             get => 
@@ -47,7 +57,7 @@ namespace NeuralNetLearning
             return new Parameter(weights, biases);
         }
 
-        public static Parameter ReadFromDirectory(string directoryPath)
+        public static Parameter Read(string directoryPath)
         {
             List<string> weightPaths = Directory.GetFiles(directoryPath, "weight *.csv").ToList();
             weightPaths.Sort();
@@ -183,13 +193,18 @@ namespace NeuralNetLearning
             return new Parameter(newWeights, newBiases);
         }
 
-        private Vector[] Layers(Vector input, DifferentiableFunction[] activators, out Vector[] layersBeforeActivation)
+        public double SquaredNorm()
+            => _weights.Select(w => Math.Pow(w.FrobeniusNorm(), 2)).Sum()
+                + _biases.Select(b => b.DotProduct(b)).Sum();
+
+
+        private Vector[] Layers(Vector input, Activation[] activations, out Vector[] layersBeforeActivation)
         {
             if (input.Count != _weights[0].ColumnCount)
                 throw new ArithmeticException($"The input has dimension {input.Count}, which does not match the required dimension of {_weights[0].ColumnCount}");
 
-            if (LayerCount != activators.Length)
-                throw new ArgumentException($"{activators.Length} activators were supplied, which does not match the amount {LayerCount} of layers of the parameter object.");
+            if (LayerCount != activations.Length)
+                throw new ArgumentException($"{activations.Length} activators were supplied, which does not match the amount {LayerCount} of layers of the parameter object.");
 
             Vector[] layers = new Vector[LayerCount];
             layersBeforeActivation = new Vector[LayerCount];
@@ -199,7 +214,7 @@ namespace NeuralNetLearning
             {
                 Vector beforeActivation = _weights[i] * prevLayer + _biases[i];
                 layersBeforeActivation[i] = beforeActivation;
-                layers[i] = activators[i].Apply(beforeActivation);
+                layers[i] = beforeActivation.Activate(activations[i]);
 
                 prevLayer = layers[i];
             }
@@ -207,17 +222,17 @@ namespace NeuralNetLearning
         }
 
 
-        private Vector[] DifferentiatedLayers(Vector[] layersBeforeActivation, DifferentiableFunction[] activators)
+        private Vector[] DifferentiatedLayers(Vector[] layersBeforeActivation, Activation[] activators)
             => activators
-                .Zip(layersBeforeActivation, (activator, layer) => activator.ApplyDerivative(layer))
+                .Zip(layersBeforeActivation, (activator, layer) => layer.ActivateDerivative(activator))
                 .ToArray();
 
 
-        public Vector Output(Vector input, DifferentiableFunction[] activators)
+        public Vector Output(Vector input, Activation[] activators)
             => Layers(input, activators, out _).Last();
 
 
-        public double Cost(Vector input, Vector desiredOutput, DifferentiableFunction[] activators)
+        public double Cost(Vector input, Vector desiredOutput, Activation[] activators)
             => VectorFunctions.MSE(Output(input, activators), desiredOutput);
 
 
@@ -244,7 +259,7 @@ namespace NeuralNetLearning
             return layerWeight.TransposeThisAndMultiply(derivsFromLayer);
         }
 
-        public Parameter CostGrad(Vector input, Vector desiredOutput, DifferentiableFunction[] activators)
+        public Parameter CostGrad(Vector input, Vector desiredOutput, Activation[] activators)
         {
             Vector[] layers = Layers(input, activators, out Vector[] layersBeforeActivation);
             Vector[] differentiatedLayers = DifferentiatedLayers(layersBeforeActivation, activators);

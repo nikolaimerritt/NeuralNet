@@ -14,15 +14,15 @@ namespace Tests
 
     static class TestDerivatives
     {
-        private static DifferentiableFunction[] DefaultActivators(Parameter parameters)
+        private static Activation[] DefaultActivators(Parameter parameters)
             => Enumerable
                 .Range(0, parameters.LayerCount)
-                .Select(_ => DifferentiableFunction.Relu)
+                .Select(_ => Activation.TanhSigmoid)
                 .ToArray();
 
         private static void Compare(double analytic, double numeric)
         {
-            double tolerance = 1e-7;
+            double tolerance = 1e-6;
             double error = Math.Abs(numeric - analytic);
             Console.WriteLine($"error: {error:E2}");
             if (error > tolerance)
