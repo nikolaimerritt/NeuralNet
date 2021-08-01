@@ -38,7 +38,19 @@ namespace CatchTheCheeseGame
 
         static void Main()
         {
-            TestDerivatives.TestWeightsAndBiases(3);
+            int[] layerSizes = new []
+            {
+                2, 3, 4
+            };
+            Activation[] activators = new[]
+            {
+                Activation.Relu, Activation.Identity
+            };
+
+            // NeuralNet net = new AdamNeuralNet(layerSizes, activators);
+            // net.WriteToDirectory("../../../parameters");
+            NeuralNet net = new AdamNeuralNet("../../../parameters");
+            net.WriteToDirectory("../../../parameters-TEST");
         }
     }
 }

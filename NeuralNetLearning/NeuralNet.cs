@@ -65,6 +65,9 @@ namespace NeuralNetLearning
 
         public void WriteToDirectory(string directoryPath)
         {
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+
             param.WriteToDirectory(directoryPath);
             File.WriteAllLines($"{directoryPath}/{activatorsFileName}", activators.Select(a => a.ToString()));
             File.WriteAllLines($"{directoryPath}/{hyperParamsFileName}", HyperParamsToLines());

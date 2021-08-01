@@ -46,8 +46,6 @@ namespace NeuralNetLearning
 			double[] valuesRead = File.ReadAllLines($"{directoryPath}/{hyperParamsFileName}")
 				.Select(Double.Parse)
 				.ToArray();
-
-
         }
 
         protected override Parameter GradientDescentStep(Parameter grad)
