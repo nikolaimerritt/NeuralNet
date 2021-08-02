@@ -3,78 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
-using Maths;
+using NeuralNetLearning.Maths;
 
 namespace NeuralNetLearning
 {
 	public class AdamNeuralNet : NeuralNet
 	{
-		private double learningRate;
-		private double momentumDecay;
-		private double varianceDecay;
+		private double _learningRate;
+		private double _momentumDecay;
+		private double _varianceDecay;
 
-		private Parameter momentum;
-		private Parameter variance;
+		private Parameter _momentum;
+		private Parameter _variance;
 
-		private int stepNumber = 0;
+		private int _stepNumber = 0;
 
-		public AdamNeuralNet(Parameter param, Activation[] activators, double learningRate = 0.001, double momentumDecay = 0.9, double varianceDecay = 0.999)
-			: base(param, activators)
+		public AdamNeuralNet(IList<NeuralLayer> layerConfigs, double learningRate = 0.001, double momentumDecay = 0.9, double varianceDecay = 0.999)
+			: base(layerConfigs)
         {
-			this.learningRate = learningRate;
-			this.momentumDecay = momentumDecay;
-			this.varianceDecay = varianceDecay;
+			_learningRate = learningRate;
+			_momentumDecay = momentumDecay;
+			_varianceDecay = varianceDecay;
 
-			momentum = Parameter.Zero(param);
-			variance = Parameter.Zero(param);
+			_momentum = Parameter.Zero(LayerSizesFromConfigs(layerConfigs));
+			_variance = Parameter.Zero(LayerSizesFromConfigs(layerConfigs));
         }
-
-		public AdamNeuralNet(int[] layerSizes, Activation[] activators, double learningRate = 1e-3, double momentumDecay = 0.9, double varianceDecay = 0.999)
-			: base(layerSizes, activators)
-        {
-			this.learningRate = learningRate;
-			this.momentumDecay = momentumDecay;
-			this.varianceDecay = varianceDecay;
-
-			momentum = Parameter.Zero(param);
-			variance = Parameter.Zero(param);
-		}
 
 		public AdamNeuralNet(string directoryPath)
 			: base(directoryPath)
         {
-			double[] valuesRead = File.ReadAllLines($"{directoryPath}/{hyperParamsFileName}")
+			double[] valuesRead = File.ReadAllLines($"{directoryPath}/{_hyperParamsFile}")
 				.Select(Double.Parse)
 				.ToArray();
         }
 
         protected override Parameter GradientDescentStep(Parameter grad)
         {
-			if (stepNumber == 0)
+			if (_stepNumber == 0)
             {
-				momentum = grad;
-				variance = grad.Pow(2);
+				_momentum = grad;
+				_variance = grad.Pow(2);
             }
 			else
             {
-				momentum = momentumDecay * momentum + (1 - momentumDecay) * grad;
-				variance = varianceDecay * variance + (1 - varianceDecay) * grad.Pow(2);
+				_momentum = _momentumDecay * _momentum + (1 - _momentumDecay) * grad;
+				_variance = _varianceDecay * _variance + (1 - _varianceDecay) * grad.Pow(2);
 			}
-			stepNumber++;
+			_stepNumber++;
 
-			var x = (momentum - grad).SquaredNorm();
-			var y = (variance - grad.Pow(2)).SquaredNorm();
-
-			var z = -learningRate * momentum / variance.Pow(0.5).Add(1e-8);
-			return z;
+			return -_learningRate * _momentum / _variance.Pow(0.5).Add(1e-8);
 		}
 
 		protected override string[] HyperParamsToLines()
 			=> new string[]
 			{
-				learningRate.ToString(),
-				momentumDecay.ToString(),
-				varianceDecay.ToString()
+				_learningRate.ToString(),
+				_momentumDecay.ToString(),
+				_varianceDecay.ToString()
 			};
 
         protected override void SetHyperParamsFromFileContents(string[] lines)
@@ -86,9 +71,9 @@ namespace NeuralNetLearning
 			if (values.Length != 3)
 				throw new ArgumentException($"{values.Length} hyper-parameter values were supplied, but only 3 were expected");
 
-			learningRate = values[0];
-			momentumDecay = values[1];
-			varianceDecay = values[2];
+			_learningRate = values[0];
+			_momentumDecay = values[1];
+			_varianceDecay = values[2];
         }
     }
 }

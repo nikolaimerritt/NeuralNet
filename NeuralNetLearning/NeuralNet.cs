@@ -4,62 +4,89 @@ using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
 using System.Threading.Tasks;
-using Maths;
+using NeuralNetLearning.Maths;
 
 namespace NeuralNetLearning
 {
-    using Matrix = Matrix<double>;
     using Vector = Vector<double>;
-    using TrainingPairs = List<(Vector<double>, Vector<double>)>;
+    using VectorPairs = List<(Vector<double>, Vector<double>)>;
 
 	public abstract class NeuralNet
     {
-        protected Parameter param;
-        protected Activation[] activators;
-        private readonly static Random rng = new();
+        protected Parameter _param;
+        protected Activation[] _activators;
+        private readonly static Random _rng = new();
 
-        private static readonly string activatorsFileName = "activators.txt";
-        protected static readonly string hyperParamsFileName = "hyperparameters.txt";
+        private static readonly string _activatorsFile = "activators.txt";
+        protected static readonly string _hyperParamsFile = "hyperparameters.txt";
 
         public int LayerCount
         {
-            get => param.LayerCount;
+            get => _param.LayerCount;
         }
 
         public int[] LayerSizes
         {
-            get => param.LayerSizes;
+            get => _param.LayerSizes;
         }
 
-        protected NeuralNet(Parameter param, Activation[] activators)
+        
+        private NeuralNet(Parameter param, Activation[] activators)
         {
             if (activators.Length != param.LayerCount)
                 throw new ArgumentException($"Expected {param.LayerCount} activators, but received {activators.Length}");
 
-            this.param = param;
-            this.activators = activators;
+            this._param = param;
+            this._activators = activators;
         }
 
-        protected NeuralNet(int[] layerSizes, Activation[] activators)
-            : this(Parameter.StdUniform(layerSizes), activators) 
+        protected static int[] LayerSizesFromConfigs(IList<NeuralLayer> layerConfigs)
+            => layerConfigs
+                .Select(l => l.LayerSize)
+                .ToArray();
+
+        private static Activation[] ActivationsFromConfigs(IList<NeuralLayer> layerConfigs)
+        {
+            if (!(layerConfigs.First() is InputLayer))
+                throw new ArgumentException($"Expected the first layer to be of type {typeof(InputLayer)}");
+
+            List<Activation> activators = new(layerConfigs.Count - 1);
+            for (int i = 1; i < layerConfigs.Count - 1; i++)
+            {
+                if (!(layerConfigs[i] is HiddenLayer))
+                    throw new ArgumentException($"Expected layer {i} to be of type {typeof(HiddenLayer)}");
+
+                activators.Add((layerConfigs[i] as HiddenLayer).Activator);
+            }
+
+            if (!(layerConfigs.Last() is OutputLayer))
+                throw new ArgumentException($"Expected the last layer to be of type {typeof(OutputLayer)}");
+
+            activators.Add((layerConfigs.Last() as OutputLayer).Activator);
+
+            return activators.ToArray();
+        }
+
+        protected NeuralNet(IList<NeuralLayer> layerConfigs)
+            : this(Parameter.StdUniform(LayerSizesFromConfigs(layerConfigs)), ActivationsFromConfigs(layerConfigs))
         { }
 
         protected NeuralNet(string directoryPath)
             : this(Parameter.Read(directoryPath), ReadActivators(directoryPath))
         {
-            SetHyperParamsFromFileContents(File.ReadAllLines($"{directoryPath}/{hyperParamsFileName}"));
+            SetHyperParamsFromFileContents(File.ReadAllLines($"{directoryPath}/{_hyperParamsFile}"));
         }
 
         protected abstract void SetHyperParamsFromFileContents(string[] lines);
 
         private static Activation[] ReadActivators(string directoryPath)
             => File
-                .ReadAllLines($"{directoryPath}/{activatorsFileName}")
+                .ReadAllLines($"{directoryPath}/{_activatorsFile}")
                 .Select(name => (Activation) Enum.Parse(typeof(Activation), name))
                 .ToArray();
 
         protected void WriteParameter(string directoryPath)
-            => param.WriteToDirectory(directoryPath);
+            => _param.WriteToDirectory(directoryPath);
 
         protected abstract string[] HyperParamsToLines();
 
@@ -68,51 +95,40 @@ namespace NeuralNetLearning
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
-            param.WriteToDirectory(directoryPath);
-            File.WriteAllLines($"{directoryPath}/{activatorsFileName}", activators.Select(a => a.ToString()));
-            File.WriteAllLines($"{directoryPath}/{hyperParamsFileName}", HyperParamsToLines());
+            _param.WriteToDirectory(directoryPath);
+            File.WriteAllLines($"{directoryPath}/{_activatorsFile}", _activators.Select(a => a.ToString()));
+            File.WriteAllLines($"{directoryPath}/{_hyperParamsFile}", HyperParamsToLines());
         }
 
-        protected Parameter AverageGradient(Parameter param, TrainingPairs trainingPairs) // assuming that trainingPairs.Count() is not extremely large
+        protected Parameter AverageGradient(Parameter param, VectorPairs trainingPairs) // assuming that trainingPairs.Count() is not extremely large
         {
             var gradients = trainingPairs
-                .Select(pair => param.CostGrad(input: pair.Item1, desiredOutput: pair.Item2, activators));
+                .Select(pair => param.CostGrad(input: pair.Item1, desiredOutput: pair.Item2, _activators));
 
             return gradients.Aggregate((left, right) => left + right) / gradients.Count();
         }
 
         protected abstract Parameter GradientDescentStep(Parameter grad);
 
-        public void GradientDescent(TrainingPairs trainingPairs, int batchSize = 256)
+
+        public void GradientDescent(VectorPairs trainingPairs, int batchSize)
         {
             for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
             {
-                var trainingBatch = trainingPairs.GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+                VectorPairs trainingBatch = trainingPairs
+                    .GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+
                 Console.WriteLine($"Avg training cost: {AverageCost(trainingBatch)}");
-                param += GradientDescentStep(AverageGradient(param, trainingBatch));
+                _param += GradientDescentStep(AverageGradient(_param, trainingBatch));
             }
         }
 
-        public Vector Output(Vector input)
-            => param.Output(input, activators);
+        protected Vector Output(Vector input)
+            => _param.Output(input, _activators);
 
-        public double AverageCost(TrainingPairs trainingPairs)
+        public double AverageCost(VectorPairs trainingPairs)
             => trainingPairs
-            .Select(pair => param.Cost(pair.Item1, pair.Item2, activators))
+            .Select(pair => _param.Cost(pair.Item1, pair.Item2, _activators))
             .Average();
-
-
-        private static void Shuffle<T>(IList<T> list)
-        {
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1); // 0 <= k <= n
-                T putAtPosN = list[k];
-                list[k] = list[n];
-                list[n] = putAtPosN;
-            }
-        }
     }
 }

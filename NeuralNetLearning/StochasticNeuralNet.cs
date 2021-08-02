@@ -3,33 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
-using Maths;
 
 namespace NeuralNetLearning
 {
+	using Maths;
 	public class StochasticNeuralNet : NeuralNet
 	{
-		private double learningRate;
+		private double _learningRate;
 
-		public StochasticNeuralNet(Parameter param, Activation[] activators, double learningRate = 1e-3)
-			: base(param, activators)
+		public StochasticNeuralNet(IList<NeuralLayer> layerConfigs, double learningRate = 1e-3)
+			: base(layerConfigs)
 		{
-			this.learningRate = learningRate;
+			_learningRate = learningRate;
 		}
-
-		public StochasticNeuralNet(int[] layerSizes, Activation[] activators, double learningRate = 1e-3)
-			: base(layerSizes, activators)
-        {
-			this.learningRate = learningRate;
-        }
 
         protected override Parameter GradientDescentStep(Parameter grad)
         {
-			return -learningRate * grad;
+			return -_learningRate * grad;
         }
 
 		protected override string[] HyperParamsToLines()
-			=> new string[] { learningRate.ToString() };
+			=> new string[] { _learningRate.ToString() };
 
         protected override void SetHyperParamsFromFileContents(string[] lines)
         {
@@ -40,7 +34,7 @@ namespace NeuralNetLearning
 			if (values.Length != 1)
 				throw new ArgumentException($"{values.Length} hyper-parameter values were supplied, but only 1 was expected");
 
-			this.learningRate = values[0];
+			_learningRate = values[0];
         }
     }
 }

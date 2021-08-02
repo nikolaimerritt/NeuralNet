@@ -5,15 +5,14 @@ using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.Distributions;
 
-namespace Maths
+namespace NeuralNetLearning.Maths
 {
-    using static MatrixFunctions;
     using Vector = Vector<double>;
     using Matrix = Matrix<double>;
+    using Maths;
 
     public static class VectorFunctions
     {
-        private static readonly VectorBuilder<double> builder = Vector.Build;
         public static double MSE(Vector obtainedValue, Vector desiredValue)
             => (obtainedValue - desiredValue).DotProduct(obtainedValue - desiredValue) / obtainedValue.Count;
 

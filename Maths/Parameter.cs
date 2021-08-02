@@ -5,7 +5,7 @@ using System.IO;
 using MathNet.Numerics.LinearAlgebra;
 using Maths;
 
-namespace NeuralNetLearning
+namespace NeuralNetLearning.Maths
 {
     using Vector = Vector<double>;
     using Matrix = Matrix<double>;
@@ -70,8 +70,18 @@ namespace NeuralNetLearning
             return new Parameter(weights, biases);
         }
 
-        public static Parameter Zero(Parameter parameter)
-            => 0 * parameter;
+        public static Parameter Zero(int[] layerSizes)
+        {
+            var weights = Enumerable
+                .Range(0, layerSizes.Length - 1)
+                .Select(i => Matrix.Build.Dense(rows: layerSizes[i + 1], columns: layerSizes[i]));
+
+            var biases = Enumerable
+                .Range(0, layerSizes.Length - 1)
+                .Select(i => Vector.Build.Dense(layerSizes[i + 1]));
+
+            return new Parameter(weights, biases);
+        }
 
         public void WriteToDirectory(string directoryPath)
         {

@@ -1,24 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
-    <PackageReference Include="MathNet.Numerics.Data.Text" Version="4.1.0" />
-    <PackageReference Include="Microsoft.UnitTestFramework.Extensions" Version="2.0.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.5" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.5" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.Numerics" Version="4.3.0" />
+    <Compile Remove="Tests\**" />
+    <EmbeddedResource Remove="Tests\**" />
+    <None Remove="Tests\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
-    </Reference>
+    <Compile Remove="TestDerivatives.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MathNet.Numerics.Data.Text" Version="4.1.0" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
   </ItemGroup>
 
 </Project>

@@ -6,15 +6,13 @@ using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.Data.Text;
 using MathNet.Numerics.Distributions;
 
-namespace Maths
+namespace NeuralNetLearning.Maths
 {
 	using Matrix = Matrix<double>;
-    static class MatrixFunctions
+    public static class MatrixFunctions
     {
 		private static readonly Normal _stdNormal = new (mean: 0, stddev: 1);
 		private static readonly ContinuousUniform _stdUniform = new (lower: -1, upper: 1);
-		private static readonly MatrixBuilder<double> _builder = Matrix.Build;
-
 
 		public static Matrix StdNormal(int rows, int cols)
 			=> DenseMatrix.CreateRandom(rows, cols, _stdNormal);
