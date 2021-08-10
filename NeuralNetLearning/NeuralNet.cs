@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
-using System.Threading.Tasks;
 using NeuralNetLearning.Maths;
 
 namespace NeuralNetLearning
 {
-    using Vector = Vector<double>;
     using VectorPairs = List<(Vector<double>, Vector<double>)>;
 
-	public abstract class NeuralNet
+	public class NeuralNet
     {
-        protected Parameter _param;
-        protected Activation[] _activators;
-        private readonly static Random _rng = new();
+        private Parameter _param;
+        private readonly CostFunction _cost;
+        private readonly Activation[] _activators;
+        private readonly GradientDescender _gradientDescender;
 
-        private static readonly string _activatorsFile = "activators.txt";
-        protected static readonly string _hyperParamsFile = "hyperparameters.txt";
+        private static readonly string costFile = "cost.txt";
+        private static readonly string paramsFolder = "parameters";
+        private static readonly string activatorsFolder = "activators";
+        private static readonly string gradDescenderFolder = "gradient-descender";
 
         public int LayerCount
         {
@@ -31,104 +32,87 @@ namespace NeuralNetLearning
         }
 
         
-        private NeuralNet(Parameter param, Activation[] activators)
+        public NeuralNet(Parameter param, Activation[] activators, GradientDescender gradientDescent, CostFunction cost)
         {
             if (activators.Length != param.LayerCount)
                 throw new ArgumentException($"Expected {param.LayerCount} activators, but received {activators.Length}");
 
-            this._param = param;
-            this._activators = activators;
+            _param = param;
+            _cost = cost;
+            _activators = activators;
+            _gradientDescender = gradientDescent;
         }
 
-        protected static int[] LayerSizesFromConfigs(IList<NeuralLayer> layerConfigs)
-            => layerConfigs
-                .Select(l => l.LayerSize)
-                .ToArray();
-
-        private static Activation[] ActivationsFromConfigs(IList<NeuralLayer> layerConfigs)
+        protected Parameter AverageGradient(Parameter param, VectorPairs trainingPairs) // assuming that trainingPairs.Count() is not extremely large
         {
-            if (!(layerConfigs.First() is InputLayer))
-                throw new ArgumentException($"Expected the first layer to be of type {typeof(InputLayer)}");
+            var gradients = trainingPairs
+                .Select(pair => param.CostGrad(input: pair.Item1, desiredOutput: pair.Item2, _activators, _cost));
 
-            List<Activation> activators = new(layerConfigs.Count - 1);
-            for (int i = 1; i < layerConfigs.Count - 1; i++)
+            return gradients.Aggregate((left, right) => left + right) / gradients.Count();
+        } 
+
+        public void GradientDescent(VectorPairs trainingPairs, int batchSize, int numEpochs = 5)
+        {
+            for (int epoch = 0; epoch < numEpochs; epoch++)
             {
-                if (!(layerConfigs[i] is HiddenLayer))
-                    throw new ArgumentException($"Expected layer {i} to be of type {typeof(HiddenLayer)}");
-
-                activators.Add((layerConfigs[i] as HiddenLayer).Activator);
+                for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
+                {
+                    VectorPairs trainingBatch = trainingPairs
+                        .GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+                    _param += _gradientDescender.GradientDescentStep(AverageGradient(_param, trainingBatch));
+                }
+                Console.WriteLine($"Avg training cost: {AverageCost(trainingPairs)}");
             }
-
-            if (!(layerConfigs.Last() is OutputLayer))
-                throw new ArgumentException($"Expected the last layer to be of type {typeof(OutputLayer)}");
-
-            activators.Add((layerConfigs.Last() as OutputLayer).Activator);
-
-            return activators.ToArray();
         }
-
-        protected NeuralNet(IList<NeuralLayer> layerConfigs)
-            : this(Parameter.StdUniform(LayerSizesFromConfigs(layerConfigs)), ActivationsFromConfigs(layerConfigs))
-        { }
-
-        protected NeuralNet(string directoryPath)
-            : this(Parameter.Read(directoryPath), ReadActivators(directoryPath))
-        {
-            SetHyperParamsFromFileContents(File.ReadAllLines($"{directoryPath}/{_hyperParamsFile}"));
-        }
-
-        protected abstract void SetHyperParamsFromFileContents(string[] lines);
-
-        private static Activation[] ReadActivators(string directoryPath)
-            => File
-                .ReadAllLines($"{directoryPath}/{_activatorsFile}")
-                .Select(name => (Activation) Enum.Parse(typeof(Activation), name))
-                .ToArray();
-
-        protected void WriteParameter(string directoryPath)
-            => _param.WriteToDirectory(directoryPath);
-
-        protected abstract string[] HyperParamsToLines();
 
         public void WriteToDirectory(string directoryPath)
         {
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
-            _param.WriteToDirectory(directoryPath);
-            File.WriteAllLines($"{directoryPath}/{_activatorsFile}", _activators.Select(a => a.ToString()));
-            File.WriteAllLines($"{directoryPath}/{_hyperParamsFile}", HyperParamsToLines());
+            _param.WriteToDirectory($"{directoryPath}/{paramsFolder}");
+            WriteActivatorsToDirectory($"{directoryPath}/{activatorsFolder}");
+            _gradientDescender.WriteToDirectory($"{directoryPath}/{gradDescenderFolder}");
+            _cost.WriteToFile($"{directoryPath}/{costFile}");
+
         }
 
-        protected Parameter AverageGradient(Parameter param, VectorPairs trainingPairs) // assuming that trainingPairs.Count() is not extremely large
+        public static NeuralNet ReadFromDirectory(string directoryPath)
         {
-            var gradients = trainingPairs
-                .Select(pair => param.CostGrad(input: pair.Item1, desiredOutput: pair.Item2, _activators));
+            Parameter param = Parameter.ReadFromDirectory($"{directoryPath}/{paramsFolder}");
+            Activation[] activators = ReadActivationsFromDirectory($"{directoryPath}/{activatorsFolder}");
+            GradientDescender gradientDescender = GradientDescender.ReadFromDirectory($"{directoryPath}/{gradDescenderFolder}");
+            CostFunction cost = CostFunction.ReadFromFile($"{directoryPath}/{costFile}");
 
-            return gradients.Aggregate((left, right) => left + right) / gradients.Count();
+            return new NeuralNet(param, activators, gradientDescender, cost);
         }
 
-        protected abstract Parameter GradientDescentStep(Parameter grad);
-
-
-        public void GradientDescent(VectorPairs trainingPairs, int batchSize)
+        private static Activation[] ReadActivationsFromDirectory(string directory)
         {
-            for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
-            {
-                VectorPairs trainingBatch = trainingPairs
-                    .GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
+            if (!Directory.Exists(directory))
+                throw new FileNotFoundException($"Could not find directory {directory}");
 
-                Console.WriteLine($"Avg training cost: {AverageCost(trainingBatch)}");
-                _param += GradientDescentStep(AverageGradient(_param, trainingBatch));
-            }
+            List<string> activationFiles = Directory.GetFiles(directory).ToList();
+            activationFiles.Sort();
+
+            return activationFiles.Select(Activation.ReadFromFile).ToArray();
         }
 
-        protected Vector Output(Vector input)
+        private void WriteActivatorsToDirectory(string directoryPath)
+        {
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+
+            for (int i = 0; i < _activators.Length; i++)
+                _activators[i].WriteToFile($"{directoryPath}/activator {i + 1}.txt");
+        }
+
+        public Vector<double> Output(Vector<double> input)
             => _param.Output(input, _activators);
 
         public double AverageCost(VectorPairs trainingPairs)
             => trainingPairs
-            .Select(pair => _param.Cost(pair.Item1, pair.Item2, _activators))
+            .Select(pair => _cost.Apply(Output(pair.Item1), pair.Item2))
             .Average();
     }
 }

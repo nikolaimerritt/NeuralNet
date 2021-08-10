@@ -2,18 +2,18 @@
 
 namespace NeuralNetLearning
 {
-    public abstract record NeuralLayer
+    public abstract record NeuralLayerConfig
     {
         public int LayerSize { get; init; }
     }
 
-    public record InputLayer : NeuralLayer 
+    public record InputLayer : NeuralLayerConfig 
     {
         public InputLayer(int layerSize)
             => LayerSize = layerSize;
     }
 
-    public record HiddenLayer : NeuralLayer
+    public record HiddenLayer : NeuralLayerConfig
     {
         public Activation Activator { get; init; }
         public HiddenLayer(int layerSize, Activation activator)
@@ -23,7 +23,7 @@ namespace NeuralNetLearning
         }
     }
 
-    public record OutputLayer : NeuralLayer
+    public record OutputLayer : NeuralLayerConfig
     {
         public Activation Activator { get; init; }
         public OutputLayer(int layerSize, Activation activator)

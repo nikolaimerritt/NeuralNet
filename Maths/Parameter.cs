@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.Data.Text;
+using MathNet.Numerics.Statistics;
 using Maths;
 
 namespace NeuralNetLearning.Maths
@@ -20,7 +22,7 @@ namespace NeuralNetLearning.Maths
         {
             get 
             {
-                List<int> layerSizes = new() { _weights.First().RowCount };
+                List<int> layerSizes = new() { _weights.First().ColumnCount };
                 layerSizes.AddRange(_biases.Select(b => b.Count));
                 return layerSizes.ToArray();
             }
@@ -44,21 +46,11 @@ namespace NeuralNetLearning.Maths
             _biases = biases.ToArray();
         }
 
-        public static Parameter StdUniform(params int[] layerSizes)
+        public static Parameter ReadFromDirectory(string directoryPath)
         {
-            var weights = Enumerable
-                .Range(0, layerSizes.Length - 1)
-                .Select(i => MatrixFunctions.StdUniform(rows: layerSizes[i + 1], cols: layerSizes[i]));
+            if (!Directory.Exists(directoryPath))
+                throw new DirectoryNotFoundException($"Could not find directory {directoryPath}");
 
-            var biases = Enumerable
-                .Range(0, layerSizes.Length - 1)
-                .Select(i => VectorFunctions.StdUniform(layerSizes[i + 1]));
-
-            return new Parameter(weights, biases);
-        }
-
-        public static Parameter Read(string directoryPath)
-        {
             List<string> weightPaths = Directory.GetFiles(directoryPath, "weight *.csv").ToList();
             weightPaths.Sort();
             List<string> biasPaths = Directory.GetFiles(directoryPath, "bias *.csv").ToList();
@@ -70,31 +62,19 @@ namespace NeuralNetLearning.Maths
             return new Parameter(weights, biases);
         }
 
-        public static Parameter Zero(int[] layerSizes)
-        {
-            var weights = Enumerable
-                .Range(0, layerSizes.Length - 1)
-                .Select(i => Matrix.Build.Dense(rows: layerSizes[i + 1], columns: layerSizes[i]));
-
-            var biases = Enumerable
-                .Range(0, layerSizes.Length - 1)
-                .Select(i => Vector.Build.Dense(layerSizes[i + 1]));
-
-            return new Parameter(weights, biases);
-        }
-
         public void WriteToDirectory(string directoryPath)
         {
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+
             for (int i = 0; i < LayerCount; i++)
             {
                 string weightPath = $"{directoryPath}/weight {i + 1}.csv";
-                MatrixFunctions.Write(_weights[i], weightPath);
+                _weights[i].Write(weightPath);
                 string biasPath = $"{directoryPath}/bias {i + 1}.csv";
-                VectorFunctions.Write(_biases[i], biasPath);
+                _biases[i].Write(biasPath);
             }
         }
-
-
 
         private static void CheckForIncompatibleOperands(Parameter lhs, Parameter rhs, string operation)
         {
@@ -207,14 +187,30 @@ namespace NeuralNetLearning.Maths
             => _weights.Select(w => Math.Pow(w.FrobeniusNorm(), 2)).Sum()
                 + _biases.Select(b => b.DotProduct(b)).Sum();
 
+        public void SetWeightsUnivariate(Activation[] activators, IEnumerable<Vector> inputs, double varianceTolerance, int maxIterations)
+        {
+            for (int layer = 0; layer < LayerCount; layer++)
+            {
+                for (int iter = 1; iter <= maxIterations; iter++)
+                {
+                    double variance = inputs
+                        .Select(input => Layers(input, activators, out _)[layer].Variance())
+                        .Average();
 
-        private Vector[] Layers(Vector input, Activation[] activations, out Vector[] layersBeforeActivation)
+                    if (Math.Abs(variance - 1) >= varianceTolerance)
+                        _weights[layer] /= Math.Sqrt(variance);
+                    else break;
+                }
+            }
+        }
+
+        private Vector[] Layers(Vector input, Activation[] activators, out Vector[] layersBeforeActivation)
         {
             if (input.Count != _weights[0].ColumnCount)
                 throw new ArithmeticException($"The input has dimension {input.Count}, which does not match the required dimension of {_weights[0].ColumnCount}");
 
-            if (LayerCount != activations.Length)
-                throw new ArgumentException($"{activations.Length} activators were supplied, which does not match the amount {LayerCount} of layers of the parameter object.");
+            if (LayerCount != activators.Length)
+                throw new ArgumentException($"{activators.Length} activators were supplied, which does not match the amount {LayerCount} of layers of the parameter object.");
 
             Vector[] layers = new Vector[LayerCount];
             layersBeforeActivation = new Vector[LayerCount];
@@ -224,7 +220,7 @@ namespace NeuralNetLearning.Maths
             {
                 Vector beforeActivation = _weights[i] * prevLayer + _biases[i];
                 layersBeforeActivation[i] = beforeActivation;
-                layers[i] = beforeActivation.Activate(activations[i]);
+                layers[i] = activators[i].Apply(beforeActivation);
 
                 prevLayer = layers[i];
             }
@@ -232,9 +228,9 @@ namespace NeuralNetLearning.Maths
         }
 
 
-        private Vector[] DifferentiatedLayers(Vector[] layersBeforeActivation, Activation[] activators)
+        private static Matrix[] ActivatorDerivs(Vector[] layersBeforeActivation, Activation[] activators)
             => activators
-                .Zip(layersBeforeActivation, (activator, layer) => layer.ActivateDerivative(activator))
+                .Zip(layersBeforeActivation, (activator, layer) => activator.ApplyDerivative(layer))
                 .ToArray();
 
 
@@ -242,55 +238,49 @@ namespace NeuralNetLearning.Maths
             => Layers(input, activators, out _).Last();
 
 
-        public double Cost(Vector input, Vector desiredOutput, Activation[] activators)
-            => VectorFunctions.MSE(Output(input, activators), desiredOutput);
-
-
-        private Vector CostGradWrtFinalLayer(Vector output, Vector desiredOutput)
+        private static Matrix CostGradWrtWeight(Vector costGradWrtLayer, Matrix activatorDerivs, Vector layerBehind)
         {
-            return VectorFunctions.MSEderiv(output, desiredOutput);
-        }
-
-        private Matrix CostGradWrtWeight(Vector costGradWrtLayer, Vector differentiatedLayer, Vector layerBehind)
-        {
-            Vector derivs = Vector.op_DotMultiply(costGradWrtLayer, differentiatedLayer);
+            Vector derivs = activatorDerivs.TransposeThisAndMultiply(costGradWrtLayer);
             return Vector.OuterProduct(derivs, layerBehind);
         }
 
+        private static Vector CostGradWrtBias(Vector costGradWrtLayer, Matrix activatorDerivs)
+            => activatorDerivs.TransposeThisAndMultiply(costGradWrtLayer);
 
-        private Vector CostGradWrtBias(Vector costGradWrtLayer, Vector differentiatedLayer)
+        private static Vector CostGradWrtLayerBehind(Vector costGradWrtLayer, Matrix activatorDerivs, Matrix layerWeight)
         {
-            return Vector.op_DotMultiply(costGradWrtLayer, differentiatedLayer);
+            Matrix derivsFromLayer = activatorDerivs * layerWeight;
+            return derivsFromLayer.TransposeThisAndMultiply(costGradWrtLayer);
         }
 
-        private Vector CostGradWrtLayerBehind(Vector costGradWrtLayer, Vector differentiatedLayer, Matrix layerWeight)
-        {
-            Vector derivsFromLayer = Vector.op_DotMultiply(costGradWrtLayer, differentiatedLayer);
-            return layerWeight.TransposeThisAndMultiply(derivsFromLayer);
-        }
-
-        public Parameter CostGrad(Vector input, Vector desiredOutput, Activation[] activators)
+        
+        public Parameter CostGrad(Vector input, Vector desiredOutput, Activation[] activators, CostFunction cost)
         {
             Vector[] layers = Layers(input, activators, out Vector[] layersBeforeActivation);
-            Vector[] differentiatedLayers = DifferentiatedLayers(layersBeforeActivation, activators);
+            Matrix[] activatorDerivs = ActivatorDerivs(layersBeforeActivation, activators);
 
-            Vector costGradWrtLayer = CostGradWrtFinalLayer(output: layers.Last(), desiredOutput);
+            Vector costGradWrtLayer = cost.Derivative(layers.Last(), desiredOutput);
             Matrix[] weightCostGrads = new Matrix[LayerCount];
             Vector[] biasCostGrads = new Vector[LayerCount];
 
             for (int i = LayerCount - 1; i >= 0; i--)
             {
                 Vector layerBehind = i > 0 ? layers[i - 1] : input;
-                Matrix costGradWrtWeight = CostGradWrtWeight(costGradWrtLayer, differentiatedLayers[i], layerBehind);
-                weightCostGrads[i] = costGradWrtWeight;
+                // weightCostGrads[i] = CostGradWrtWeight(costGradWrtLayer, activatorDerivs[i], layerBehind);
+                biasCostGrads[i] = CostGradWrtBias(costGradWrtLayer, activatorDerivs[i]);
+                weightCostGrads[i] = Vector.OuterProduct(biasCostGrads[i], layerBehind);
 
-                Vector costGradWrtBias = CostGradWrtBias(costGradWrtLayer, differentiatedLayers[i]);
-                biasCostGrads[i] = costGradWrtBias;
-
-                costGradWrtLayer = CostGradWrtLayerBehind(costGradWrtLayer, differentiatedLayers[i], _weights[i]);
+                costGradWrtLayer = CostGradWrtLayerBehind(costGradWrtLayer, activatorDerivs[i], _weights[i]);
             }
 
             return new Parameter(weightCostGrads, biasCostGrads);
+        }
+        
+        public Parameter DeepCopy()
+        {
+            var newWeights = _weights.Select(w => w.Clone());
+            var newBiases = _biases.Select(b => b.Clone());
+            return new Parameter(newWeights, newBiases);
         }
     }
 }
