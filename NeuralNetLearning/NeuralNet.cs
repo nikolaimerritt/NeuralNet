@@ -20,6 +20,7 @@ namespace NeuralNetLearning
         private static readonly string paramsFolder = "parameters";
         private static readonly string activatorsFolder = "activators";
         private static readonly string gradDescenderFolder = "gradient-descender";
+        private static readonly Random _rng = new();
 
         public int LayerCount
         {
@@ -55,13 +56,14 @@ namespace NeuralNetLearning
         {
             for (int epoch = 0; epoch < numEpochs; epoch++)
             {
+                Shuffle(trainingPairs);
                 for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
                 {
                     VectorPairs trainingBatch = trainingPairs
                         .GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
                     _param += _gradientDescender.GradientDescentStep(AverageGradient(_param, trainingBatch));
                 }
-                Console.WriteLine($"Avg training cost: {AverageCost(trainingPairs)}");
+                Console.WriteLine($"Epoch {epoch} / {numEpochs} \t \t Avg training cost: {AverageCost(trainingPairs)}");
             }
         }
 
@@ -74,7 +76,6 @@ namespace NeuralNetLearning
             WriteActivatorsToDirectory($"{directoryPath}/{activatorsFolder}");
             _gradientDescender.WriteToDirectory($"{directoryPath}/{gradDescenderFolder}");
             _cost.WriteToFile($"{directoryPath}/{costFile}");
-
         }
 
         public static NeuralNet ReadFromDirectory(string directoryPath)
@@ -114,5 +115,18 @@ namespace NeuralNetLearning
             => trainingPairs
             .Select(pair => _cost.Apply(Output(pair.Item1), pair.Item2))
             .Average();
+
+        private static void Shuffle<T>(IList<T> list)
+        {
+            int swapIdx = list.Count;
+            while (swapIdx > 1)
+            {
+                swapIdx--;
+                int replaceIdx = _rng.Next(swapIdx + 1);
+                T value = list[replaceIdx];
+                list[replaceIdx] = list[swapIdx];
+                list[swapIdx] = value;
+            }
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace NeuralNetLearning
                 if (-_outlierBoundary < error && error < _outlierBoundary)
                     cost += 0.5 * Math.Pow(error, 2) / estimated.Count;
                 else
-                    cost += _outlierBoundary * Math.Abs(error) / estimated.Count - 0.5 * Math.Pow(_outlierBoundary, 2) / estimated.Count;
+                    cost += _outlierBoundary * (Math.Abs(error) - 0.5 * _outlierBoundary) / estimated.Count;
             }
             return cost;
         }

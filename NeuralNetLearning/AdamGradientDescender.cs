@@ -57,10 +57,10 @@ namespace NeuralNetLearning
 			_momentum = _momentumDecay * _momentum + (1 - _momentumDecay) * gradient;
 			_variance = _varianceDecay * _variance + (1 - _varianceDecay) * gradient.Pow(2);
 
-			_momentum /= (1 - Math.Pow(_momentumDecay, _step));
-			_variance /= (1 - Math.Pow(_varianceDecay, _step));
+			Parameter correctedMomentum = _momentum / (1 - Math.Pow(_momentumDecay, _step));
+			Parameter correctedVariance = _variance / (1 - Math.Pow(_varianceDecay, _step));
 
-			return -_learningRate * _momentum / _variance.Pow(0.5).Add(_preventDivByZero);
+			return -_learningRate * correctedMomentum / correctedVariance.Pow(0.5).Add(_preventDivByZero);
 		}
 
 		public override void WriteToDirectory(string directoryPath)
