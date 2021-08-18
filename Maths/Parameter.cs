@@ -109,22 +109,76 @@ namespace NeuralNetLearning.Maths
             }
         }
 
-        public static Parameter operator +(Parameter lhs, Parameter rhs)
+        public void InPlaceAdd(Parameter other)
         {
-            CheckForIncompatibleOperands(lhs, rhs, "add");
+            CheckForIncompatibleOperands(this, other, "add");
+            for (int l = 0; l < LayerCount; l++)
+            {
+                for (int r = 0; r < _weights[l].RowCount; r++)
+                {
+                    for (int c = 0; c < _weights[l].ColumnCount; c++)
+                    {
+                        _weights[l][r, c] += other._weights[l][r, c];
+                    }
+                }
+                for (int i = 0; i < _biases[l].Count; i++)
+                {
+                    _biases[l][i] += other._biases[l][i];
+                }
+            }
+        }
 
-            var newWeights = lhs._weights.Zip(rhs._weights, (w1, w2) => w1 + w2);
-            var newBiases = lhs._biases.Zip(rhs._biases, (b1, b2) => b1 + b2);
+        public void InPlaceMultiply(double scalar)
+        {
+            for (int l = 0; l < LayerCount; l++)
+            {
+                for (int r = 0; r < _weights[l].RowCount; r++)
+                {
+                    for (int c = 0; c < _weights[l].ColumnCount; c++)
+                    {
+                        _weights[l][r, c] *= scalar;
+                    }
+                }
+                for (int i = 0; i < _biases[l].Count; i++)
+                {
+                    _biases[l][i] *= scalar;
+                }
+            }
+        }
 
-            return new Parameter(newWeights, newBiases);
+        public void InPlaceDivide(double scalar)
+        {
+            if (scalar == 0)
+                throw new ArithmeticException($"Could not divide a parameter object by zero.");
+
+            for (int l = 0; l < LayerCount; l++)
+            {
+                for (int r = 0; r < _weights[l].RowCount; r++)
+                {
+                    for (int c = 0; c < _weights[l].ColumnCount; c++)
+                    {
+                        _weights[l][r, c] /= scalar;
+                    }
+                }
+                for (int i = 0; i < _biases[l].Count; i++)
+                {
+                    _biases[l][i] /= scalar;
+                }
+            }
+        }
+
+        public static Parameter operator +(Parameter left, Parameter right)
+        {
+            Parameter result = left.DeepCopy();
+            result.InPlaceAdd(right);
+            return result;
         }
 
         public static Parameter operator *(double scalar, Parameter parameter)
         {
-            var newWeights = parameter._weights.Select(w => scalar * w);
-            var newBiases = parameter._biases.Select(b => scalar * b);
-
-            return new Parameter(newWeights, newBiases);
+            Parameter result = parameter.DeepCopy();
+            result.InPlaceMultiply(scalar);
+            return result;
         }
 
         public static Parameter operator *(Parameter lhs, Parameter rhs)
@@ -148,12 +202,9 @@ namespace NeuralNetLearning.Maths
 
         public static Parameter operator /(Parameter parameter, double scalar)
         {
-            if (scalar == 0)
-                throw new ArithmeticException($"Could not divide a parameter object by zero.");
-
-            var newWeights = parameter._weights.Select(w => w / scalar);
-            var newBiases = parameter._biases.Select(b => b / scalar);
-            return new Parameter(newWeights, newBiases);
+            Parameter result = parameter.DeepCopy();
+            result.InPlaceDivide(scalar);
+            return result;
         }
 
 

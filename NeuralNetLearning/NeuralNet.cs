@@ -7,7 +7,7 @@ using NeuralNetLearning.Maths;
 
 namespace NeuralNetLearning
 {
-    using VectorPairs = List<(Vector<double>, Vector<double>)>;
+    using TrainingPair = Tuple<Vector<double>, Vector<double>>;
 
 	public class NeuralNet
     {
@@ -44,24 +44,28 @@ namespace NeuralNetLearning
             _gradientDescender = gradientDescent;
         }
 
-        protected Parameter AverageGradient(Parameter param, VectorPairs trainingPairs) // assuming that trainingPairs.Count() is not extremely large
+        protected Parameter AverageGradient(Parameter param, IReadOnlyList<TrainingPair> trainingPairs) // assuming that trainingPairs.Count() is not extremely large
         {
-            var gradients = trainingPairs
-                .Select(pair => param.CostGrad(input: pair.Item1, desiredOutput: pair.Item2, _activators, _cost));
+            Parameter total = ParameterFactory.Zero(param.LayerSizes);
+            foreach ((Vector<double> input, Vector<double> desiredOutput) in trainingPairs)
+                total.InPlaceAdd(_param.CostGrad(input, desiredOutput, _activators, _cost));
 
-            return gradients.Aggregate((left, right) => left + right) / gradients.Count();
-        } 
+            total.InPlaceDivide(trainingPairs.Count);
+            return total;
+        }
 
-        public void GradientDescent(VectorPairs trainingPairs, int batchSize, int numEpochs = 5)
+        public void GradientDescent(TrainingPair[] trainingPairs, int batchSize, int numEpochs = 5)
         {
+            ArraySegment<TrainingPair> trainingPairSpan = new(trainingPairs);
             for (int epoch = 0; epoch < numEpochs; epoch++)
             {
                 Shuffle(trainingPairs);
-                for (int batchIdx = 0; batchIdx < trainingPairs.Count; batchIdx += batchSize)
+                for (int batchIdx = 0; batchIdx < trainingPairs.Length; batchIdx += batchSize)
                 {
-                    VectorPairs trainingBatch = trainingPairs
-                        .GetRange(batchIdx, Math.Min(batchSize, trainingPairs.Count - batchIdx));
-                    _param += _gradientDescender.GradientDescentStep(AverageGradient(_param, trainingBatch));
+                    int size = Math.Min(batchSize, trainingPairs.Length - batchIdx);
+                    ArraySegment<TrainingPair> trainingBatch = trainingPairSpan.Slice(batchIdx, size);
+                    Parameter update = _gradientDescender.GradientDescentStep(AverageGradient(_param, trainingBatch));
+                    _param.InPlaceAdd(update);
                 }
                 Console.WriteLine($"Epoch {epoch} / {numEpochs} \t \t Avg training cost: {AverageCost(trainingPairs)}");
             }
@@ -111,7 +115,7 @@ namespace NeuralNetLearning
         public Vector<double> Output(Vector<double> input)
             => _param.Output(input, _activators);
 
-        public double AverageCost(VectorPairs trainingPairs)
+        public double AverageCost(TrainingPair[] trainingPairs)
             => trainingPairs
             .Select(pair => _cost.Apply(Output(pair.Item1), pair.Item2))
             .Average();
