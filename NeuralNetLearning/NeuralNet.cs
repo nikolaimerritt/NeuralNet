@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using NeuralNetLearning.Maths;
 
 namespace NeuralNetLearning
@@ -54,19 +56,40 @@ namespace NeuralNetLearning
             return total;
         }
 
-        public void GradientDescent(TrainingPair[] trainingPairs, int batchSize, int numEpochs = 5)
+        private IEnumerable<ArraySegment<TrainingPair>> Batches(TrainingPair[] trainingPairs, int batchSize)
+        {
+            ArraySegment<TrainingPair> trainingPairView = new(trainingPairs);
+            int numBatches = (int)Math.Ceiling((double)trainingPairs.Length / batchSize);
+            return Enumerable
+                .Range(0, numBatches)
+                .Select(i => BoundedSlice(trainingPairView, i * batchSize, batchSize));
+        }
+
+        public void GradientDescent(TrainingPair[] trainingPairs, int batchSize = 256, int numEpochs = 100)
+        {
+            for (int epoch = 0; epoch < numEpochs; epoch++)
+            {
+                Shuffle(trainingPairs);
+                foreach (var batch in Batches(trainingPairs, batchSize))
+                {
+                    Parameter update = _gradientDescender.GradientDescentStep(AverageGradient(_param, batch));
+                    _param.InPlaceAdd(update);
+                }
+                Console.WriteLine($"Epoch {epoch} / {numEpochs} \t \t Avg training cost: {AverageCost(trainingPairs)}");
+            }
+        }
+
+        public void GradientDescentParallel(TrainingPair[] trainingPairs, int batchSize = 256, int numEpochs = 100)
         {
             ArraySegment<TrainingPair> trainingPairSpan = new(trainingPairs);
             for (int epoch = 0; epoch < numEpochs; epoch++)
             {
                 Shuffle(trainingPairs);
-                for (int batchIdx = 0; batchIdx < trainingPairs.Length; batchIdx += batchSize)
+                Parallel.ForEach(Batches(trainingPairs, batchSize), batch => 
                 {
-                    int size = Math.Min(batchSize, trainingPairs.Length - batchIdx);
-                    ArraySegment<TrainingPair> trainingBatch = trainingPairSpan.Slice(batchIdx, size);
-                    Parameter update = _gradientDescender.GradientDescentStep(AverageGradient(_param, trainingBatch));
+                    Parameter update = _gradientDescender.GradientDescentStep(AverageGradient(_param, batch));
                     _param.InPlaceAdd(update);
-                }
+                });
                 Console.WriteLine($"Epoch {epoch} / {numEpochs} \t \t Avg training cost: {AverageCost(trainingPairs)}");
             }
         }
@@ -132,5 +155,8 @@ namespace NeuralNetLearning
                 list[swapIdx] = value;
             }
         }
+
+        private static ArraySegment<T> BoundedSlice<T>(ArraySegment<T> segment, int start, int length)
+            => segment.Slice(start, Math.Min(length, segment.Count - start));
     }
 }
