@@ -28,8 +28,8 @@ namespace NeuralNetLearning
             if (typeName == nameof(ReluActivation))
                 return new ReluActivation(HyperParamEncoder.Decode(filepath, "leak"));
 
-            if (typeName == nameof(TanhSigmoidActivation))
-                return new TanhSigmoidActivation();
+            if (typeName == nameof(TanhActivation))
+                return new TanhActivation();
 
             if (typeName == nameof(IdentityActivation))
                 return new IdentityActivation();
@@ -73,11 +73,11 @@ namespace NeuralNetLearning
             => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath, ("leak", _leak));
     }
 
-    public class TanhSigmoidActivation : Activation
+    public class TanhActivation : Activation
     {
         private Vector _cachedInput;
         private Vector _cachedTanh;
-        public TanhSigmoidActivation() { }
+        public TanhActivation() { }
 
         public override Vector Apply(Vector input)
         {
