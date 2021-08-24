@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using MathNet.Numerics.LinearAlgebra;
 using System.IO;
 using System.Threading;
@@ -46,7 +47,7 @@ namespace NeuralNetLearning
             _gradientDescender = gradientDescent;
         }
 
-        protected Parameter AverageGradient(Parameter param, IReadOnlyList<TrainingPair> trainingPairs) // assuming that trainingPairs.Count() is not extremely large
+        private Parameter AverageGradient(Parameter param, IReadOnlyList<TrainingPair> trainingPairs) // assuming that trainingPairs.Count() is not extremely large
         {
             Parameter total = ParameterFactory.Zero(param.LayerSizes);
             foreach ((Vector<double> input, Vector<double> desiredOutput) in trainingPairs)
@@ -56,7 +57,7 @@ namespace NeuralNetLearning
             return total;
         }
 
-        private IEnumerable<ArraySegment<TrainingPair>> Batches(TrainingPair[] trainingPairs, int batchSize)
+        private static IEnumerable<ArraySegment<TrainingPair>> Batches(TrainingPair[] trainingPairs, int batchSize)
         {
             ArraySegment<TrainingPair> trainingPairView = new(trainingPairs);
             int numBatches = (int)Math.Ceiling((double)trainingPairs.Length / batchSize);
@@ -72,25 +73,24 @@ namespace NeuralNetLearning
                 Shuffle(trainingPairs);
                 foreach (var batch in Batches(trainingPairs, batchSize))
                 {
+                    Parameter grad = AverageGradient(_param, batch);
                     Parameter update = _gradientDescender.GradientDescentStep(AverageGradient(_param, batch));
                     _param.InPlaceAdd(update);
                 }
-                Console.WriteLine($"Epoch {epoch} / {numEpochs} \t \t Avg training cost: {AverageCost(trainingPairs)}");
             }
         }
 
         public void GradientDescentParallel(TrainingPair[] trainingPairs, int batchSize = 256, int numEpochs = 100)
         {
-            ArraySegment<TrainingPair> trainingPairSpan = new(trainingPairs);
             for (int epoch = 0; epoch < numEpochs; epoch++)
             {
                 Shuffle(trainingPairs);
                 Parallel.ForEach(Batches(trainingPairs, batchSize), batch => 
                 {
+                    Parameter grad = AverageGradient(_param, batch);
                     Parameter update = _gradientDescender.GradientDescentStep(AverageGradient(_param, batch));
                     _param.InPlaceAdd(update);
                 });
-                Console.WriteLine($"Epoch {epoch} / {numEpochs} \t \t Avg training cost: {AverageCost(trainingPairs)}");
             }
         }
 

@@ -14,7 +14,7 @@ namespace NeuralNetLearning.Maths
         public static Parameter Zero(int[] layerSizes)
         {
             var weights = WeightDims(layerSizes)
-                .Select(pair => Matrix.Build.Dense(pair.Item1, pair.Item2));
+                .Select(dim => Matrix.Build.Dense(dim.row, dim.col));
 
             var biases = BiasDims(layerSizes)
                 .Select(dim => Vector.Build.Dense(dim));
@@ -25,7 +25,7 @@ namespace NeuralNetLearning.Maths
         public static Parameter XavierInit(params int[] layerSizes)
         {
             var weights = WeightDims(layerSizes)
-                .Select(pair => Math.Sqrt(6 / (pair.Item1 + pair.Item2)) * MatrixFunctions.StdUniform(pair.Item1, pair.Item2));
+                .Select(dim => Math.Sqrt(6.0 / (dim.row + dim.col)) * MatrixFunctions.StdUniform(dim.row, dim.col));
 
             var biases = BiasDims(layerSizes)
                 .Select(dim => Vector.Build.Dense(dim, 0.0));
@@ -36,7 +36,7 @@ namespace NeuralNetLearning.Maths
         public static Parameter KaimingInit(params int[] layerSizes)
         {
             var weights = WeightDims(layerSizes)
-                .Select(pair => Math.Sqrt(2 / pair.Item2) * MatrixFunctions.StdNormal(pair.Item1, pair.Item2));
+                .Select(dim => Math.Sqrt(2.0 / dim.col) * MatrixFunctions.StdNormal(dim.row, dim.col));
 
             var biases = BiasDims(layerSizes)
                 .Select(dim => Vector.Build.Dense(dim, 0.0));
@@ -63,7 +63,7 @@ namespace NeuralNetLearning.Maths
             return new Parameter(weights, biases);
         }
 
-        private static List<(int, int)> WeightDims(int[] layerSizes)
+        private static List<(int row, int col)> WeightDims(int[] layerSizes)
             => Enumerable
             .Range(0, layerSizes.Length - 1)
             .Select(i => (layerSizes[i + 1], layerSizes[i]))

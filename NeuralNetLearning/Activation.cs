@@ -17,7 +17,7 @@ namespace NeuralNetLearning
         public abstract Vector Apply(Vector input);
         public abstract Matrix ApplyDerivative(Vector input);
         public virtual void WriteToFile(string filepath)
-            => HyperParamEncoder.EncodeToFile(nameof(Activation), filepath);
+            => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath);
 
         public static Activation ReadFromFile(string filepath)
         {

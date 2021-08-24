@@ -18,7 +18,7 @@ namespace NeuralNetLearning
             => new string[] { _learningRate.ToString() };
 
         public override Parameter GradientDescentStep(Parameter gradient)
-            => _learningRate * -gradient;
+            => (-_learningRate) * gradient;
 
         public static StochasticGradientDescender Read(string directoryPath)
         {

@@ -2,7 +2,7 @@
   "profiles": {
     "NeuralNet": {
       "commandName": "Executable",
-      "executablePath": "C:\\Users\\tiamat\\Code\\C#\\QLearner\\QLearner\\bin\\Debug\\net5.0\\QLearner.exe",
+      "executablePath": "C:\\Users\\tiamat\\Code\\C#\\ConnectFour\\bin\\Debug\\net5.0\\ConnectFour.exe",
       "nativeDebugging": true
     }
   }
