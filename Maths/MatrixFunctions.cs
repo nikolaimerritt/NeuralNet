@@ -70,5 +70,18 @@ namespace NeuralNetLearning.Maths
             }
 			return basisMatrices.ToArray();
         }
+
+		public static bool IsFinite(Matrix matrix)
+        {
+			for (int r = 0; r < matrix.RowCount; r++)
+            {
+				for (int c = 0; c < matrix.ColumnCount; c++)
+                {
+					if (!double.IsFinite(matrix[r, c]))
+						return false;
+                }
+            }
+			return true;
+        }
 	}
 }

@@ -308,9 +308,17 @@ namespace NeuralNetLearning.Maths
         public Parameter CostGrad(Vector input, Vector desiredOutput, Activation[] activators, CostFunction cost)
         {
             Vector[] layers = Layers(input, activators, out Vector[] layersBeforeActivation);
+            //if (!layers.All(VectorFunctions.IsFinite))
+            //    throw new ArithmeticException($"layers are non-finite");
+
             Matrix[] activatorDerivs = ActivatorDerivs(layersBeforeActivation, activators);
+            //if (!activatorDerivs.All(MatrixFunctions.IsFinite))
+              //  throw new ArithmeticException($"activator derivs are non-finite");
 
             Vector costGradWrtLayer = cost.Derivative(layers.Last(), desiredOutput);
+            //if (!VectorFunctions.IsFinite(costGradWrtLayer))
+              //  throw new ArithmeticException($"Cost grad wrt layer is non-finite");
+            
             Matrix[] weightCostGrads = new Matrix[LayerCount];
             Vector[] biasCostGrads = new Vector[LayerCount];
 
@@ -319,12 +327,22 @@ namespace NeuralNetLearning.Maths
                 Vector layerBehind = i > 0 ? layers[i - 1] : input;
                 // weightCostGrads[i] = CostGradWrtWeight(costGradWrtLayer, activatorDerivs[i], layerBehind);
                 biasCostGrads[i] = CostGradWrtBias(costGradWrtLayer, activatorDerivs[i]);
+                //if (!VectorFunctions.IsFinite(biasCostGrads[i]))
+                  //  throw new ArithmeticException($"bias cost grad {i} is non-finite");
+
                 weightCostGrads[i] = Vector.OuterProduct(biasCostGrads[i], layerBehind);
+                //if (!MatrixFunctions.IsFinite(weightCostGrads[i]))
+                  //  throw new ArithmeticException($"weight cost grad {i} is non-finite");
 
                 costGradWrtLayer = CostGradWrtLayerBehind(costGradWrtLayer, activatorDerivs[i], _weights[i]);
+                //if (!VectorFunctions.IsFinite(costGradWrtLayer))
+                  //  throw new ArithmeticException($"cost grad wrt layer in step {i} is non-finite");
             }
+            Parameter grad = new(weightCostGrads, biasCostGrads);
+            if (!grad.IsFinite())
+                throw new ArithmeticException($"Gradient as calculated in Parameter.cs is non-finite");
 
-            return new Parameter(weightCostGrads, biasCostGrads);
+            return grad;
         }
         
         public Parameter DeepCopy()
@@ -333,5 +351,8 @@ namespace NeuralNetLearning.Maths
             var newBiases = _biases.Select(b => b.Clone());
             return new Parameter(newWeights, newBiases);
         }
+
+        public bool IsFinite()
+            => _biases.All(VectorFunctions.IsFinite) && _weights.All(MatrixFunctions.IsFinite);
     }
 }

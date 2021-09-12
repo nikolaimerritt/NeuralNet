@@ -40,7 +40,7 @@ namespace NeuralNetLearning
         }
 
 		public AdamGradientDescender(double learningRate = 0.001, double momentumDecay = 0.9, double varianceDecay = 0.999)
-			: this(learningRate, momentumDecay, varianceDecay, step: 0, momentum: null, variance: null)
+			: this(learningRate, momentumDecay, varianceDecay, step: 1, momentum: null, variance: null)
 		{ }
 
 
@@ -59,8 +59,10 @@ namespace NeuralNetLearning
 
 			Parameter correctedMomentum = _momentum / (1 - Math.Pow(_momentumDecay, _step));
 			Parameter correctedVariance = _variance / (1 - Math.Pow(_varianceDecay, _step));
-
-			return -_learningRate * correctedMomentum / correctedVariance.Pow(0.5).Add(_preventDivByZero);
+			Parameter step = -_learningRate * correctedMomentum / correctedVariance.Pow(0.5).Add(_preventDivByZero);
+			if (!step.IsFinite())
+				throw new ArithmeticException($"Found non-finite value");
+			return step;
 		}
 
 		public override void WriteToDirectory(string directoryPath)

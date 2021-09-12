@@ -52,5 +52,8 @@ namespace NeuralNetLearning.Maths
             }
             return basisVectors.ToArray();
         }
+
+        public static bool IsFinite(Vector vector)
+            => vector.All(double.IsFinite);
     }
 }

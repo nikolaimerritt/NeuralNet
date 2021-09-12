@@ -18,7 +18,11 @@ namespace NeuralNetLearning
             => new string[] { _learningRate.ToString() };
 
         public override Parameter GradientDescentStep(Parameter gradient)
-            => (-_learningRate) * gradient;
+        {
+            if (!gradient.IsFinite())
+                throw new ArithmeticException($"Found non-finite gradient");
+            return -_learningRate * gradient;
+        }
 
         public static StochasticGradientDescender Read(string directoryPath)
         {
