@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MathNet.Numerics.LinearAlgebra;
+﻿using NeuralNetLearning.Serialization;
+using System;
 using System.IO;
-using NeuralNetLearning.Maths;
 
-namespace NeuralNetLearning
+namespace NeuralNetLearning.Maths.GradientDescenders
 {
     public class StochasticGradientDescender : GradientDescender
     {
+        [SerializableHyperParameter("learning rate")]
         private readonly double _learningRate;
 
         public StochasticGradientDescender(double learningRate = 0.001)
@@ -17,7 +15,7 @@ namespace NeuralNetLearning
         public string[] HyperParametersToLines()
             => new string[] { _learningRate.ToString() };
 
-        public override Parameter GradientDescentStep(Parameter gradient)
+        internal override Parameter GradientDescentStep(Parameter gradient)
         {
             if (!gradient.IsFinite())
                 throw new ArithmeticException($"Found non-finite gradient");
@@ -26,7 +24,7 @@ namespace NeuralNetLearning
 
         public static StochasticGradientDescender Read(string directoryPath)
         {
-            double learningRate = HyperParamEncoder.Decode($"{directoryPath}/{hyperParamsFile}", "learning rate");
+            double learningRate = HyperParamEncoder.Decode($"{directoryPath}/{_simpleHyperParamsFile}", "learning rate");
             return new StochasticGradientDescender(learningRate);
         }
 
@@ -37,7 +35,7 @@ namespace NeuralNetLearning
 
             HyperParamEncoder.EncodeToFile(
                 this.GetType().Name,
-                $"{directoryPath}/{hyperParamsFile}",
+                $"{directoryPath}/{_simpleHyperParamsFile}",
                 ("learning rate", _learningRate)
             );
         }

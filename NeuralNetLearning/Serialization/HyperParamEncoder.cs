@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace NeuralNetLearning.Maths
+namespace NeuralNetLearning.Serialization
 {
     public class HyperParamEncoder
     {
@@ -37,7 +37,7 @@ namespace NeuralNetLearning.Maths
             if (paramLines.Count() > 1)
                 throw new Exception($"Multiple parameters have the same name {paramName} in the file {filepath}");
 
-            return Double.Parse(paramLines.Single().Split(":")[1].Trim());
+            return double.Parse(paramLines.Single().Split(":")[1].Trim());
         }   
     }
 }

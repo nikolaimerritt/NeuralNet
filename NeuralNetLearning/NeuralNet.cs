@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using MathNet.Numerics.LinearAlgebra;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using MathNet.Numerics.LinearAlgebra;
 using NeuralNetLearning.Maths;
+using NeuralNetLearning.Maths.Activations;
+using NeuralNetLearning.Maths.CostFunctions;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using NeuralNetLearning.Maths.GradientDescenders;
 
 namespace NeuralNetLearning
 {
-    using TrainingPair = Tuple<Vector<double>, Vector<double>>;
+    using TrainingPair = ValueTuple<Vector<double>, Vector<double>>;
 
     /// <summary>
-    /// A neural network 
+    /// A fully-connected neural network, with a customisable layer structure, <see cref="Activation"/>s, <see cref="GradientDescender"/> and <see cref="CostFunction"/>. 
     /// </summary>
 	public class NeuralNet
     {
@@ -24,11 +25,11 @@ namespace NeuralNetLearning
         private static readonly Random _rng = new();
 
         /// <summary>
-        /// The total amount of layers, including the input layer, hidden layers and activation layer
+        /// The amount of active (i.e. non-input) layers.
         /// </summary>
-        public int LayerCount
+        public int ActiveLayerCount
         {
-            get => _param.LayerCount;
+            get => _param.ActiveLayerCount;
         }
 
         /// <summary>
@@ -40,7 +41,8 @@ namespace NeuralNetLearning
         }
 
         /// <summary>
-        /// The default constructor. It is reccommended to use the NeuralNetFactory class to create NeuralNet objects for basic purposes.
+        /// The default constructor. 
+        /// For most practical purposes, it is reccommended to use <see cref="NeuralNetFactory"/>.
         /// </summary>
         /// <param name="param"> The parameter object that the NeuralNet will use internally </param>
         /// <param name="activators"> 
@@ -48,10 +50,10 @@ namespace NeuralNetLearning
             /// <para>No activator is applied to the output layer <paramref name="param"/>. Thus, if <paramref name="param"/> has <c>n</c> layers, <paramref name="activators"/> must have <c>n-1</c> elements. </para>
         /// </param>
 
-        public NeuralNet(Parameter param, Activation[] activators, GradientDescender gradientDescent, CostFunction cost)
+        internal NeuralNet(Parameter param, Activation[] activators, GradientDescender gradientDescent, CostFunction cost)
         {
-            if (activators.Length != param.LayerCount)
-                throw new ArgumentException($"Expected {param.LayerCount} activators, but received {activators.Length}");
+            if (activators.Length != param.ActiveLayerCount)
+                throw new ArgumentException($"Expected {param.ActiveLayerCount} activators, but received {activators.Length}");
 
             _param = param;
             _cost = cost;
@@ -59,14 +61,14 @@ namespace NeuralNetLearning
             _gradientDescender = gradientDescent;
         }
 
-        private Parameter AverageGradient(Parameter param, IReadOnlyList<TrainingPair> trainingPairs) // assuming that trainingPairs.Count() is not extremely large
+        private Parameter AverageGradient(Parameter param, IList<TrainingPair> trainingPairs) // assuming that trainingPairs.Count() is not extremely large
         {
             if (!trainingPairs.Any())
                 throw new ArgumentException("Could not find the average gradient of an empty list of training pairs");
 
             Parameter total = ParameterFactory.Zero(param.LayerSizes);
             foreach ((Vector<double> input, Vector<double> desiredOutput) in trainingPairs)
-                total.InPlaceAdd(_param.CostGrad(input, desiredOutput, _activators, _cost));
+                total.InPlaceAdd(_param.CostGradient(input, desiredOutput, _activators, _cost));
 
             total.InPlaceDivide(trainingPairs.Count);
             return total;
@@ -87,7 +89,7 @@ namespace NeuralNetLearning
                 var batch = batches[i];
                 foreach ((Vector<double> input, Vector<double> desiredOutput) in batch)
                 {
-                    Parameter grad = _param.CostGrad(input, desiredOutput, _activators, _cost);
+                    Parameter grad = _param.CostGradient(input, desiredOutput, _activators, _cost);
                     threadAverages[i].InPlaceAdd(grad);
                 }
                 threadAverages[i].InPlaceDivide(batch.Count);
@@ -114,16 +116,17 @@ namespace NeuralNetLearning
         }
 
         /// <summary>
-        /// Runs batch gradient descent on the training data stored in <paramref name="trainingPairs"/>. 
+        /// Fits the <see cref="NeuralNet"/> to the training data supplied in <paramref name="trainingPairs"/>, using the NeuralNet's <see cref="GradientDescender"/>. Runs batch gradient descent.
         /// </summary>
         /// <param name="trainingPairs">
             /// <para> A (finite) IEnumerable of training data. </para>
-            /// <para> Each element of <paramref name="trainingPairs"/> is a tuple. The first element is the input to the NeuralNet, and the second element is the corresponding output the NeuralNet will learn to produce. </para>
+            /// <para> Each element of <paramref name="trainingPairs"/> is a tuple. The first element is the input to the NeuralNet. 
+            /// The second element is the corresponding output the NeuralNet will learn to produce. </para>
         /// </param>
         /// <param name="batchSize"> The size of each batch that <paramref name="trainingPairs"/> will be split into. Recommended values of <paramref name="batchSize"/> range from 4 to 256. </param>
         /// <param name="numEpochs"> The number of times that batch gradient descent will be run on <paramref name="trainingPairs"/>. </param>
         /// <param name="batchUpdateInParallel"> If <paramref name="batchUpdateInParallel"/> is <c> true </c>, the average gradient corresponding to each batch is computed in parallel. Reccommended for medium to high values of <paramref name="batchSize"/>. </param>
-        public void GradientDescent(IEnumerable<TrainingPair> trainingPairs, int batchSize = 256, int numEpochs = 100, bool batchUpdateInParallel = true)
+        public void Fit(IEnumerable<(Vector<double> input, Vector<double> expectedOutput)> trainingPairs, int batchSize = 256, int numEpochs = 100, bool batchUpdateInParallel = true)
         {
             ArraySegment<TrainingPair> trainingPairView = new(trainingPairs.ToArray());
             for (int epoch = 0; epoch < numEpochs; epoch++)
@@ -141,7 +144,13 @@ namespace NeuralNetLearning
         }
 
         /// <summary>
-        /// Writes the parameter values, activator type and hyperparameters, gradient descender type and hyperparameters, and cost type to the specified directory in a human-readable format.
+        /// Writes, in a human-readable format:
+            /// <list type="bullet">
+                /// <item> the <see cref="Parameter"/>, with each weight and bias in a separate file </item>
+                /// <item> each <see cref="Activation"/>, with its hyper-parameters </item>
+                /// <item> the <see cref="GradientDescender"/>, with its hyper-parameters </item>
+                /// <item> the <see cref="CostFunction"/>, with its hyper-parameters </item>
+            /// </list>
         /// </summary>
         /// <param name="directoryPath"> The (relative or absolute) path of the directory to be written to. </param>
         public void WriteToDirectory(string directoryPath)
@@ -151,7 +160,7 @@ namespace NeuralNetLearning
 
             _param.WriteToDirectory($"{directoryPath}/{NeuralNetFactory.ParamsFolder}");
             WriteActivatorsToDirectory($"{directoryPath}/{NeuralNetFactory.ActivatorsFolder}");
-            _gradientDescender.WriteToDirectory($"{directoryPath}/{NeuralNetFactory.GradientDescenderFolder}");
+            _gradientDescender.ExpWriteToDirectory($"{directoryPath}/{NeuralNetFactory.GradientDescenderFolder}");
             _cost.WriteToFile($"{directoryPath}/{NeuralNetFactory.CostFile}");
         }
 
@@ -167,17 +176,17 @@ namespace NeuralNetLearning
         /// <summary>
         /// Calculates the output of the Neural Network for the vector <paramref name="input"/>.
         /// </summary>
-        public Vector<double> Output(Vector<double> input)
-            => _param.Output(input, _activators);
+        private Vector<double> Predict(Vector<double> input)
+            => _param.GetOutputVector(input, _activators);
 
         /// <summary>
-        /// Calculates the average of the error cost between the output the neural network generates and corresponding expected output.
+        /// Calculates the average of the error cost between each output vector calculated by the <see cref="NeuralNet"/> vs the corresponding expected output.
         /// </summary>
-        /// <param name="testingPairs"> The list of <c>(input, expected output)</c> testing pairs. The cost of the error between the Neural network's output to each input, and the corresponding expected output, is averaged. </param>
+        /// <param name="testingPairs"> The list of <c>(input, expected output)</c> testing pairs. </param>
         /// <returns></returns>
-        public double AverageCost(IEnumerable<TrainingPair> testingPairs)
+        public double AverageCost(IEnumerable<(Vector<double> input, Vector<double> expectedOutput)> testingPairs)
             => testingPairs
-            .Select(pair => _cost.Apply(Output(pair.Item1), pair.Item2))
+            .Select(pair => _cost.Apply(Predict(pair.input), pair.expectedOutput))
             .Average();
 
         private static void Shuffle<T>(IList<T> list)

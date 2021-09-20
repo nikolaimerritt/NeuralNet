@@ -1,103 +1,123 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MathNet.Numerics.LinearAlgebra;
-using System.IO;
-using System.Threading.Tasks;
+﻿using MathNet.Numerics.LinearAlgebra;
+using NeuralNetLearning.LayerConfig;
 using NeuralNetLearning.Maths;
+using NeuralNetLearning.Maths.Activations;
+using NeuralNetLearning.Maths.CostFunctions;
+using NeuralNetLearning.Maths.GradientDescenders;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 
 namespace NeuralNetLearning
 {
-    using Vector = Vector<double>;
-    using Matrix = Matrix<double>;
     using static ParameterFactory;
+    using Vector = Vector<double>;
 
     public static class NeuralNetFactory
     {
         /// <summary>
-        /// The name of the file in which the CostFunction of a NeuralNet is recorded when writing a NeuralNet to a directory.
+        /// The name of the file in which the <see cref="CostFunction"/> used by a <see cref="NeuralNet"/> is recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
         public static readonly string CostFile = "cost.txt";
         /// <summary>
-        /// The name of the folder in which the Parameter of a NeuralNet is recorded when writing a NeuralNet to a directory.
+        /// The name of the folder in which the <see cref="Parameter"/> used by a <see cref="NeuralNet"/> is recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
         public static readonly string ParamsFolder = "parameters";
         /// <summary>
-        /// The name of the folder in which the Activators of a NeuralNet are recorded when writing a NeuralNet to a directory.
+        /// The name of the folder in which the <see cref="Activation"/>s used by a <see cref="NeuralNet"/> are recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
         public static readonly string ActivatorsFolder = "activators";
         /// <summary>
-        /// The name of the folder in which the Gradient Descender of a NeuralNet is recorded when writing a NeuralNet to a directory.
+        /// The name of the folder in which the <see cref="GradientDescender"/> used by a <see cref="NeuralNet"/> is recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
         public static readonly string GradientDescenderFolder = "gradient-descender";
 
         /// <summary>
-        /// Returns a NeuralNet initialised with random weights and biases that are optimised for the use of TanhSigmoid activators. Uses Xavier initialisation.
+        /// Returns a random <see cref="NeuralNet"/> that is optimised for the use of <see cref="TanhActivation"/>. 
+        /// <para>
+        /// Uses <see href="https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf">Xavier initialisation</see>.
+        /// </para>
         /// </summary>
-        /// <param name="layerConfigs"> The configurations of the layer that the NeuralNet will conform to. </param>
+        /// <param name="layerStructure"> The configurations of the layer that the NeuralNet will conform to. </param>
         /// <param name="gradientDescender"> The gradient descender that the NeuralNet will use when executing gradient descent. </param>
         /// <param name="cost"> The cost function that the NeuralNet will use when executing gradient descent. </param>
-        public static NeuralNet RandomOptimisedForTanhSigmoid(IList<NeuralLayerConfig> layerConfigs, GradientDescender gradientDescender, CostFunction cost)
+        public static NeuralNet OptimisedForTanh(IList<NeuralLayerConfig> layerStructure, GradientDescender gradientDescender, CostFunction cost)
         {
-            Parameter param = XavierInit(LayerSizesFromConfigs(layerConfigs));
-            Activation[] activators = ActivationsFromConfigs(layerConfigs);
+            Parameter param = XavierInit(LayerSizesFromConfigs(layerStructure));
+            Activation[] activators = ActivationsFromConfigs(layerStructure);
 
             return new NeuralNet(param, activators, gradientDescender, cost);
         }
 
         /// <summary>
-        /// Returns a NeuralNet initialised with random weights and biases that are optimised for the use of Relu activators with low or zero leak. Uses Kaiming-He initialisation.
+        /// Returns a random <see cref="NeuralNet"/> that is optimised for the use of <see cref="ReluActivation"/>. 
+        /// <para>
+        /// Uses <see href="https://arxiv.org/abs/1502.01852v1">Kaiming He</see> initialisation.
+        /// </para>
         /// </summary>
-        /// <param name="layerConfigs"> The configurations of the layer that the NeuralNet will conform to. </param>
+        /// <param name="layerStructure"> The configurations of the layer that the NeuralNet will conform to. </param>
         /// <param name="gradientDescender"> The gradient descender that the NeuralNet will use when executing gradient descent. </param>
         /// <param name="cost"> The cost function that the NeuralNet will use when executing gradient descent. </param>
-        public static NeuralNet RandomOptimisedForRelu(IList<NeuralLayerConfig> layerConfigs, GradientDescender gradientDescender, CostFunction cost)
+        public static NeuralNet OptimisedForRelu(IList<NeuralLayerConfig> layerStructure, GradientDescender gradientDescender, CostFunction cost)
         {
-            Parameter param = KaimingInit(LayerSizesFromConfigs(layerConfigs));
-            Activation[] activations = ActivationsFromConfigs(layerConfigs);
+            Parameter param = KaimingInit(LayerSizesFromConfigs(layerStructure));
+            Activation[] activations = ActivationsFromConfigs(layerStructure);
 
             return new NeuralNet(param, activations, gradientDescender, cost);
         }
 
         /// <summary>
-        /// Returns a NeuralNet initialised with random weights and biases that are optimised for learning the data set supplied in <paramref name="sampleTrainingSet"/>. Uses LSUV initialisation.
+        /// Returns a random <see cref="NeuralNet"/> that is optimised for learning <paramref name="trainingData"/>.
+        /// <para>
+        /// Uses <see href="http://cmp.felk.cvut.cz/~mishkdmy/papers/mishkin-iclr2016.pdf">LSUV initialisation</see>.
+        /// </para>
         /// </summary>
-        /// <param name="layerConfigs"> The configurations of the layer that the NeuralNet will conform to. </param>
-        /// <param name="sampleTrainingSet"> The training set which the NeuralNet will be optimised to learn. Only the inputs are needed, so this method simply calls its overload where <paramref name="sampleTrainingSet"/> is a list of inputs. </param>
+        /// <param name="layerStructure"> The configurations of the layer that the NeuralNet will conform to. </param>
+        /// <param name="trainingData"> The training set which the NeuralNet will be optimised to learn. 
+        /// <para> Only the inputs are needed, so this method simply calls its overload where <paramref name="trainingData"/> is a list of inputs.</para>
+        /// </param>
         /// <param name="gradientDescender"> The gradient descender that the NeuralNet will use when executing gradient descent. </param>
         /// <param name="cost"> The cost function that the NeuralNet will use when executing gradient descent. </param>
-        public static NeuralNet RandomCustomisedForMiniBatch(IList<NeuralLayerConfig> layerConfigs, IEnumerable<(Vector input, Vector desiredOutput)> sampleTrainingSet, GradientDescender gradientDescender, CostFunction cost)
+        public static NeuralNet OptimisedForTrainingData(IList<NeuralLayerConfig> layerStructure, IEnumerable<(Vector input, Vector desiredOutput)> trainingData, GradientDescender gradientDescender, CostFunction cost)
         {
-            IList<Vector> miniBatchInputs = sampleTrainingSet.Select(pair => pair.input).ToList();
-            return RandomCustomisedForMiniBatch(layerConfigs, miniBatchInputs, gradientDescender, cost);
+            IList<Vector> miniBatchInputs = trainingData.Select(pair => pair.input).ToList();
+            return OptimisedForTrainingData(layerStructure, miniBatchInputs, gradientDescender, cost);
         }
 
         /// <summary>
-        /// Returns a NeuralNet initialised with random weights and biases that are optimised for learning the inputs supplied in <paramref name="sampleInputs"/>. Uses LSUV initialisation.
+        /// Returns a random <see cref="NeuralNet"/> that is optimised for learning <paramref name="trainingData"/>.
+        /// <para>
+        /// Uses <see href="http://cmp.felk.cvut.cz/~mishkdmy/papers/mishkin-iclr2016.pdf">LSUV initialisation</see>.
+        /// </para>
         /// </summary>
-        /// <param name="layerConfigs"> The configurations of the layer that the NeuralNet will conform to. </param>
-        /// <param name="sampleInputs"> The inputs of the training set which the NeuralNet will be optimised to learn. </param>
+        /// <param name="layerStructure"> The configurations of the layer that the NeuralNet will conform to. </param>
+        /// <param name="trainingInputs"> The inputs of the training set which the NeuralNet will be optimised to learn. </param>
         /// <param name="gradientDescender"> The gradient descender that the NeuralNet will use when executing gradient descent. </param>
         /// <param name="cost"> The cost function that the NeuralNet will use when executing gradient descent. </param>
-        public static NeuralNet RandomCustomisedForMiniBatch(IList<NeuralLayerConfig> layerConfigs, IEnumerable<Vector> sampleInputs, GradientDescender gradientDescender, CostFunction cost)
+        public static NeuralNet OptimisedForTrainingData(IList<NeuralLayerConfig> layerStructure, IEnumerable<Vector> trainingInputs, GradientDescender gradientDescender, CostFunction cost)
         {
-            Activation[] activators = ActivationsFromConfigs(layerConfigs);
-            Parameter param = LSUVInit(LayerSizesFromConfigs(layerConfigs), activators, sampleInputs);
+            Activation[] activators = ActivationsFromConfigs(layerStructure);
+            Parameter param = LSUVInit(LayerSizesFromConfigs(layerStructure), activators, trainingInputs);
             
             return new NeuralNet(param, activators, gradientDescender, cost);
         }
 
         /// <summary>
-        /// Returns a NeuralNet read from the supplied directory. The NeuralNet must have been written in the same format as in the <c> NeuralNet.WriteToDirectory </c> function.
+        /// Reads the <see cref="NeuralNet"/> object that has been written to <paramref name="directoryPath"/> using the function <see cref="NeuralNet.WriteToDirectory(string)"/>.
+        /// <para>
+        /// The returned <see cref="NeuralNet"/> has equivalent <see cref="Parameter"/> values, <see cref="Activation"/>, <see cref="GradientDescender"/> and <see cref="CostFunction"/> 
+        /// compared to the written <see cref="NeuralNet"/>.
+        /// </para>
         /// </summary>
         /// <param name="directoryPath"> The (absolute or relative) path to which a Neural Net has been written. </param>
         /// <returns></returns>
         public static NeuralNet ReadFromDirectory(string directoryPath)
         {
-            Parameter param = Parameter.ReadFromDirectory($"{directoryPath}/{ParamsFolder}");
+            Parameter param = ParameterFactory.ReadFromDirectory($"{directoryPath}/{ParamsFolder}");
             Activation[] activators = ReadActivationsFromDirectory($"{directoryPath}/{ActivatorsFolder}");
-            GradientDescender gradientDescender = GradientDescender.ReadFromDirectory($"{directoryPath}/{GradientDescenderFolder}");
+            GradientDescender gradientDescender = GradientDescender.ExReadFromDirectory($"{directoryPath}/{GradientDescenderFolder}");
             CostFunction cost = CostFunction.ReadFromFile($"{directoryPath}/{CostFile}");
 
             return new NeuralNet(param, activators, gradientDescender, cost);
@@ -117,7 +137,7 @@ namespace NeuralNetLearning
 
         private static int[] LayerSizesFromConfigs(IList<NeuralLayerConfig> layerConfigs)
                 => layerConfigs
-                    .Select(l => l.LayerSize)
+                    .Select(l => l.Size)
                     .ToArray();
 
         private static Activation[] ActivationsFromConfigs(IList<NeuralLayerConfig> layerConfigs)
@@ -131,13 +151,13 @@ namespace NeuralNetLearning
                 if (!(layerConfigs[i] is HiddenLayer))
                     throw new ArgumentException($"Expected layer {i} to be of type {typeof(HiddenLayer)}");
 
-                activators.Add((layerConfigs[i] as HiddenLayer).Activator);
+                activators.Add((layerConfigs[i] as HiddenLayer).Activation);
             }
 
             if (!(layerConfigs.Last() is OutputLayer))
                 throw new ArgumentException($"Expected the last layer to be of type {typeof(OutputLayer)}");
 
-            activators.Add((layerConfigs.Last() as OutputLayer).Activator);
+            activators.Add((layerConfigs.Last() as OutputLayer).Activation);
 
             return activators.ToArray();
         }
