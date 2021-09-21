@@ -13,7 +13,7 @@ namespace NeuralNetLearning.Maths.Activations
     /// <summary>
     /// Represents the activation function that is applied to a neural layer.
     /// </summary>
-    public abstract class Activation 
+    public abstract class Activation
     {
         /// <summary>
         /// Returns the resulting <see cref="Vector{Double}"/> on applying the activation function to <paramref name="input"/>.
@@ -31,8 +31,8 @@ namespace NeuralNetLearning.Maths.Activations
         /// <summary>
         /// Writes the name of the activation function and its hyper-parameters to <paramref name="filepath"/>.
         /// </summary>
-        public virtual void WriteToFile(string filepath)
-            => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath);
+        //public virtual void WriteToFile(string filepath)
+          //  => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath);
 
         /// <summary>
         /// Reads the appropriate sub-class of <see cref="Activation"/> that was written to <paramref name="filepath"/>.
@@ -40,7 +40,7 @@ namespace NeuralNetLearning.Maths.Activations
         /// The returned sub-class of <see cref="Activation"/> has the same type and hyper-parameter vales as the sub-class of <see cref="Activation"/> that was written.
         /// </para>
         /// </summary>
-        public static Activation ReadFromFile(string filepath)
+        /* public static Activation ReadFromFile(string filepath)
         {
             if (!File.Exists(filepath))
                 throw new FileNotFoundException($"Could not find file {filepath}");
@@ -56,7 +56,7 @@ namespace NeuralNetLearning.Maths.Activations
                 return new IdentityActivation();
 
             else throw new Exception($"Could not recognise activation with type name {typeName}");
-        }
+        } */
     }
 
     

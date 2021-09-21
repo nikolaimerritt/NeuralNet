@@ -6,11 +6,15 @@ namespace NeuralNetLearning.Maths.Activations
 {
     public class ReluActivation : Activation
     {
-        private readonly double _leak;
-        public ReluActivation(double leak = 0)
+        [SerializableHyperParameter("leak")]
+        private readonly double _leak = 0;
+        public ReluActivation(double leak)
         {
             _leak = leak;
         }
+
+        public ReluActivation()
+        { }
 
         public override Vector<double> Apply(Vector<double> input)
         {
@@ -35,7 +39,7 @@ namespace NeuralNetLearning.Maths.Activations
             return new DiagonalMatrix(deriv.Length, deriv.Length, deriv);
         }
 
-        public override void WriteToFile(string filepath)
-            => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath, ("leak", _leak));
+        //public override void WriteToFile(string filepath)
+          //  => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath, ("leak", _leak));
     }
 }

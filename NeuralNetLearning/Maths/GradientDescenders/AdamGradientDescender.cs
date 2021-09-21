@@ -8,34 +8,32 @@ namespace NeuralNetLearning.Maths.GradientDescenders
 {
     public class AdamGradientDescender : GradientDescender
     {
-		[SerializableHyperParameter("learningRate")]
-		private readonly double _learningRate;
+		[SerializableHyperParameter("learning rate")]
+		private readonly double _learningRate = 0.001;
 
-		[SerializableHyperParameter("momentumDecay")]
-		private readonly double _momentumDecay;
+		[SerializableHyperParameter("momentum decay")]
+		private readonly double _momentumDecay = 0.9;
 		
-		[SerializableHyperParameter("varianceDecay")]
-		private readonly double _varianceDecay;
+		[SerializableHyperParameter("variance decay")]
+		private readonly double _varianceDecay = 0.999;
 
 		[SerializableHyperParameter("step")]
-		private int _step;
+		private int _stepNum = 1;
 
 		[SerializableHyperParameter("momentum")]
-		private Parameter _momentum;
+		private Parameter _momentum = null;
 
 		[SerializableHyperParameter("variance")]
-		private Parameter _variance;
+		private Parameter _variance = null;
 
 		private static readonly double _preventDivByZero = 1e-10;
-		private static readonly string momentumFolder = "momentum";
-		private static readonly string varianceFolder = "variance";
 
-        private AdamGradientDescender(double learningRate, double momentumDecay, double varianceDecay, int step, Parameter momentum, Parameter variance)
+        public AdamGradientDescender(double learningRate, double momentumDecay, double varianceDecay, int step, Parameter momentum, Parameter variance)
         {
 			_learningRate = learningRate;
 			_momentumDecay = momentumDecay;
 			_varianceDecay = varianceDecay;
-			_step = step;
+			_stepNum = step;
 
 			if (momentum != null && variance != null)
             {
@@ -47,14 +45,15 @@ namespace NeuralNetLearning.Maths.GradientDescenders
 			_variance = variance;
         }
 
-		public AdamGradientDescender(double learningRate = 0.001, double momentumDecay = 0.9, double varianceDecay = 0.999)
-			: this(learningRate, momentumDecay, varianceDecay, step: 1, momentum: null, variance: null)
-		{ }
+		public AdamGradientDescender()
+		{ 
+		
+		}
 
 
 		internal override Parameter GradientDescentStep(Parameter gradient)
 		{
-			_step++;
+			_stepNum++;
 
 			if (_momentum == null)
 				_momentum = ParameterFactory.Zero(gradient.LayerSizes);
@@ -65,13 +64,14 @@ namespace NeuralNetLearning.Maths.GradientDescenders
 			_momentum = _momentumDecay * _momentum + (1 - _momentumDecay) * gradient;
 			_variance = _varianceDecay * _variance + (1 - _varianceDecay) * gradient.Pow(2);
 
-			Parameter correctedMomentum = _momentum / (1 - Math.Pow(_momentumDecay, _step));
-			Parameter correctedVariance = _variance / (1 - Math.Pow(_varianceDecay, _step));
+			Parameter correctedMomentum = _momentum / (1 - Math.Pow(_momentumDecay, _stepNum));
+			Parameter correctedVariance = _variance / (1 - Math.Pow(_varianceDecay, _stepNum));
 			
 			Parameter step = -_learningRate * correctedMomentum / (correctedVariance.Pow(0.5) + _preventDivByZero);
 			return step;
 		}
 
+		/*
 		public override void WriteToDirectory(string directoryPath)
         {
 			if (!Directory.Exists(directoryPath))
@@ -83,7 +83,7 @@ namespace NeuralNetLearning.Maths.GradientDescenders
 				("learning rate", _learningRate),
 				("momentum decay", _momentumDecay),
 				("variance decay", _varianceDecay),
-				("step", _step)
+				("step", _stepNum)
 			);
 			_momentum?.WriteToDirectory($"{directoryPath}/{momentumFolder}");
 			_variance?.WriteToDirectory($"{directoryPath}/{varianceFolder}");
@@ -106,6 +106,6 @@ namespace NeuralNetLearning.Maths.GradientDescenders
 				: null;
 
 			return new AdamGradientDescender(learningRate, momentumDecay, varianceDecay, step, momentum, variance);
-        }
+        } */
     }
 }

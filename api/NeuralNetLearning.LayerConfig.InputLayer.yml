@@ -1,0 +1,531 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.LayerConfig.InputLayer
+  commentId: T:NeuralNetLearning.LayerConfig.InputLayer
+  id: InputLayer
+  parent: NeuralNetLearning.LayerConfig
+  children:
+  - NeuralNetLearning.LayerConfig.InputLayer.#ctor(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: InputLayer
+  nameWithType: InputLayer
+  fullName: NeuralNetLearning.LayerConfig.InputLayer
+  type: Class
+  source:
+    remote:
+      path: NeuralNetLearning/LayerConfig/InputLayer.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InputLayer
+    path: NeuralNetLearning/LayerConfig/InputLayer.cs
+    startLine: 2
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.LayerConfig
+  syntax:
+    content: 'public class InputLayer : NeuralLayerConfig, IEquatable<NeuralLayerConfig>, IEquatable<InputLayer>'
+    content.vb: >-
+      Public Class InputLayer
+          Inherits NeuralLayerConfig
+          Implements IEquatable(Of NeuralLayerConfig), IEquatable(Of InputLayer)
+  inheritance:
+  - System.Object
+  - NeuralNetLearning.LayerConfig.NeuralLayerConfig
+  implements:
+  - System.IEquatable{NeuralNetLearning.LayerConfig.NeuralLayerConfig}
+  - System.IEquatable{NeuralNetLearning.LayerConfig.InputLayer}
+  inheritedMembers:
+  - NeuralNetLearning.LayerConfig.NeuralLayerConfig.Size
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: NeuralNetLearning.LayerConfig.InputLayer.#ctor(System.Int32)
+  commentId: M:NeuralNetLearning.LayerConfig.InputLayer.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: NeuralNetLearning.LayerConfig.InputLayer
+  langs:
+  - csharp
+  - vb
+  name: InputLayer(Int32)
+  nameWithType: InputLayer.InputLayer(Int32)
+  fullName: NeuralNetLearning.LayerConfig.InputLayer.InputLayer(System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: NeuralNetLearning/LayerConfig/InputLayer.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: .ctor
+    path: NeuralNetLearning/LayerConfig/InputLayer.cs
+    startLine: 4
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.LayerConfig
+  syntax:
+    content: public InputLayer(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+    content.vb: Public Sub New(size As Integer)
+  overload: NeuralNetLearning.LayerConfig.InputLayer.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: NeuralNetLearning.LayerConfig
+  commentId: N:NeuralNetLearning.LayerConfig
+  name: NeuralNetLearning.LayerConfig
+  nameWithType: NeuralNetLearning.LayerConfig
+  fullName: NeuralNetLearning.LayerConfig
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+  commentId: T:NeuralNetLearning.LayerConfig.NeuralLayerConfig
+  parent: NeuralNetLearning.LayerConfig
+  name: NeuralLayerConfig
+  nameWithType: NeuralLayerConfig
+  fullName: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+- uid: System.IEquatable{NeuralNetLearning.LayerConfig.NeuralLayerConfig}
+  commentId: T:System.IEquatable{NeuralNetLearning.LayerConfig.NeuralLayerConfig}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<NeuralLayerConfig>
+  nameWithType: IEquatable<NeuralLayerConfig>
+  fullName: System.IEquatable<NeuralNetLearning.LayerConfig.NeuralLayerConfig>
+  nameWithType.vb: IEquatable(Of NeuralLayerConfig)
+  fullName.vb: System.IEquatable(Of NeuralNetLearning.LayerConfig.NeuralLayerConfig)
+  name.vb: IEquatable(Of NeuralLayerConfig)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+    name: NeuralLayerConfig
+    nameWithType: NeuralLayerConfig
+    fullName: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+    name: NeuralLayerConfig
+    nameWithType: NeuralLayerConfig
+    fullName: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable{NeuralNetLearning.LayerConfig.InputLayer}
+  commentId: T:System.IEquatable{NeuralNetLearning.LayerConfig.InputLayer}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<InputLayer>
+  nameWithType: IEquatable<InputLayer>
+  fullName: System.IEquatable<NeuralNetLearning.LayerConfig.InputLayer>
+  nameWithType.vb: IEquatable(Of InputLayer)
+  fullName.vb: System.IEquatable(Of NeuralNetLearning.LayerConfig.InputLayer)
+  name.vb: IEquatable(Of InputLayer)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: NeuralNetLearning.LayerConfig.InputLayer
+    name: InputLayer
+    nameWithType: InputLayer
+    fullName: NeuralNetLearning.LayerConfig.InputLayer
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: NeuralNetLearning.LayerConfig.InputLayer
+    name: InputLayer
+    nameWithType: InputLayer
+    fullName: NeuralNetLearning.LayerConfig.InputLayer
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NeuralNetLearning.LayerConfig.NeuralLayerConfig.Size
+  commentId: P:NeuralNetLearning.LayerConfig.NeuralLayerConfig.Size
+  parent: NeuralNetLearning.LayerConfig.NeuralLayerConfig
+  name: Size
+  nameWithType: NeuralLayerConfig.Size
+  fullName: NeuralNetLearning.LayerConfig.NeuralLayerConfig.Size
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NeuralNetLearning.LayerConfig.InputLayer.#ctor*
+  commentId: Overload:NeuralNetLearning.LayerConfig.InputLayer.#ctor
+  name: InputLayer
+  nameWithType: InputLayer.InputLayer
+  fullName: NeuralNetLearning.LayerConfig.InputLayer.InputLayer
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

@@ -1,0 +1,408 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/tiamat/Code/C#/NeuralNet",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.LayerConfig.HiddenLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.LayerConfig.HiddenLayer.html",
+          "hash": "sP6VZRMIqWEFnvfeIkd8nIMRFPZZ9giuCZKRv31aSTQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.LayerConfig.InputLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.LayerConfig.InputLayer.html",
+          "hash": "bEIbkO6Z0yTB6+fbAz6vOQiG5cwMc6Tal0CpslPIe9A="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.LayerConfig.NeuralLayerConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.LayerConfig.NeuralLayerConfig.html",
+          "hash": "hFM9prlZbHP0MhkxF9XpV2b/665zVNe4lzHNGtQtF4Q="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.LayerConfig.OutputLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.LayerConfig.OutputLayer.html",
+          "hash": "mPLJ1kQHUpklJASAlmTpEkB6B87PQ8Wm+jC+DtOKzwE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.LayerConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.LayerConfig.html",
+          "hash": "Tg6N7P+1UIpiLBzIOvhUao6ace5k6X2wzuEIOjqOaow="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Activations.Activation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Activations.Activation.html",
+          "hash": "q7SHNGUp14sh5J5Q8DQTKKfwPcYGmqT+FRQdZAuQu/Y="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Activations.IdentityActivation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Activations.IdentityActivation.html",
+          "hash": "N8qHsetJGB8e1a7bG8Bw7aATdFqbXadPL7XnlL75+eE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Activations.ReluActivation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Activations.ReluActivation.html",
+          "hash": "MKxSJmxEWTZVDkukZsE8LVOrTQrImm28cdMl30Ak5oo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Activations.SoftmaxActivation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Activations.SoftmaxActivation.html",
+          "hash": "bDiU2gAFl1c4J6hPFf5/A1VON/rhBYsw6IPgQJvSz/4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Activations.TanhActivation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Activations.TanhActivation.html",
+          "hash": "bgaP4TfMTdOSlM+lG/AdA2WoU7zv/A6TlrjxREYC/Zw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Activations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Activations.html",
+          "hash": "4gfer1Tt5gEH5k/EkHsttdWX3qJGoJBlt1WAt24+FZs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.CostFunctions.CostFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.CostFunction.html",
+          "hash": "hhoASCZ7gnH0xJfsuOjymHXjFfgJOe8MSf+XBbBb0r4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.CostFunctions.CrossEntropyCost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.CrossEntropyCost.html",
+          "hash": "/LqT22o35FFjAew2Q/8/i4vaS78eC5o4aippuAdd8E8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.CostFunctions.HuberCost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.HuberCost.html",
+          "hash": "8nzTmJb8OVzWOB4mgES6kwFG3Hp+/J0pFIdlICi3zUc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.CostFunctions.MSECost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.MSECost.html",
+          "hash": "xrhyy12B2od4+dG6MAwYMDwcZslaFHuPuUs+47Z+KJ8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.CostFunctions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.html",
+          "hash": "onVecDPSoTCvBmwjpzjeIuOLqfGuUdFEW4KA3VHKJ0Q="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.AdamGradientDescender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.AdamGradientDescender.html",
+          "hash": "nagE6Rz/4m1hbNj1WZL+lC7wYmvajvvHhz4bRtklwBs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.GradientDescender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.GradientDescender.html",
+          "hash": "jrte/iWXJf/GMlaLcphXIPFKRCp9+KfD+wjmIwAQi/Y="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.StochasticGradientDescender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.StochasticGradientDescender.html",
+          "hash": "acmlTfplmQq42h0C41Qi7Z9R1DOEshGRkA5WEAG1DsI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.GradientDescenders.html",
+          "hash": "p3eiOKK5bOtIfpD2bcZVWXXKM+AtnxzECLVW2XxCofM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.MatrixFunctions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.MatrixFunctions.html",
+          "hash": "no7H6kLKmtWnwH3dj+oANH+QmIWbpB82n1Acbsozc/E="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.Parameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.Parameter.html",
+          "hash": "V+9gKkyC3cciJYibyhcqUTwpUgE1N22KJttaIagLgxM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.VectorFunctions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.VectorFunctions.html",
+          "hash": "EWkhDcn7xj1bBJpG4oO849Yvo1mdl/GCulQ/sQBmjqU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Maths.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Maths.html",
+          "hash": "uJlflrdv1qEgAaCQgtHTTGWLtXT7WCR52M0gP9feq2s="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.NeuralNet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.NeuralNet.html",
+          "hash": "2f5mNiT+rO5ERFYOS7LT3qo++Gmjk2+Dt+EcCW9yLko="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.NeuralNetFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.NeuralNetFactory.html",
+          "hash": "qdhGU2hKf7/lyJD8haHW6Z2vGWeb0NRGtOPpdbQvBA8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Serialization.HyperParamEncoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Serialization.HyperParamEncoder.html",
+          "hash": "T0wPHsA2ILWDvhwr6Zt7hA/1UZ5xY61pdnRW/4+4ZPo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.Serialization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.Serialization.html",
+          "hash": "QwY8VXDhvJTQpV4Q6XS9GiAnbBQBlTHzVF3BTr93XUE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NeuralNetLearning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NeuralNetLearning.html",
+          "hash": "QH9uygwZIOkB2qBI/he1ETUPlufkGAaPqS52ww2Achc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "0xyPMjeM53K12H5ek6a2HGiUgFK8VKFQwnWA6BF0DH0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 29,
+          "skipped_file_count": 29
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

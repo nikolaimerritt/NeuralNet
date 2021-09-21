@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace NeuralNetLearning.Serialization
 {
@@ -24,17 +22,6 @@ namespace NeuralNetLearning.Serialization
             return ReorderValues(namedArguments, argumentNamesInOrder);
         }
 
-        /*
-        public static Dictionary<string, string> SerializedNameToFieldName(Type gradientDescenderChild)
-        {
-            var serializedNameData = from fieldInfo in gradientDescenderChild.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                       let attribute = fieldInfo.GetCustomAttributes(typeof(SerializableHyperParameter), inherit: true)
-                       where attribute.Length == 1
-                       select (serializedName: (attribute.Single() as SerializableHyperParameter).Name,
-                               fieldName: fieldInfo.Name);
-
-            return serializedNameData.ToDictionary(s => s.serializedName, s => s.fieldName);
-        } */
 
         private static T[] ReorderValues<T>(IDictionary<string, T> dictionary, string[] keysInCorrectOrder)
         {

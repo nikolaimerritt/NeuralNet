@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.Maths.Activations
+  commentId: N:NeuralNetLearning.Maths.Activations
+  id: NeuralNetLearning.Maths.Activations
+  children:
+  - NeuralNetLearning.Maths.Activations.Activation
+  - NeuralNetLearning.Maths.Activations.IdentityActivation
+  - NeuralNetLearning.Maths.Activations.ReluActivation
+  - NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  - NeuralNetLearning.Maths.Activations.TanhActivation
+  langs:
+  - csharp
+  - vb
+  name: NeuralNetLearning.Maths.Activations
+  nameWithType: NeuralNetLearning.Maths.Activations
+  fullName: NeuralNetLearning.Maths.Activations
+  type: Namespace
+  assemblies:
+  - NeuralNet
+references:
+- uid: NeuralNetLearning.Maths.Activations.Activation
+  commentId: T:NeuralNetLearning.Maths.Activations.Activation
+  parent: NeuralNetLearning.Maths.Activations
+  name: Activation
+  nameWithType: Activation
+  fullName: NeuralNetLearning.Maths.Activations.Activation
+- uid: NeuralNetLearning.Maths.Activations.IdentityActivation
+  commentId: T:NeuralNetLearning.Maths.Activations.IdentityActivation
+  name: IdentityActivation
+  nameWithType: IdentityActivation
+  fullName: NeuralNetLearning.Maths.Activations.IdentityActivation
+- uid: NeuralNetLearning.Maths.Activations.ReluActivation
+  commentId: T:NeuralNetLearning.Maths.Activations.ReluActivation
+  name: ReluActivation
+  nameWithType: ReluActivation
+  fullName: NeuralNetLearning.Maths.Activations.ReluActivation
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  commentId: T:NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  name: SoftmaxActivation
+  nameWithType: SoftmaxActivation
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+- uid: NeuralNetLearning.Maths.Activations.TanhActivation
+  commentId: T:NeuralNetLearning.Maths.Activations.TanhActivation
+  name: TanhActivation
+  nameWithType: TanhActivation
+  fullName: NeuralNetLearning.Maths.Activations.TanhActivation
+- uid: NeuralNetLearning.Maths.Activations
+  commentId: N:NeuralNetLearning.Maths.Activations
+  name: NeuralNetLearning.Maths.Activations
+  nameWithType: NeuralNetLearning.Maths.Activations
+  fullName: NeuralNetLearning.Maths.Activations

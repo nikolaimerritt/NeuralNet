@@ -6,6 +6,7 @@ using NeuralNetLearning.Maths.CostFunctions;
 using NeuralNetLearning.Maths.GradientDescenders;
 using System;
 using System.Collections.Generic;
+using NeuralNetLearning.Serialization;
 using System.IO;
 using System.Linq;
 
@@ -20,7 +21,7 @@ namespace NeuralNetLearning
         /// <summary>
         /// The name of the file in which the <see cref="CostFunction"/> used by a <see cref="NeuralNet"/> is recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
-        public static readonly string CostFile = "cost.txt";
+        public static readonly string CostFolder = "cost";
         /// <summary>
         /// The name of the folder in which the <see cref="Parameter"/> used by a <see cref="NeuralNet"/> is recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
@@ -28,11 +29,13 @@ namespace NeuralNetLearning
         /// <summary>
         /// The name of the folder in which the <see cref="Activation"/>s used by a <see cref="NeuralNet"/> are recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
-        public static readonly string ActivatorsFolder = "activators";
+        public static readonly string ActivationsFolder = "activations";
         /// <summary>
         /// The name of the folder in which the <see cref="GradientDescender"/> used by a <see cref="NeuralNet"/> is recorded when writing a <see cref="NeuralNet"/> to a directory.
         /// </summary>
         public static readonly string GradientDescenderFolder = "gradient-descender";
+
+        private static readonly HyperParameterSerializer _serializer = new();
 
         /// <summary>
         /// Returns a random <see cref="NeuralNet"/> that is optimised for the use of <see cref="TanhActivation"/>. 
@@ -116,9 +119,9 @@ namespace NeuralNetLearning
         public static NeuralNet ReadFromDirectory(string directoryPath)
         {
             Parameter param = ParameterFactory.ReadFromDirectory($"{directoryPath}/{ParamsFolder}");
-            Activation[] activators = ReadActivationsFromDirectory($"{directoryPath}/{ActivatorsFolder}");
-            GradientDescender gradientDescender = GradientDescender.ExReadFromDirectory($"{directoryPath}/{GradientDescenderFolder}");
-            CostFunction cost = CostFunction.ReadFromFile($"{directoryPath}/{CostFile}");
+            Activation[] activators = ReadActivationsFromDirectory($"{directoryPath}/{ActivationsFolder}");
+            GradientDescender gradientDescender = _serializer.ReadFromDirectory<GradientDescender>($"{directoryPath}/{GradientDescenderFolder}");
+            CostFunction cost = _serializer.ReadFromDirectory<CostFunction>($"{directoryPath}/{CostFolder}");
 
             return new NeuralNet(param, activators, gradientDescender, cost);
         }
@@ -128,10 +131,14 @@ namespace NeuralNetLearning
             if (!Directory.Exists(directory))
                 throw new FileNotFoundException($"Could not find directory {directory}");
 
-            List<string> activationFiles = Directory.GetFiles(directory).ToList();
-            activationFiles.Sort();
+            List<string> activationDirectories = Directory.GetDirectories(directory)
+                .Where(dir => dir.Contains("activation"))
+                .ToList();
+            activationDirectories.Sort();
 
-            return activationFiles.Select(Activation.ReadFromFile).ToArray();
+            return activationDirectories
+                .Select(_serializer.ReadFromDirectory<Activation>)
+                .ToArray();
         }
 
 

@@ -11,7 +11,7 @@ namespace NeuralNetLearning.Maths
 {
     using Matrix = Matrix<double>;
     using Vector = Vector<double>;
-    internal class Parameter
+    public class Parameter
     {
         /// <summary>
         /// The number of active (i.e. non-input) layers being simulated. This is equal to the number of weight matrices, which is turn is equal to the number of bias vectors.

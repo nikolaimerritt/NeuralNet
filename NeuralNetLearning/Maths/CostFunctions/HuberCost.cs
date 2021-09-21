@@ -7,9 +7,13 @@ namespace NeuralNetLearning.Maths.CostFunctions
 {
     public class HuberCost : CostFunction
     {
-        private readonly double _outlierBoundary;
-        public HuberCost(double outlierBoundary = 1)
+        [SerializableHyperParameter("outlier boundary")]
+        private readonly double _outlierBoundary = 1;
+        public HuberCost(double outlierBoundary)
             => _outlierBoundary = outlierBoundary;
+
+        public HuberCost()
+        { }
 
         public override double Apply(Vector<double> estimated, Vector<double> actual)
         {
@@ -40,7 +44,7 @@ namespace NeuralNetLearning.Maths.CostFunctions
             return new DenseVector(derivs);
         }
 
-        public override void WriteToFile(string filepath)
-            => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath, ("outlier boundary", _outlierBoundary));
+        //public override void WriteToFile(string filepath)
+          //  => HyperParamEncoder.EncodeToFile(this.GetType().Name, filepath, ("outlier boundary", _outlierBoundary));
     }
 }

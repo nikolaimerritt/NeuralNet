@@ -1,0 +1,869 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.Maths.MatrixFunctions
+  commentId: T:NeuralNetLearning.Maths.MatrixFunctions
+  id: MatrixFunctions
+  parent: NeuralNetLearning.Maths
+  children:
+  - NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices(System.Int32,System.Int32)
+  - NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix(System.Int32,System.Int32,System.Int32,System.Int32)
+  - NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal(System.Int32,System.Int32)
+  - NeuralNetLearning.Maths.MatrixFunctions.IsFinite(MathNet.Numerics.LinearAlgebra.Matrix{System.Double})
+  - NeuralNetLearning.Maths.MatrixFunctions.Read(System.String)
+  - NeuralNetLearning.Maths.MatrixFunctions.StdNormal(System.Int32,System.Int32)
+  - NeuralNetLearning.Maths.MatrixFunctions.StdUniform(System.Int32,System.Int32)
+  - NeuralNetLearning.Maths.MatrixFunctions.Write(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.String)
+  langs:
+  - csharp
+  - vb
+  name: MatrixFunctions
+  nameWithType: MatrixFunctions
+  fullName: NeuralNetLearning.Maths.MatrixFunctions
+  type: Class
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: MatrixFunctions
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 12
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static class MatrixFunctions
+    content.vb: Public Module MatrixFunctions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: NeuralNetLearning.Maths.MatrixFunctions.StdNormal(System.Int32,System.Int32)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.StdNormal(System.Int32,System.Int32)
+  id: StdNormal(System.Int32,System.Int32)
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: StdNormal(Int32, Int32)
+  nameWithType: MatrixFunctions.StdNormal(Int32, Int32)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.StdNormal(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: StdNormal
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 17
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Matrix<double> StdNormal(int rows, int cols)
+    parameters:
+    - id: rows
+      type: System.Int32
+    - id: cols
+      type: System.Int32
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    content.vb: Public Shared Function StdNormal(rows As Integer, cols As Integer) As Matrix(Of Double)
+  overload: NeuralNetLearning.Maths.MatrixFunctions.StdNormal*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.MatrixFunctions.StdUniform(System.Int32,System.Int32)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.StdUniform(System.Int32,System.Int32)
+  id: StdUniform(System.Int32,System.Int32)
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: StdUniform(Int32, Int32)
+  nameWithType: MatrixFunctions.StdUniform(Int32, Int32)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.StdUniform(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: StdUniform
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 21
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Matrix<double> StdUniform(int rows, int cols)
+    parameters:
+    - id: rows
+      type: System.Int32
+    - id: cols
+      type: System.Int32
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    content.vb: Public Shared Function StdUniform(rows As Integer, cols As Integer) As Matrix(Of Double)
+  overload: NeuralNetLearning.Maths.MatrixFunctions.StdUniform*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal(System.Int32,System.Int32)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal(System.Int32,System.Int32)
+  id: GaussianOrthonormal(System.Int32,System.Int32)
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: GaussianOrthonormal(Int32, Int32)
+  nameWithType: MatrixFunctions.GaussianOrthonormal(Int32, Int32)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: GaussianOrthonormal
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 24
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Matrix<double> GaussianOrthonormal(int rows, int cols)
+    parameters:
+    - id: rows
+      type: System.Int32
+    - id: cols
+      type: System.Int32
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    content.vb: Public Shared Function GaussianOrthonormal(rows As Integer, cols As Integer) As Matrix(Of Double)
+  overload: NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.MatrixFunctions.Read(System.String)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.Read(System.String)
+  id: Read(System.String)
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: Read(String)
+  nameWithType: MatrixFunctions.Read(String)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.Read(System.String)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: Read
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 35
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Matrix<double> Read(string filepath)
+    parameters:
+    - id: filepath
+      type: System.String
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    content.vb: Public Shared Function Read(filepath As String) As Matrix(Of Double)
+  overload: NeuralNetLearning.Maths.MatrixFunctions.Read*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.MatrixFunctions.Write(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.String)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.Write(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.String)
+  id: Write(MathNet.Numerics.LinearAlgebra.Matrix{System.Double},System.String)
+  isExtensionMethod: true
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: Write(Matrix<Double>, String)
+  nameWithType: MatrixFunctions.Write(Matrix<Double>, String)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.Write(MathNet.Numerics.LinearAlgebra.Matrix<System.Double>, System.String)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: Write
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 39
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static void Write(this Matrix<double> matrix, string filepath)
+    parameters:
+    - id: matrix
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    - id: filepath
+      type: System.String
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub Write(matrix As Matrix(Of Double), filepath As String)
+  overload: NeuralNetLearning.Maths.MatrixFunctions.Write*
+  nameWithType.vb: MatrixFunctions.Write(Matrix(Of Double), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: NeuralNetLearning.Maths.MatrixFunctions.Write(MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double), System.String)
+  name.vb: Write(Matrix(Of Double), String)
+- uid: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix(System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix(System.Int32,System.Int32,System.Int32,System.Int32)
+  id: BasisMatrix(System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: BasisMatrix(Int32, Int32, Int32, Int32)
+  nameWithType: MatrixFunctions.BasisMatrix(Int32, Int32, Int32, Int32)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix(System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: BasisMatrix
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 53
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Matrix<double> BasisMatrix(int rows, int cols, int oneRow, int oneCol)
+    parameters:
+    - id: rows
+      type: System.Int32
+    - id: cols
+      type: System.Int32
+    - id: oneRow
+      type: System.Int32
+    - id: oneCol
+      type: System.Int32
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    content.vb: Public Shared Function BasisMatrix(rows As Integer, cols As Integer, oneRow As Integer, oneCol As Integer) As Matrix(Of Double)
+  overload: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices(System.Int32,System.Int32)
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices(System.Int32,System.Int32)
+  id: BasisMatrices(System.Int32,System.Int32)
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: BasisMatrices(Int32, Int32)
+  nameWithType: MatrixFunctions.BasisMatrices(Int32, Int32)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: BasisMatrices
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 60
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Matrix<double>[] BasisMatrices(int rows, int cols)
+    parameters:
+    - id: rows
+      type: System.Int32
+    - id: cols
+      type: System.Int32
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}[]
+    content.vb: Public Shared Function BasisMatrices(rows As Integer, cols As Integer) As Matrix(Of Double)()
+  overload: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.MatrixFunctions.IsFinite(MathNet.Numerics.LinearAlgebra.Matrix{System.Double})
+  commentId: M:NeuralNetLearning.Maths.MatrixFunctions.IsFinite(MathNet.Numerics.LinearAlgebra.Matrix{System.Double})
+  id: IsFinite(MathNet.Numerics.LinearAlgebra.Matrix{System.Double})
+  parent: NeuralNetLearning.Maths.MatrixFunctions
+  langs:
+  - csharp
+  - vb
+  name: IsFinite(Matrix<Double>)
+  nameWithType: MatrixFunctions.IsFinite(Matrix<Double>)
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.IsFinite(MathNet.Numerics.LinearAlgebra.Matrix<System.Double>)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/MatrixFunctions.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: IsFinite
+    path: NeuralNetLearning/Maths/MatrixFunctions.cs
+    startLine: 73
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static bool IsFinite(Matrix<double> matrix)
+    parameters:
+    - id: matrix
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsFinite(matrix As Matrix(Of Double)) As Boolean
+  overload: NeuralNetLearning.Maths.MatrixFunctions.IsFinite*
+  nameWithType.vb: MatrixFunctions.IsFinite(Matrix(Of Double))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: NeuralNetLearning.Maths.MatrixFunctions.IsFinite(MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double))
+  name.vb: IsFinite(Matrix(Of Double))
+references:
+- uid: NeuralNetLearning.Maths
+  commentId: N:NeuralNetLearning.Maths
+  name: NeuralNetLearning.Maths
+  nameWithType: NeuralNetLearning.Maths
+  fullName: NeuralNetLearning.Maths
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NeuralNetLearning.Maths.MatrixFunctions.StdNormal*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.StdNormal
+  name: StdNormal
+  nameWithType: MatrixFunctions.StdNormal
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.StdNormal
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+  commentId: T:MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+  parent: MathNet.Numerics.LinearAlgebra
+  definition: MathNet.Numerics.LinearAlgebra.Matrix`1
+  name: Matrix<Double>
+  nameWithType: Matrix<Double>
+  fullName: MathNet.Numerics.LinearAlgebra.Matrix<System.Double>
+  nameWithType.vb: Matrix(Of Double)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double)
+  name.vb: Matrix(Of Double)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+  commentId: T:MathNet.Numerics.LinearAlgebra.Matrix`1
+  isExternal: true
+  name: Matrix<T>
+  nameWithType: Matrix<T>
+  fullName: MathNet.Numerics.LinearAlgebra.Matrix<T>
+  nameWithType.vb: Matrix(Of T)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Matrix(Of T)
+  name.vb: Matrix(Of T)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MathNet.Numerics.LinearAlgebra
+  commentId: N:MathNet.Numerics.LinearAlgebra
+  isExternal: true
+  name: MathNet.Numerics.LinearAlgebra
+  nameWithType: MathNet.Numerics.LinearAlgebra
+  fullName: MathNet.Numerics.LinearAlgebra
+- uid: NeuralNetLearning.Maths.MatrixFunctions.StdUniform*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.StdUniform
+  name: StdUniform
+  nameWithType: MatrixFunctions.StdUniform
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.StdUniform
+- uid: NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal
+  name: GaussianOrthonormal
+  nameWithType: MatrixFunctions.GaussianOrthonormal
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.GaussianOrthonormal
+- uid: NeuralNetLearning.Maths.MatrixFunctions.Read*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.Read
+  name: Read
+  nameWithType: MatrixFunctions.Read
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.Read
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NeuralNetLearning.Maths.MatrixFunctions.Write*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.Write
+  name: Write
+  nameWithType: MatrixFunctions.Write
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.Write
+- uid: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix
+  name: BasisMatrix
+  nameWithType: MatrixFunctions.BasisMatrix
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrix
+- uid: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices
+  name: BasisMatrices
+  nameWithType: MatrixFunctions.BasisMatrices
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.BasisMatrices
+- uid: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}[]
+  isExternal: true
+  name: Matrix<Double>[]
+  nameWithType: Matrix<Double>[]
+  fullName: MathNet.Numerics.LinearAlgebra.Matrix<System.Double>[]
+  nameWithType.vb: Matrix(Of Double)()
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double)()
+  name.vb: Matrix(Of Double)()
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: NeuralNetLearning.Maths.MatrixFunctions.IsFinite*
+  commentId: Overload:NeuralNetLearning.Maths.MatrixFunctions.IsFinite
+  name: IsFinite
+  nameWithType: MatrixFunctions.IsFinite
+  fullName: NeuralNetLearning.Maths.MatrixFunctions.IsFinite
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

@@ -1,0 +1,34 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning
+  commentId: N:NeuralNetLearning
+  id: NeuralNetLearning
+  children:
+  - NeuralNetLearning.NeuralNet
+  - NeuralNetLearning.NeuralNetFactory
+  langs:
+  - csharp
+  - vb
+  name: NeuralNetLearning
+  nameWithType: NeuralNetLearning
+  fullName: NeuralNetLearning
+  type: Namespace
+  assemblies:
+  - NeuralNet
+references:
+- uid: NeuralNetLearning.NeuralNet
+  commentId: T:NeuralNetLearning.NeuralNet
+  parent: NeuralNetLearning
+  name: NeuralNet
+  nameWithType: NeuralNet
+  fullName: NeuralNetLearning.NeuralNet
+- uid: NeuralNetLearning.NeuralNetFactory
+  commentId: T:NeuralNetLearning.NeuralNetFactory
+  name: NeuralNetFactory
+  nameWithType: NeuralNetFactory
+  fullName: NeuralNetLearning.NeuralNetFactory
+- uid: NeuralNetLearning
+  commentId: N:NeuralNetLearning
+  name: NeuralNetLearning
+  nameWithType: NeuralNetLearning
+  fullName: NeuralNetLearning

@@ -7,10 +7,13 @@ namespace NeuralNetLearning.Maths.GradientDescenders
     public class StochasticGradientDescender : GradientDescender
     {
         [SerializableHyperParameter("learning rate")]
-        private readonly double _learningRate;
+        private readonly double _learningRate = 0.001;
 
-        public StochasticGradientDescender(double learningRate = 0.001)
+        public StochasticGradientDescender(double learningRate)
             => _learningRate = learningRate;
+
+        public StochasticGradientDescender()
+        { }
 
         public string[] HyperParametersToLines()
             => new string[] { _learningRate.ToString() };
@@ -22,13 +25,13 @@ namespace NeuralNetLearning.Maths.GradientDescenders
             return -_learningRate * gradient;
         }
 
-        public static StochasticGradientDescender Read(string directoryPath)
+        /* public static StochasticGradientDescender Read(string directoryPath)
         {
             double learningRate = HyperParamEncoder.Decode($"{directoryPath}/{_simpleHyperParamsFile}", "learning rate");
             return new StochasticGradientDescender(learningRate);
-        }
+        } */
 
-        public override void WriteToDirectory(string directoryPath)
+        /*public override void WriteToDirectory(string directoryPath)
         {
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
@@ -38,6 +41,6 @@ namespace NeuralNetLearning.Maths.GradientDescenders
                 $"{directoryPath}/{_simpleHyperParamsFile}",
                 ("learning rate", _learningRate)
             );
-        }
+        } */
     }
 }

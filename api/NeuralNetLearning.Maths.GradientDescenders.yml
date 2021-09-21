@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.Maths.GradientDescenders
+  commentId: N:NeuralNetLearning.Maths.GradientDescenders
+  id: NeuralNetLearning.Maths.GradientDescenders
+  children:
+  - NeuralNetLearning.Maths.GradientDescenders.AdamGradientDescender
+  - NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+  - NeuralNetLearning.Maths.GradientDescenders.StochasticGradientDescender
+  langs:
+  - csharp
+  - vb
+  name: NeuralNetLearning.Maths.GradientDescenders
+  nameWithType: NeuralNetLearning.Maths.GradientDescenders
+  fullName: NeuralNetLearning.Maths.GradientDescenders
+  type: Namespace
+  assemblies:
+  - NeuralNet
+references:
+- uid: NeuralNetLearning.Maths.GradientDescenders.AdamGradientDescender
+  commentId: T:NeuralNetLearning.Maths.GradientDescenders.AdamGradientDescender
+  name: AdamGradientDescender
+  nameWithType: AdamGradientDescender
+  fullName: NeuralNetLearning.Maths.GradientDescenders.AdamGradientDescender
+- uid: NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+  commentId: T:NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+  parent: NeuralNetLearning.Maths.GradientDescenders
+  name: GradientDescender
+  nameWithType: GradientDescender
+  fullName: NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+- uid: NeuralNetLearning.Maths.GradientDescenders.StochasticGradientDescender
+  commentId: T:NeuralNetLearning.Maths.GradientDescenders.StochasticGradientDescender
+  name: StochasticGradientDescender
+  nameWithType: StochasticGradientDescender
+  fullName: NeuralNetLearning.Maths.GradientDescenders.StochasticGradientDescender
+- uid: NeuralNetLearning.Maths.GradientDescenders
+  commentId: N:NeuralNetLearning.Maths.GradientDescenders
+  name: NeuralNetLearning.Maths.GradientDescenders
+  nameWithType: NeuralNetLearning.Maths.GradientDescenders
+  fullName: NeuralNetLearning.Maths.GradientDescenders

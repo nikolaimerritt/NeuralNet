@@ -1,0 +1,838 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.NeuralNet
+  commentId: T:NeuralNetLearning.NeuralNet
+  id: NeuralNet
+  parent: NeuralNetLearning
+  children:
+  - NeuralNetLearning.NeuralNet.ActiveLayerCount
+  - NeuralNetLearning.NeuralNet.AverageCost(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}})
+  - NeuralNetLearning.NeuralNet.Fit(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}},System.Int32,System.Int32,System.Boolean)
+  - NeuralNetLearning.NeuralNet.LayerSizes
+  - NeuralNetLearning.NeuralNet.WriteToDirectory(System.String)
+  langs:
+  - csharp
+  - vb
+  name: NeuralNet
+  nameWithType: NeuralNet
+  fullName: NeuralNetLearning.NeuralNet
+  type: Class
+  source:
+    remote:
+      path: NeuralNetLearning/NeuralNet.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: NeuralNet
+    path: NeuralNetLearning/NeuralNet.cs
+    startLine: 19
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning
+  summary: "\nA fully-connected neural network, with a customisable layer structure, <xref href=\"NeuralNetLearning.Maths.Activations.Activation\" data-throw-if-not-resolved=\"false\"></xref>s, <xref href=\"NeuralNetLearning.Maths.GradientDescenders.GradientDescender\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"NeuralNetLearning.Maths.CostFunctions.CostFunction\" data-throw-if-not-resolved=\"false\"></xref>. \n"
+  example: []
+  syntax:
+    content: public class NeuralNet
+    content.vb: Public Class NeuralNet
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: NeuralNetLearning.NeuralNet.ActiveLayerCount
+  commentId: P:NeuralNetLearning.NeuralNet.ActiveLayerCount
+  id: ActiveLayerCount
+  parent: NeuralNetLearning.NeuralNet
+  langs:
+  - csharp
+  - vb
+  name: ActiveLayerCount
+  nameWithType: NeuralNet.ActiveLayerCount
+  fullName: NeuralNetLearning.NeuralNet.ActiveLayerCount
+  type: Property
+  source:
+    remote:
+      path: NeuralNetLearning/NeuralNet.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: ActiveLayerCount
+    path: NeuralNetLearning/NeuralNet.cs
+    startLine: 31
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning
+  summary: "\nThe amount of active (i.e. non-input) layers.\n"
+  example: []
+  syntax:
+    content: public int ActiveLayerCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ActiveLayerCount As Integer
+  overload: NeuralNetLearning.NeuralNet.ActiveLayerCount*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NeuralNetLearning.NeuralNet.LayerSizes
+  commentId: P:NeuralNetLearning.NeuralNet.LayerSizes
+  id: LayerSizes
+  parent: NeuralNetLearning.NeuralNet
+  langs:
+  - csharp
+  - vb
+  name: LayerSizes
+  nameWithType: NeuralNet.LayerSizes
+  fullName: NeuralNetLearning.NeuralNet.LayerSizes
+  type: Property
+  source:
+    remote:
+      path: NeuralNetLearning/NeuralNet.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: LayerSizes
+    path: NeuralNetLearning/NeuralNet.cs
+    startLine: 39
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning
+  summary: "\nAn array containing the size of each layer, including the input layer, hidden layers, and activation layer\n"
+  example: []
+  syntax:
+    content: public int[] LayerSizes { get; }
+    parameters: []
+    return:
+      type: System.Int32[]
+    content.vb: Public ReadOnly Property LayerSizes As Integer()
+  overload: NeuralNetLearning.NeuralNet.LayerSizes*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NeuralNetLearning.NeuralNet.Fit(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}},System.Int32,System.Int32,System.Boolean)
+  commentId: M:NeuralNetLearning.NeuralNet.Fit(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}},System.Int32,System.Int32,System.Boolean)
+  id: Fit(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}},System.Int32,System.Int32,System.Boolean)
+  parent: NeuralNetLearning.NeuralNet
+  langs:
+  - csharp
+  - vb
+  name: Fit(IEnumerable<(Vector<Double> input, Vector<Double> expectedOutput)>, Int32, Int32, Boolean)
+  nameWithType: NeuralNet.Fit(IEnumerable<(Vector<Double> input, Vector<Double> expectedOutput)>, Int32, Int32, Boolean)
+  fullName: NeuralNetLearning.NeuralNet.Fit(System.Collections.Generic.IEnumerable<System.ValueTuple<MathNet.Numerics.LinearAlgebra.Vector<System.Double>, MathNet.Numerics.LinearAlgebra.Vector<System.Double>>>, System.Int32, System.Int32, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/NeuralNet.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: Fit
+    path: NeuralNetLearning/NeuralNet.cs
+    startLine: 130
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning
+  summary: "\nFits the <xref href=\"NeuralNetLearning.NeuralNet\" data-throw-if-not-resolved=\"false\"></xref> to the training data supplied in <code data-dev-comment-type=\"paramref\" class=\"paramref\">trainingPairs</code>, using the NeuralNet&apos;s <xref href=\"NeuralNetLearning.Maths.GradientDescenders.GradientDescender\" data-throw-if-not-resolved=\"false\"></xref>. Runs batch gradient descent.\n"
+  example: []
+  syntax:
+    content: public void Fit(IEnumerable<(Vector<double> input, Vector<double> expectedOutput)> trainingPairs, int batchSize = 256, int numEpochs = 100, bool batchUpdateInParallel = true)
+    parameters:
+    - id: trainingPairs
+      type: System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}}
+      description: "\n<p> A (finite) IEnumerable of training data. </p>\n<p> Each element of <code data-dev-comment-type=\"paramref\" class=\"paramref\">trainingPairs</code> is a tuple. The first element is the input to the NeuralNet. \nThe second element is the corresponding output the NeuralNet will learn to produce. </p>\n"
+    - id: batchSize
+      type: System.Int32
+      description: 'The size of each batch that <code data-dev-comment-type="paramref" class="paramref">trainingPairs</code> will be split into. Recommended values of <code data-dev-comment-type="paramref" class="paramref">batchSize</code> range from 4 to 256. '
+    - id: numEpochs
+      type: System.Int32
+      description: 'The number of times that batch gradient descent will be run on <code data-dev-comment-type="paramref" class="paramref">trainingPairs</code>. '
+    - id: batchUpdateInParallel
+      type: System.Boolean
+      description: 'If <code data-dev-comment-type="paramref" class="paramref">batchUpdateInParallel</code> is <code> true </code>, the average gradient corresponding to each batch is computed in parallel. Reccommended for medium to high values of <code data-dev-comment-type="paramref" class="paramref">batchSize</code>. '
+    content.vb: Public Sub Fit(trainingPairs As IEnumerable(Of(input As Vector(Of Double), expectedOutput As Vector(Of Double))(Of Vector(Of Double), Vector(Of Double)) ), batchSize As Integer = 256, numEpochs As Integer = 100, batchUpdateInParallel As Boolean = True)
+  overload: NeuralNetLearning.NeuralNet.Fit*
+  nameWithType.vb: NeuralNet.Fit(IEnumerable(Of (input As Vector(Of Double), expectedOutput As Vector(Of Double))(Of Vector(Of Double), Vector(Of Double))), Int32, Int32, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NeuralNetLearning.NeuralNet.Fit(System.Collections.Generic.IEnumerable(Of System.ValueTuple(Of MathNet.Numerics.LinearAlgebra.Vector(Of System.Double), MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))), System.Int32, System.Int32, System.Boolean)
+  name.vb: Fit(IEnumerable(Of (input As Vector(Of Double), expectedOutput As Vector(Of Double))(Of Vector(Of Double), Vector(Of Double))), Int32, Int32, Boolean)
+- uid: NeuralNetLearning.NeuralNet.WriteToDirectory(System.String)
+  commentId: M:NeuralNetLearning.NeuralNet.WriteToDirectory(System.String)
+  id: WriteToDirectory(System.String)
+  parent: NeuralNetLearning.NeuralNet
+  langs:
+  - csharp
+  - vb
+  name: WriteToDirectory(String)
+  nameWithType: NeuralNet.WriteToDirectory(String)
+  fullName: NeuralNetLearning.NeuralNet.WriteToDirectory(System.String)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/NeuralNet.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: WriteToDirectory
+    path: NeuralNetLearning/NeuralNet.cs
+    startLine: 157
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning
+  summary: "\nWrites, in a human-readable format:\n<ul><li></li><li></li><li></li><li></li></ul>\n"
+  example: []
+  syntax:
+    content: public void WriteToDirectory(string directoryPath)
+    parameters:
+    - id: directoryPath
+      type: System.String
+      description: 'The (relative or absolute) path of the directory to be written to. '
+    content.vb: Public Sub WriteToDirectory(directoryPath As String)
+  overload: NeuralNetLearning.NeuralNet.WriteToDirectory*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.NeuralNet.AverageCost(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}})
+  commentId: M:NeuralNetLearning.NeuralNet.AverageCost(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}})
+  id: AverageCost(System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}})
+  parent: NeuralNetLearning.NeuralNet
+  langs:
+  - csharp
+  - vb
+  name: AverageCost(IEnumerable<(Vector<Double> input, Vector<Double> expectedOutput)>)
+  nameWithType: NeuralNet.AverageCost(IEnumerable<(Vector<Double> input, Vector<Double> expectedOutput)>)
+  fullName: NeuralNetLearning.NeuralNet.AverageCost(System.Collections.Generic.IEnumerable<System.ValueTuple<MathNet.Numerics.LinearAlgebra.Vector<System.Double>, MathNet.Numerics.LinearAlgebra.Vector<System.Double>>>)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/NeuralNet.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: AverageCost
+    path: NeuralNetLearning/NeuralNet.cs
+    startLine: 188
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning
+  summary: "\nCalculates the average of the error cost between each output vector calculated by the <xref href=\"NeuralNetLearning.NeuralNet\" data-throw-if-not-resolved=\"false\"></xref> vs the corresponding expected output.\n"
+  example: []
+  syntax:
+    content: public double AverageCost(IEnumerable<(Vector<double> input, Vector<double> expectedOutput)> testingPairs)
+    parameters:
+    - id: testingPairs
+      type: System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}}
+      description: 'The list of <code>(input, expected output)</code> testing pairs. '
+    return:
+      type: System.Double
+      description: ''
+    content.vb: Public Function AverageCost(testingPairs As IEnumerable(Of(input As Vector(Of Double), expectedOutput As Vector(Of Double))(Of Vector(Of Double), Vector(Of Double)) )) As Double
+  overload: NeuralNetLearning.NeuralNet.AverageCost*
+  nameWithType.vb: NeuralNet.AverageCost(IEnumerable(Of (input As Vector(Of Double), expectedOutput As Vector(Of Double))(Of Vector(Of Double), Vector(Of Double))))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NeuralNetLearning.NeuralNet.AverageCost(System.Collections.Generic.IEnumerable(Of System.ValueTuple(Of MathNet.Numerics.LinearAlgebra.Vector(Of System.Double), MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))))
+  name.vb: AverageCost(IEnumerable(Of (input As Vector(Of Double), expectedOutput As Vector(Of Double))(Of Vector(Of Double), Vector(Of Double))))
+references:
+- uid: NeuralNetLearning.Maths.Activations.Activation
+  commentId: T:NeuralNetLearning.Maths.Activations.Activation
+  parent: NeuralNetLearning.Maths.Activations
+  name: Activation
+  nameWithType: Activation
+  fullName: NeuralNetLearning.Maths.Activations.Activation
+- uid: NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+  commentId: T:NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+  parent: NeuralNetLearning.Maths.GradientDescenders
+  name: GradientDescender
+  nameWithType: GradientDescender
+  fullName: NeuralNetLearning.Maths.GradientDescenders.GradientDescender
+- uid: NeuralNetLearning.Maths.CostFunctions.CostFunction
+  commentId: T:NeuralNetLearning.Maths.CostFunctions.CostFunction
+  parent: NeuralNetLearning.Maths.CostFunctions
+  name: CostFunction
+  nameWithType: CostFunction
+  fullName: NeuralNetLearning.Maths.CostFunctions.CostFunction
+- uid: NeuralNetLearning
+  commentId: N:NeuralNetLearning
+  name: NeuralNetLearning
+  nameWithType: NeuralNetLearning
+  fullName: NeuralNetLearning
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NeuralNetLearning.Maths.Activations
+  commentId: N:NeuralNetLearning.Maths.Activations
+  name: NeuralNetLearning.Maths.Activations
+  nameWithType: NeuralNetLearning.Maths.Activations
+  fullName: NeuralNetLearning.Maths.Activations
+- uid: NeuralNetLearning.Maths.GradientDescenders
+  commentId: N:NeuralNetLearning.Maths.GradientDescenders
+  name: NeuralNetLearning.Maths.GradientDescenders
+  nameWithType: NeuralNetLearning.Maths.GradientDescenders
+  fullName: NeuralNetLearning.Maths.GradientDescenders
+- uid: NeuralNetLearning.Maths.CostFunctions
+  commentId: N:NeuralNetLearning.Maths.CostFunctions
+  name: NeuralNetLearning.Maths.CostFunctions
+  nameWithType: NeuralNetLearning.Maths.CostFunctions
+  fullName: NeuralNetLearning.Maths.CostFunctions
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NeuralNetLearning.NeuralNet.ActiveLayerCount*
+  commentId: Overload:NeuralNetLearning.NeuralNet.ActiveLayerCount
+  name: ActiveLayerCount
+  nameWithType: NeuralNet.ActiveLayerCount
+  fullName: NeuralNetLearning.NeuralNet.ActiveLayerCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NeuralNetLearning.NeuralNet.LayerSizes*
+  commentId: Overload:NeuralNetLearning.NeuralNet.LayerSizes
+  name: LayerSizes
+  nameWithType: NeuralNet.LayerSizes
+  fullName: NeuralNetLearning.NeuralNet.LayerSizes
+- uid: System.Int32[]
+  isExternal: true
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: NeuralNetLearning.NeuralNet
+  commentId: T:NeuralNetLearning.NeuralNet
+  parent: NeuralNetLearning
+  name: NeuralNet
+  nameWithType: NeuralNet
+  fullName: NeuralNetLearning.NeuralNet
+- uid: NeuralNetLearning.NeuralNet.Fit*
+  commentId: Overload:NeuralNetLearning.NeuralNet.Fit
+  name: Fit
+  nameWithType: NeuralNet.Fit
+  fullName: NeuralNetLearning.NeuralNet.Fit
+- uid: System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.ValueTuple{MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double}}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<(T1, T2)<Vector<Double>, Vector<Double>>>
+  nameWithType: IEnumerable<(T1, T2)<Vector<Double>, Vector<Double>>>
+  fullName: System.Collections.Generic.IEnumerable<System.ValueTuple<MathNet.Numerics.LinearAlgebra.Vector<System.Double>, MathNet.Numerics.LinearAlgebra.Vector<System.Double>>>
+  nameWithType.vb: IEnumerable(Of (T1, T2)(Of Vector(Of Double), Vector(Of Double)))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.ValueTuple(Of MathNet.Numerics.LinearAlgebra.Vector(Of System.Double), MathNet.Numerics.LinearAlgebra.Vector(Of System.Double)))
+  name.vb: IEnumerable(Of (T1, T2)(Of Vector(Of Double), Vector(Of Double)))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple`2
+    name: (T1, T2)
+    nameWithType: (T1, T2)
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple`2
+    name: (T1, T2)
+    nameWithType: (T1, T2)
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: NeuralNetLearning.NeuralNet.WriteToDirectory*
+  commentId: Overload:NeuralNetLearning.NeuralNet.WriteToDirectory
+  name: WriteToDirectory
+  nameWithType: NeuralNet.WriteToDirectory
+  fullName: NeuralNetLearning.NeuralNet.WriteToDirectory
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: NeuralNetLearning.NeuralNet.AverageCost*
+  commentId: Overload:NeuralNetLearning.NeuralNet.AverageCost
+  name: AverageCost
+  nameWithType: NeuralNet.AverageCost
+  fullName: NeuralNetLearning.NeuralNet.AverageCost
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double

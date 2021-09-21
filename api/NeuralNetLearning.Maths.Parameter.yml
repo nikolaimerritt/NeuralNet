@@ -1,0 +1,2017 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.Maths.Parameter
+  commentId: T:NeuralNetLearning.Maths.Parameter
+  id: Parameter
+  parent: NeuralNetLearning.Maths
+  children:
+  - NeuralNetLearning.Maths.Parameter.#ctor(System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}})
+  - NeuralNetLearning.Maths.Parameter.ActiveLayerCount
+  - NeuralNetLearning.Maths.Parameter.CostGradient(MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[],NeuralNetLearning.Maths.CostFunctions.CostFunction)
+  - NeuralNetLearning.Maths.Parameter.DeepCopy
+  - NeuralNetLearning.Maths.Parameter.EntriesCount
+  - NeuralNetLearning.Maths.Parameter.GetOutputVector(MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[])
+  - NeuralNetLearning.Maths.Parameter.InPlaceAdd(NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.InPlaceAdd(System.Double)
+  - NeuralNetLearning.Maths.Parameter.InPlaceDivide(NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.InPlaceDivide(System.Double)
+  - NeuralNetLearning.Maths.Parameter.InPlaceMultiply(NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.InPlaceMultiply(System.Double)
+  - NeuralNetLearning.Maths.Parameter.InPlacePower(NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.InPlacePower(System.Double)
+  - NeuralNetLearning.Maths.Parameter.InPlaceSubtract(NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.InPlaceSubtract(System.Double)
+  - NeuralNetLearning.Maths.Parameter.IsFinite
+  - NeuralNetLearning.Maths.Parameter.LayerSizes
+  - NeuralNetLearning.Maths.Parameter.op_Addition(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.op_Addition(NeuralNetLearning.Maths.Parameter,System.Double)
+  - NeuralNetLearning.Maths.Parameter.op_Division(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.op_Division(NeuralNetLearning.Maths.Parameter,System.Double)
+  - NeuralNetLearning.Maths.Parameter.op_Multiply(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.op_Multiply(System.Double,NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.op_Subtraction(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.op_UnaryNegation(NeuralNetLearning.Maths.Parameter)
+  - NeuralNetLearning.Maths.Parameter.Pow(System.Double)
+  - NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate(NeuralNetLearning.Maths.Activations.Activation[],System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}},System.Double,System.Int32)
+  - NeuralNetLearning.Maths.Parameter.SquaredNorm
+  - NeuralNetLearning.Maths.Parameter.WriteToDirectory(System.String)
+  langs:
+  - csharp
+  - vb
+  name: Parameter
+  nameWithType: Parameter
+  fullName: NeuralNetLearning.Maths.Parameter
+  type: Class
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: Parameter
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 13
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public class Parameter
+    content.vb: Public Class Parameter
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: NeuralNetLearning.Maths.Parameter.ActiveLayerCount
+  commentId: P:NeuralNetLearning.Maths.Parameter.ActiveLayerCount
+  id: ActiveLayerCount
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: ActiveLayerCount
+  nameWithType: Parameter.ActiveLayerCount
+  fullName: NeuralNetLearning.Maths.Parameter.ActiveLayerCount
+  type: Property
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: ActiveLayerCount
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 18
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nThe number of active (i.e. non-input) layers being simulated. This is equal to the number of weight matrices, which is turn is equal to the number of bias vectors.\n"
+  example: []
+  syntax:
+    content: public int ActiveLayerCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property ActiveLayerCount As Integer
+  overload: NeuralNetLearning.Maths.Parameter.ActiveLayerCount*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NeuralNetLearning.Maths.Parameter.LayerSizes
+  commentId: P:NeuralNetLearning.Maths.Parameter.LayerSizes
+  id: LayerSizes
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: LayerSizes
+  nameWithType: Parameter.LayerSizes
+  fullName: NeuralNetLearning.Maths.Parameter.LayerSizes
+  type: Property
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: LayerSizes
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 26
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nThe size of each layer, in order of calculation. This is the size of the input, hidden, and output layers.\n"
+  example: []
+  syntax:
+    content: public int[] LayerSizes { get; }
+    parameters: []
+    return:
+      type: System.Int32[]
+    content.vb: Public ReadOnly Property LayerSizes As Integer()
+  overload: NeuralNetLearning.Maths.Parameter.LayerSizes*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NeuralNetLearning.Maths.Parameter.EntriesCount
+  commentId: P:NeuralNetLearning.Maths.Parameter.EntriesCount
+  id: EntriesCount
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: EntriesCount
+  nameWithType: Parameter.EntriesCount
+  fullName: NeuralNetLearning.Maths.Parameter.EntriesCount
+  type: Property
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: EntriesCount
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 39
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nThe total number of scalar entries in the weight matrices and bias vectors.\n"
+  example: []
+  syntax:
+    content: public int EntriesCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property EntriesCount As Integer
+  overload: NeuralNetLearning.Maths.Parameter.EntriesCount*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: NeuralNetLearning.Maths.Parameter.#ctor(System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}})
+  commentId: M:NeuralNetLearning.Maths.Parameter.#ctor(System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}})
+  id: '#ctor(System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}},System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}})'
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Parameter(IEnumerable<Matrix<Double>>, IEnumerable<Vector<Double>>)
+  nameWithType: Parameter.Parameter(IEnumerable<Matrix<Double>>, IEnumerable<Vector<Double>>)
+  fullName: NeuralNetLearning.Maths.Parameter.Parameter(System.Collections.Generic.IEnumerable<MathNet.Numerics.LinearAlgebra.Matrix<System.Double>>, System.Collections.Generic.IEnumerable<MathNet.Numerics.LinearAlgebra.Vector<System.Double>>)
+  type: Constructor
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: .ctor
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 54
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nCreates a new <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> object that stores the supplied weight matrices and bias vectors.\n"
+  example: []
+  syntax:
+    content: public Parameter(IEnumerable<Matrix<double>> weights, IEnumerable<Vector<double>> biases)
+    parameters:
+    - id: weights
+      type: System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}}
+      description: The weight matrices the new Paramter object will store. A shallow copy of the <code>IEnumerable</code> is created.
+    - id: biases
+      type: System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}}
+      description: The bias vectors the new Parameter object will store. A shallow copy of the <code>IEnumerable</code> is created.
+    content.vb: Public Sub New(weights As IEnumerable(Of Matrix(Of Double)), biases As IEnumerable(Of Vector(Of Double)))
+  overload: NeuralNetLearning.Maths.Parameter.#ctor*
+  nameWithType.vb: Parameter.Parameter(IEnumerable(Of Matrix(Of Double)), IEnumerable(Of Vector(Of Double)))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NeuralNetLearning.Maths.Parameter.Parameter(System.Collections.Generic.IEnumerable(Of MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double)), System.Collections.Generic.IEnumerable(Of MathNet.Numerics.LinearAlgebra.Vector(Of System.Double)))
+  name.vb: Parameter(IEnumerable(Of Matrix(Of Double)), IEnumerable(Of Vector(Of Double)))
+- uid: NeuralNetLearning.Maths.Parameter.WriteToDirectory(System.String)
+  commentId: M:NeuralNetLearning.Maths.Parameter.WriteToDirectory(System.String)
+  id: WriteToDirectory(System.String)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: WriteToDirectory(String)
+  nameWithType: Parameter.WriteToDirectory(String)
+  fullName: NeuralNetLearning.Maths.Parameter.WriteToDirectory(System.String)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: WriteToDirectory
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 65
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nWrites the weight matrices and bias vectors of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> to individual plain text files in <code data-dev-comment-type=\"paramref\" class=\"paramref\">directoryPath</code>. The weights and biases are written in a human-readable format.\n"
+  example: []
+  syntax:
+    content: public void WriteToDirectory(string directoryPath)
+    parameters:
+    - id: directoryPath
+      type: System.String
+      description: ''
+    content.vb: Public Sub WriteToDirectory(directoryPath As String)
+  overload: NeuralNetLearning.Maths.Parameter.WriteToDirectory*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceAdd(NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceAdd(NeuralNetLearning.Maths.Parameter)
+  id: InPlaceAdd(NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceAdd(Parameter)
+  nameWithType: Parameter.InPlaceAdd(Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceAdd(NeuralNetLearning.Maths.Parameter)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceAdd
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 97
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nAdds the weights and biases of <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code> directly to the weights and biases of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>. \nUpdates the current<xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than invoking <code>+=</code>.\n"
+  example: []
+  syntax:
+    content: public void InPlaceAdd(Parameter other)
+    parameters:
+    - id: other
+      type: NeuralNetLearning.Maths.Parameter
+      description: 'The <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref> to be added component-wise. Is unaffected. '
+    content.vb: Public Sub InPlaceAdd(other As Parameter)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceAdd*
+  exceptions:
+  - type: System.ArithmeticException
+    commentId: T:System.ArithmeticException
+    description: Raises if <code data-dev-comment-type="paramref" class="paramref">other</code> has different layer sizes to the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceAdd(System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceAdd(System.Double)
+  id: InPlaceAdd(System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceAdd(Double)
+  nameWithType: Parameter.InPlaceAdd(Double)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceAdd(System.Double)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceAdd
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 122
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nAdds <code data-dev-comment-type=\"paramref\" class=\"paramref\">scalar</code> to every weight and bias entry of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using <code>+=</code>.\n"
+  example: []
+  syntax:
+    content: public void InPlaceAdd(double scalar)
+    parameters:
+    - id: scalar
+      type: System.Double
+      description: Is added to every weight and bias entry.
+    content.vb: Public Sub InPlaceAdd(scalar As Double)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceAdd*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceSubtract(NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceSubtract(NeuralNetLearning.Maths.Parameter)
+  id: InPlaceSubtract(NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceSubtract(Parameter)
+  nameWithType: Parameter.InPlaceSubtract(Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceSubtract(NeuralNetLearning.Maths.Parameter)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceSubtract
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 145
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nSubtracts the weights and biases of <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code> directly from the weights and biases of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using `-=`.\n"
+  example: []
+  syntax:
+    content: public void InPlaceSubtract(Parameter other)
+    parameters:
+    - id: other
+      type: NeuralNetLearning.Maths.Parameter
+      description: 'The Parameter to be added component-wise. Is unaffected by the addition. '
+    content.vb: Public Sub InPlaceSubtract(other As Parameter)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceSubtract*
+  exceptions:
+  - type: System.ArithmeticException
+    commentId: T:System.ArithmeticException
+    description: Raises if <code data-dev-comment-type="paramref" class="paramref">other</code> has different layer sizes to the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceSubtract(System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceSubtract(System.Double)
+  id: InPlaceSubtract(System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceSubtract(Double)
+  nameWithType: Parameter.InPlaceSubtract(Double)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceSubtract(System.Double)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceSubtract
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 171
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nSubtracts <code data-dev-comment-type=\"paramref\" class=\"paramref\">scalar</code> from every weight and bias entry of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>. \nUpdates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using <code>-=</code>.\n"
+  example: []
+  syntax:
+    content: public void InPlaceSubtract(double scalar)
+    parameters:
+    - id: scalar
+      type: System.Double
+      description: Is subtracted from every weight and bias entry.
+    content.vb: Public Sub InPlaceSubtract(scalar As Double)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceSubtract*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceMultiply(NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceMultiply(NeuralNetLearning.Maths.Parameter)
+  id: InPlaceMultiply(NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceMultiply(Parameter)
+  nameWithType: Parameter.InPlaceMultiply(Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceMultiply(NeuralNetLearning.Maths.Parameter)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceMultiply
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 194
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nMultiplies the weights and biases in the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> by the corresponding weights and biases in <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using `*=`.\n"
+  example: []
+  syntax:
+    content: public void InPlaceMultiply(Parameter other)
+    parameters:
+    - id: other
+      type: NeuralNetLearning.Maths.Parameter
+      description: 'The Parameter that multiplies the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref> component-wise. Is unaffected by the component-wise multiplication. '
+    content.vb: Public Sub InPlaceMultiply(other As Parameter)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceMultiply*
+  exceptions:
+  - type: System.ArithmeticException
+    commentId: T:System.ArithmeticException
+    description: Raises if <code data-dev-comment-type="paramref" class="paramref">other</code> has different layer sizes to the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceMultiply(System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceMultiply(System.Double)
+  id: InPlaceMultiply(System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceMultiply(Double)
+  nameWithType: Parameter.InPlaceMultiply(Double)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceMultiply(System.Double)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceMultiply
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 219
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nMultiplies every weight and bias entry of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> by <code data-dev-comment-type=\"paramref\" class=\"paramref\">scalar</code>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using <code>*=</code>.\n"
+  example: []
+  syntax:
+    content: public void InPlaceMultiply(double scalar)
+    parameters:
+    - id: scalar
+      type: System.Double
+      description: Multiplies every weight and bias entry.
+    content.vb: Public Sub InPlaceMultiply(scalar As Double)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceMultiply*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceDivide(NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceDivide(NeuralNetLearning.Maths.Parameter)
+  id: InPlaceDivide(NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceDivide(Parameter)
+  nameWithType: Parameter.InPlaceDivide(Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceDivide(NeuralNetLearning.Maths.Parameter)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceDivide
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 242
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nDivides the weights and biases in the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> by the corresponding weights and biases in <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using `/=`.\n"
+  example: []
+  syntax:
+    content: public void InPlaceDivide(Parameter other)
+    parameters:
+    - id: other
+      type: NeuralNetLearning.Maths.Parameter
+      description: 'The <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref> that divides the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref> component-wise. Is unaffected by the component-wise division. '
+    content.vb: Public Sub InPlaceDivide(other As Parameter)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceDivide*
+  exceptions:
+  - type: System.ArithmeticException
+    commentId: T:System.ArithmeticException
+    description: Raises if <code data-dev-comment-type="paramref" class="paramref">other</code> has different layer sizes to the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceDivide(System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlaceDivide(System.Double)
+  id: InPlaceDivide(System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlaceDivide(Double)
+  nameWithType: Parameter.InPlaceDivide(Double)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceDivide(System.Double)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlaceDivide
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 268
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nDivides every weight and bias entry of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> by <code data-dev-comment-type=\"paramref\" class=\"paramref\">scalar</code>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases. Is more memory efficient than using <code>/=</code>.\n"
+  example: []
+  syntax:
+    content: public void InPlaceDivide(double scalar)
+    parameters:
+    - id: scalar
+      type: System.Double
+      description: Divides every weight and bias entry.
+    content.vb: Public Sub InPlaceDivide(scalar As Double)
+  overload: NeuralNetLearning.Maths.Parameter.InPlaceDivide*
+  exceptions:
+  - type: System.DivideByZeroException
+    commentId: T:System.DivideByZeroException
+    description: Raised if <code data-dev-comment-type="paramref" class="paramref">scalar</code> is zero.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlacePower(NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlacePower(NeuralNetLearning.Maths.Parameter)
+  id: InPlacePower(NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlacePower(Parameter)
+  nameWithType: Parameter.InPlacePower(Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlacePower(NeuralNetLearning.Maths.Parameter)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlacePower
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 295
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nRaises each weight and bias entry in the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> by the power of the corresponding weight / bias entry in in <code data-dev-comment-type=\"paramref\" class=\"paramref\">other</code>. \nThat is, performs component-wise exponentiation, storing the result in the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>. \n"
+  example: []
+  syntax:
+    content: public void InPlacePower(Parameter power)
+    parameters:
+    - id: power
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Sub InPlacePower(power As Parameter)
+  overload: NeuralNetLearning.Maths.Parameter.InPlacePower*
+  exceptions:
+  - type: System.ArithmeticException
+    commentId: T:System.ArithmeticException
+    description: Raises if <code data-dev-comment-type="paramref" class="paramref">other</code> has different layer sizes to the current <xref href="NeuralNetLearning.Maths.Parameter" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.InPlacePower(System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.InPlacePower(System.Double)
+  id: InPlacePower(System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: InPlacePower(Double)
+  nameWithType: Parameter.InPlacePower(Double)
+  fullName: NeuralNetLearning.Maths.Parameter.InPlacePower(System.Double)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: InPlacePower
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 320
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nRaises every weight and bias entry of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> by the exponent <code data-dev-comment-type=\"paramref\" class=\"paramref\">power</code>. Updates the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>&apos;s weights and biases.\n"
+  example: []
+  syntax:
+    content: public void InPlacePower(double power)
+    parameters:
+    - id: power
+      type: System.Double
+      description: Exponentiates every weight and bias entry.
+    content.vb: Public Sub InPlacePower(power As Double)
+  overload: NeuralNetLearning.Maths.Parameter.InPlacePower*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.op_Addition(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Addition(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  id: op_Addition(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Addition(Parameter, Parameter)
+  nameWithType: Parameter.Addition(Parameter, Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.Addition(NeuralNetLearning.Maths.Parameter, NeuralNetLearning.Maths.Parameter)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Addition
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 338
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator +(Parameter left, Parameter right)
+    parameters:
+    - id: left
+      type: NeuralNetLearning.Maths.Parameter
+    - id: right
+      type: NeuralNetLearning.Maths.Parameter
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator +(left As Parameter, right As Parameter) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Addition*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_Addition(NeuralNetLearning.Maths.Parameter,System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Addition(NeuralNetLearning.Maths.Parameter,System.Double)
+  id: op_Addition(NeuralNetLearning.Maths.Parameter,System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Addition(Parameter, Double)
+  nameWithType: Parameter.Addition(Parameter, Double)
+  fullName: NeuralNetLearning.Maths.Parameter.Addition(NeuralNetLearning.Maths.Parameter, System.Double)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Addition
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 345
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator +(Parameter param, double scalar)
+    parameters:
+    - id: param
+      type: NeuralNetLearning.Maths.Parameter
+    - id: scalar
+      type: System.Double
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator +(param As Parameter, scalar As Double) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Addition*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_Multiply(System.Double,NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Multiply(System.Double,NeuralNetLearning.Maths.Parameter)
+  id: op_Multiply(System.Double,NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Multiply(Double, Parameter)
+  nameWithType: Parameter.Multiply(Double, Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.Multiply(System.Double, NeuralNetLearning.Maths.Parameter)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Multiply
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 352
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator *(double scalar, Parameter parameter)
+    parameters:
+    - id: scalar
+      type: System.Double
+    - id: parameter
+      type: NeuralNetLearning.Maths.Parameter
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator *(scalar As Double, parameter As Parameter) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Multiply*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_Multiply(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Multiply(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  id: op_Multiply(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Multiply(Parameter, Parameter)
+  nameWithType: Parameter.Multiply(Parameter, Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.Multiply(NeuralNetLearning.Maths.Parameter, NeuralNetLearning.Maths.Parameter)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Multiply
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 359
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator *(Parameter left, Parameter right)
+    parameters:
+    - id: left
+      type: NeuralNetLearning.Maths.Parameter
+    - id: right
+      type: NeuralNetLearning.Maths.Parameter
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator *(left As Parameter, right As Parameter) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Multiply*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_UnaryNegation(NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_UnaryNegation(NeuralNetLearning.Maths.Parameter)
+  id: op_UnaryNegation(NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: UnaryNegation(Parameter)
+  nameWithType: Parameter.UnaryNegation(Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.UnaryNegation(NeuralNetLearning.Maths.Parameter)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_UnaryNegation
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 366
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator -(Parameter parameter)
+    parameters:
+    - id: parameter
+      type: NeuralNetLearning.Maths.Parameter
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator -(parameter As Parameter) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_UnaryNegation*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_Subtraction(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Subtraction(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  id: op_Subtraction(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Subtraction(Parameter, Parameter)
+  nameWithType: Parameter.Subtraction(Parameter, Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.Subtraction(NeuralNetLearning.Maths.Parameter, NeuralNetLearning.Maths.Parameter)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Subtraction
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 369
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator -(Parameter left, Parameter right)
+    parameters:
+    - id: left
+      type: NeuralNetLearning.Maths.Parameter
+    - id: right
+      type: NeuralNetLearning.Maths.Parameter
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator -(left As Parameter, right As Parameter) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Subtraction*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_Division(NeuralNetLearning.Maths.Parameter,System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Division(NeuralNetLearning.Maths.Parameter,System.Double)
+  id: op_Division(NeuralNetLearning.Maths.Parameter,System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Division(Parameter, Double)
+  nameWithType: Parameter.Division(Parameter, Double)
+  fullName: NeuralNetLearning.Maths.Parameter.Division(NeuralNetLearning.Maths.Parameter, System.Double)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Division
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 376
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator /(Parameter parameter, double scalar)
+    parameters:
+    - id: parameter
+      type: NeuralNetLearning.Maths.Parameter
+    - id: scalar
+      type: System.Double
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator /(parameter As Parameter, scalar As Double) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Division*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.op_Division(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  commentId: M:NeuralNetLearning.Maths.Parameter.op_Division(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  id: op_Division(NeuralNetLearning.Maths.Parameter,NeuralNetLearning.Maths.Parameter)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Division(Parameter, Parameter)
+  nameWithType: Parameter.Division(Parameter, Parameter)
+  fullName: NeuralNetLearning.Maths.Parameter.Division(NeuralNetLearning.Maths.Parameter, NeuralNetLearning.Maths.Parameter)
+  type: Operator
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: op_Division
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 384
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public static Parameter operator /(Parameter left, Parameter right)
+    parameters:
+    - id: left
+      type: NeuralNetLearning.Maths.Parameter
+    - id: right
+      type: NeuralNetLearning.Maths.Parameter
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Shared Operator /(left As Parameter, right As Parameter) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.op_Division*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: NeuralNetLearning.Maths.Parameter.Pow(System.Double)
+  commentId: M:NeuralNetLearning.Maths.Parameter.Pow(System.Double)
+  id: Pow(System.Double)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: Pow(Double)
+  nameWithType: Parameter.Pow(Double)
+  fullName: NeuralNetLearning.Maths.Parameter.Pow(System.Double)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: Pow
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 391
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public Parameter Pow(double power)
+    parameters:
+    - id: power
+      type: System.Double
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Function Pow(power As Double) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.Pow*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.SquaredNorm
+  commentId: M:NeuralNetLearning.Maths.Parameter.SquaredNorm
+  id: SquaredNorm
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: SquaredNorm()
+  nameWithType: Parameter.SquaredNorm()
+  fullName: NeuralNetLearning.Maths.Parameter.SquaredNorm()
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: SquaredNorm
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 401
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nReturns the sum of the squares of each scalar in the weights and biases.\n"
+  example: []
+  syntax:
+    content: public double SquaredNorm()
+    return:
+      type: System.Double
+    content.vb: Public Function SquaredNorm As Double
+  overload: NeuralNetLearning.Maths.Parameter.SquaredNorm*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate(NeuralNetLearning.Maths.Activations.Activation[],System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}},System.Double,System.Int32)
+  commentId: M:NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate(NeuralNetLearning.Maths.Activations.Activation[],System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}},System.Double,System.Int32)
+  id: SetWeightsUnivariate(NeuralNetLearning.Maths.Activations.Activation[],System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}},System.Double,System.Int32)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: SetWeightsUnivariate(Activation[], IEnumerable<Vector<Double>>, Double, Int32)
+  nameWithType: Parameter.SetWeightsUnivariate(Activation[], IEnumerable<Vector<Double>>, Double, Int32)
+  fullName: NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate(NeuralNetLearning.Maths.Activations.Activation[], System.Collections.Generic.IEnumerable<MathNet.Numerics.LinearAlgebra.Vector<System.Double>>, System.Double, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: SetWeightsUnivariate
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 415
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nAdjusts the weights until the average variance of the output vectors is sufficiently close to 1.\n<p>\nFollows the <a href=\"http://cmp.felk.cvut.cz/~mishkdmy/papers/mishkin-iclr2016.pdf\">LSUV algorithm</a> using the current weight matrices instead of random-initialised ones.\n</p>\n"
+  example: []
+  syntax:
+    content: public void SetWeightsUnivariate(Activation[] activators, IEnumerable<Vector<double>> inputs, double varianceTolerance, int maxIterations)
+    parameters:
+    - id: activators
+      type: NeuralNetLearning.Maths.Activations.Activation[]
+      description: 'The <xref href="NeuralNetLearning.Maths.Activations.Activation" data-throw-if-not-resolved="false"></xref>s used in calculating layers. '
+    - id: inputs
+      type: System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}}
+      description: The input <xref href="MathNet.Numerics.LinearAlgebra.Vector%601" data-throw-if-not-resolved="false"></xref>s which the average variance of the output <xref href="MathNet.Numerics.LinearAlgebra.Vector%601" data-throw-if-not-resolved="false"></xref> is taken from.
+    - id: varianceTolerance
+      type: System.Double
+      description: 'The weights stop being adjusted once the average variance of the output vectors is between <code>1 - <code data-dev-comment-type="paramref" class="paramref">varianceTolerance</code></code> and <code>1 + <code data-dev-comment-type="paramref" class="paramref">varianceTolerance</code></code>. '
+    - id: maxIterations
+      type: System.Int32
+      description: The weights are adjusted at most <code data-dev-comment-type="paramref" class="paramref">maxIterations</code> times.
+    content.vb: Public Sub SetWeightsUnivariate(activators As Activation(), inputs As IEnumerable(Of Vector(Of Double)), varianceTolerance As Double, maxIterations As Integer)
+  overload: NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate*
+  nameWithType.vb: Parameter.SetWeightsUnivariate(Activation(), IEnumerable(Of Vector(Of Double)), Double, Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate(NeuralNetLearning.Maths.Activations.Activation(), System.Collections.Generic.IEnumerable(Of MathNet.Numerics.LinearAlgebra.Vector(Of System.Double)), System.Double, System.Int32)
+  name.vb: SetWeightsUnivariate(Activation(), IEnumerable(Of Vector(Of Double)), Double, Int32)
+- uid: NeuralNetLearning.Maths.Parameter.GetOutputVector(MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[])
+  commentId: M:NeuralNetLearning.Maths.Parameter.GetOutputVector(MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[])
+  id: GetOutputVector(MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[])
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: GetOutputVector(Vector<Double>, Activation[])
+  nameWithType: Parameter.GetOutputVector(Vector<Double>, Activation[])
+  fullName: NeuralNetLearning.Maths.Parameter.GetOutputVector(MathNet.Numerics.LinearAlgebra.Vector<System.Double>, NeuralNetLearning.Maths.Activations.Activation[])
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: GetOutputVector
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 462
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  syntax:
+    content: public Vector<double> GetOutputVector(Vector<double> input, Activation[] activators)
+    parameters:
+    - id: input
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+    - id: activators
+      type: NeuralNetLearning.Maths.Activations.Activation[]
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+    content.vb: Public Function GetOutputVector(input As Vector(Of Double), activators As Activation()) As Vector(Of Double)
+  overload: NeuralNetLearning.Maths.Parameter.GetOutputVector*
+  nameWithType.vb: Parameter.GetOutputVector(Vector(Of Double), Activation())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NeuralNetLearning.Maths.Parameter.GetOutputVector(MathNet.Numerics.LinearAlgebra.Vector(Of System.Double), NeuralNetLearning.Maths.Activations.Activation())
+  name.vb: GetOutputVector(Vector(Of Double), Activation())
+- uid: NeuralNetLearning.Maths.Parameter.CostGradient(MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[],NeuralNetLearning.Maths.CostFunctions.CostFunction)
+  commentId: M:NeuralNetLearning.Maths.Parameter.CostGradient(MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[],NeuralNetLearning.Maths.CostFunctions.CostFunction)
+  id: CostGradient(MathNet.Numerics.LinearAlgebra.Vector{System.Double},MathNet.Numerics.LinearAlgebra.Vector{System.Double},NeuralNetLearning.Maths.Activations.Activation[],NeuralNetLearning.Maths.CostFunctions.CostFunction)
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: CostGradient(Vector<Double>, Vector<Double>, Activation[], CostFunction)
+  nameWithType: Parameter.CostGradient(Vector<Double>, Vector<Double>, Activation[], CostFunction)
+  fullName: NeuralNetLearning.Maths.Parameter.CostGradient(MathNet.Numerics.LinearAlgebra.Vector<System.Double>, MathNet.Numerics.LinearAlgebra.Vector<System.Double>, NeuralNetLearning.Maths.Activations.Activation[], NeuralNetLearning.Maths.CostFunctions.CostFunction)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: CostGradient
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 481
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nEach entry in the returned <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> is the derivative of the cost function with respect to the corresponding entry in the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public Parameter CostGradient(Vector<double> input, Vector<double> desiredOutput, Activation[] activators, CostFunction cost)
+    parameters:
+    - id: input
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+      description: The input vector.
+    - id: desiredOutput
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+      description: The expected output vector. Is compared to the calculated output vector in <code data-dev-comment-type="paramref" class="paramref">cost</code>.
+    - id: activators
+      type: NeuralNetLearning.Maths.Activations.Activation[]
+      description: 'The activators used in calculating the layers. '
+    - id: cost
+      type: NeuralNetLearning.Maths.CostFunctions.CostFunction
+      description: The cost function which compares the calculated output vector to <code data-dev-comment-type="paramref" class="paramref">desiredOutput</code>.
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Function CostGradient(input As Vector(Of Double), desiredOutput As Vector(Of Double), activators As Activation(), cost As CostFunction) As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.CostGradient*
+  nameWithType.vb: Parameter.CostGradient(Vector(Of Double), Vector(Of Double), Activation(), CostFunction)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: NeuralNetLearning.Maths.Parameter.CostGradient(MathNet.Numerics.LinearAlgebra.Vector(Of System.Double), MathNet.Numerics.LinearAlgebra.Vector(Of System.Double), NeuralNetLearning.Maths.Activations.Activation(), NeuralNetLearning.Maths.CostFunctions.CostFunction)
+  name.vb: CostGradient(Vector(Of Double), Vector(Of Double), Activation(), CostFunction)
+- uid: NeuralNetLearning.Maths.Parameter.DeepCopy
+  commentId: M:NeuralNetLearning.Maths.Parameter.DeepCopy
+  id: DeepCopy
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: DeepCopy()
+  nameWithType: Parameter.DeepCopy()
+  fullName: NeuralNetLearning.Maths.Parameter.DeepCopy()
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: DeepCopy
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 504
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nReturns a new <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> object with weights and biases that are deep copies of the weights and biases of the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>.\nChanges to the current <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref> will not affect the new <xref href=\"NeuralNetLearning.Maths.Parameter\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public Parameter DeepCopy()
+    return:
+      type: NeuralNetLearning.Maths.Parameter
+    content.vb: Public Function DeepCopy As Parameter
+  overload: NeuralNetLearning.Maths.Parameter.DeepCopy*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Parameter.IsFinite
+  commentId: M:NeuralNetLearning.Maths.Parameter.IsFinite
+  id: IsFinite
+  parent: NeuralNetLearning.Maths.Parameter
+  langs:
+  - csharp
+  - vb
+  name: IsFinite()
+  nameWithType: Parameter.IsFinite()
+  fullName: NeuralNetLearning.Maths.Parameter.IsFinite()
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Parameter.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: IsFinite
+    path: NeuralNetLearning/Maths/Parameter.cs
+    startLine: 514
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths
+  summary: "\nChecks if each entry is finite: i.e. non-infinite and non-NaN.\n"
+  example: []
+  syntax:
+    content: public bool IsFinite()
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsFinite As Boolean
+  overload: NeuralNetLearning.Maths.Parameter.IsFinite*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: NeuralNetLearning.Maths
+  commentId: N:NeuralNetLearning.Maths
+  name: NeuralNetLearning.Maths
+  nameWithType: NeuralNetLearning.Maths
+  fullName: NeuralNetLearning.Maths
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NeuralNetLearning.Maths.Parameter.ActiveLayerCount*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.ActiveLayerCount
+  name: ActiveLayerCount
+  nameWithType: Parameter.ActiveLayerCount
+  fullName: NeuralNetLearning.Maths.Parameter.ActiveLayerCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: NeuralNetLearning.Maths.Parameter.LayerSizes*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.LayerSizes
+  name: LayerSizes
+  nameWithType: Parameter.LayerSizes
+  fullName: NeuralNetLearning.Maths.Parameter.LayerSizes
+- uid: System.Int32[]
+  isExternal: true
+  name: Int32[]
+  nameWithType: Int32[]
+  fullName: System.Int32[]
+  nameWithType.vb: Int32()
+  fullName.vb: System.Int32()
+  name.vb: Int32()
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: NeuralNetLearning.Maths.Parameter.EntriesCount*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.EntriesCount
+  name: EntriesCount
+  nameWithType: Parameter.EntriesCount
+  fullName: NeuralNetLearning.Maths.Parameter.EntriesCount
+- uid: NeuralNetLearning.Maths.Parameter
+  commentId: T:NeuralNetLearning.Maths.Parameter
+  parent: NeuralNetLearning.Maths
+  name: Parameter
+  nameWithType: Parameter
+  fullName: NeuralNetLearning.Maths.Parameter
+- uid: NeuralNetLearning.Maths.Parameter.#ctor*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.#ctor
+  name: Parameter
+  nameWithType: Parameter.Parameter
+  fullName: NeuralNetLearning.Maths.Parameter.Parameter
+- uid: System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}}
+  commentId: T:System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Matrix{System.Double}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Matrix<Double>>
+  nameWithType: IEnumerable<Matrix<Double>>
+  fullName: System.Collections.Generic.IEnumerable<MathNet.Numerics.LinearAlgebra.Matrix<System.Double>>
+  nameWithType.vb: IEnumerable(Of Matrix(Of Double))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double))
+  name.vb: IEnumerable(Of Matrix(Of Double))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}}
+  commentId: T:System.Collections.Generic.IEnumerable{MathNet.Numerics.LinearAlgebra.Vector{System.Double}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Vector<Double>>
+  nameWithType: IEnumerable<Vector<Double>>
+  fullName: System.Collections.Generic.IEnumerable<MathNet.Numerics.LinearAlgebra.Vector<System.Double>>
+  nameWithType.vb: IEnumerable(Of Vector(Of Double))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))
+  name.vb: IEnumerable(Of Vector(Of Double))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: NeuralNetLearning.Maths.Parameter.WriteToDirectory*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.WriteToDirectory
+  name: WriteToDirectory
+  nameWithType: Parameter.WriteToDirectory
+  fullName: NeuralNetLearning.Maths.Parameter.WriteToDirectory
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.ArithmeticException
+  commentId: T:System.ArithmeticException
+  isExternal: true
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceAdd*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.InPlaceAdd
+  name: InPlaceAdd
+  nameWithType: Parameter.InPlaceAdd
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceAdd
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceSubtract*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.InPlaceSubtract
+  name: InPlaceSubtract
+  nameWithType: Parameter.InPlaceSubtract
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceSubtract
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceMultiply*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.InPlaceMultiply
+  name: InPlaceMultiply
+  nameWithType: Parameter.InPlaceMultiply
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceMultiply
+- uid: NeuralNetLearning.Maths.Parameter.InPlaceDivide*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.InPlaceDivide
+  name: InPlaceDivide
+  nameWithType: Parameter.InPlaceDivide
+  fullName: NeuralNetLearning.Maths.Parameter.InPlaceDivide
+- uid: System.DivideByZeroException
+  commentId: T:System.DivideByZeroException
+  isExternal: true
+- uid: NeuralNetLearning.Maths.Parameter.InPlacePower*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.InPlacePower
+  name: InPlacePower
+  nameWithType: Parameter.InPlacePower
+  fullName: NeuralNetLearning.Maths.Parameter.InPlacePower
+- uid: NeuralNetLearning.Maths.Parameter.op_Addition*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.op_Addition
+  name: Addition
+  nameWithType: Parameter.Addition
+  fullName: NeuralNetLearning.Maths.Parameter.Addition
+- uid: NeuralNetLearning.Maths.Parameter.op_Multiply*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.op_Multiply
+  name: Multiply
+  nameWithType: Parameter.Multiply
+  fullName: NeuralNetLearning.Maths.Parameter.Multiply
+- uid: NeuralNetLearning.Maths.Parameter.op_UnaryNegation*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.op_UnaryNegation
+  name: UnaryNegation
+  nameWithType: Parameter.UnaryNegation
+  fullName: NeuralNetLearning.Maths.Parameter.UnaryNegation
+- uid: NeuralNetLearning.Maths.Parameter.op_Subtraction*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.op_Subtraction
+  name: Subtraction
+  nameWithType: Parameter.Subtraction
+  fullName: NeuralNetLearning.Maths.Parameter.Subtraction
+- uid: NeuralNetLearning.Maths.Parameter.op_Division*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.op_Division
+  name: Division
+  nameWithType: Parameter.Division
+  fullName: NeuralNetLearning.Maths.Parameter.Division
+- uid: NeuralNetLearning.Maths.Parameter.Pow*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.Pow
+  name: Pow
+  nameWithType: Parameter.Pow
+  fullName: NeuralNetLearning.Maths.Parameter.Pow
+- uid: NeuralNetLearning.Maths.Parameter.SquaredNorm*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.SquaredNorm
+  name: SquaredNorm
+  nameWithType: Parameter.SquaredNorm
+  fullName: NeuralNetLearning.Maths.Parameter.SquaredNorm
+- uid: NeuralNetLearning.Maths.Activations.Activation
+  commentId: T:NeuralNetLearning.Maths.Activations.Activation
+  parent: NeuralNetLearning.Maths.Activations
+  name: Activation
+  nameWithType: Activation
+  fullName: NeuralNetLearning.Maths.Activations.Activation
+- uid: MathNet.Numerics.LinearAlgebra.Vector`1
+  commentId: T:MathNet.Numerics.LinearAlgebra.Vector`1
+  isExternal: true
+  name: Vector<T>
+  nameWithType: Vector<T>
+  fullName: MathNet.Numerics.LinearAlgebra.Vector<T>
+  nameWithType.vb: Vector(Of T)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Vector(Of T)
+  name.vb: Vector(Of T)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate
+  name: SetWeightsUnivariate
+  nameWithType: Parameter.SetWeightsUnivariate
+  fullName: NeuralNetLearning.Maths.Parameter.SetWeightsUnivariate
+- uid: NeuralNetLearning.Maths.Activations.Activation[]
+  isExternal: true
+  name: Activation[]
+  nameWithType: Activation[]
+  fullName: NeuralNetLearning.Maths.Activations.Activation[]
+  nameWithType.vb: Activation()
+  fullName.vb: NeuralNetLearning.Maths.Activations.Activation()
+  name.vb: Activation()
+  spec.csharp:
+  - uid: NeuralNetLearning.Maths.Activations.Activation
+    name: Activation
+    nameWithType: Activation
+    fullName: NeuralNetLearning.Maths.Activations.Activation
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: NeuralNetLearning.Maths.Activations.Activation
+    name: Activation
+    nameWithType: Activation
+    fullName: NeuralNetLearning.Maths.Activations.Activation
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: NeuralNetLearning.Maths.Activations
+  commentId: N:NeuralNetLearning.Maths.Activations
+  name: NeuralNetLearning.Maths.Activations
+  nameWithType: NeuralNetLearning.Maths.Activations
+  fullName: NeuralNetLearning.Maths.Activations
+- uid: NeuralNetLearning.Maths.Parameter.GetOutputVector*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.GetOutputVector
+  name: GetOutputVector
+  nameWithType: Parameter.GetOutputVector
+  fullName: NeuralNetLearning.Maths.Parameter.GetOutputVector
+- uid: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+  commentId: T:MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+  parent: MathNet.Numerics.LinearAlgebra
+  definition: MathNet.Numerics.LinearAlgebra.Vector`1
+  name: Vector<Double>
+  nameWithType: Vector<Double>
+  fullName: MathNet.Numerics.LinearAlgebra.Vector<System.Double>
+  nameWithType.vb: Vector(Of Double)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Vector(Of System.Double)
+  name.vb: Vector(Of Double)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MathNet.Numerics.LinearAlgebra
+  commentId: N:MathNet.Numerics.LinearAlgebra
+  isExternal: true
+  name: MathNet.Numerics.LinearAlgebra
+  nameWithType: MathNet.Numerics.LinearAlgebra
+  fullName: MathNet.Numerics.LinearAlgebra
+- uid: NeuralNetLearning.Maths.Parameter.CostGradient*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.CostGradient
+  name: CostGradient
+  nameWithType: Parameter.CostGradient
+  fullName: NeuralNetLearning.Maths.Parameter.CostGradient
+- uid: NeuralNetLearning.Maths.CostFunctions.CostFunction
+  commentId: T:NeuralNetLearning.Maths.CostFunctions.CostFunction
+  parent: NeuralNetLearning.Maths.CostFunctions
+  name: CostFunction
+  nameWithType: CostFunction
+  fullName: NeuralNetLearning.Maths.CostFunctions.CostFunction
+- uid: NeuralNetLearning.Maths.CostFunctions
+  commentId: N:NeuralNetLearning.Maths.CostFunctions
+  name: NeuralNetLearning.Maths.CostFunctions
+  nameWithType: NeuralNetLearning.Maths.CostFunctions
+  fullName: NeuralNetLearning.Maths.CostFunctions
+- uid: NeuralNetLearning.Maths.Parameter.DeepCopy*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.DeepCopy
+  name: DeepCopy
+  nameWithType: Parameter.DeepCopy
+  fullName: NeuralNetLearning.Maths.Parameter.DeepCopy
+- uid: NeuralNetLearning.Maths.Parameter.IsFinite*
+  commentId: Overload:NeuralNetLearning.Maths.Parameter.IsFinite
+  name: IsFinite
+  nameWithType: Parameter.IsFinite
+  fullName: NeuralNetLearning.Maths.Parameter.IsFinite
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

@@ -1,0 +1,781 @@
+### YamlMime:ManagedReference
+items:
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  commentId: T:NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  id: SoftmaxActivation
+  parent: NeuralNetLearning.Maths.Activations
+  children:
+  - NeuralNetLearning.Maths.Activations.SoftmaxActivation.#ctor
+  - NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  - NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  langs:
+  - csharp
+  - vb
+  name: SoftmaxActivation
+  nameWithType: SoftmaxActivation
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  type: Class
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: SoftmaxActivation
+    path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+    startLine: 7
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths.Activations
+  syntax:
+    content: 'public class SoftmaxActivation : Activation'
+    content.vb: >-
+      Public Class SoftmaxActivation
+          Inherits Activation
+  inheritance:
+  - System.Object
+  - NeuralNetLearning.Maths.Activations.Activation
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation.#ctor
+  commentId: M:NeuralNetLearning.Maths.Activations.SoftmaxActivation.#ctor
+  id: '#ctor'
+  parent: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  langs:
+  - csharp
+  - vb
+  name: SoftmaxActivation()
+  nameWithType: SoftmaxActivation.SoftmaxActivation()
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation.SoftmaxActivation()
+  type: Constructor
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: .ctor
+    path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+    startLine: 12
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths.Activations
+  syntax:
+    content: public SoftmaxActivation()
+    content.vb: Public Sub New
+  overload: NeuralNetLearning.Maths.Activations.SoftmaxActivation.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  commentId: M:NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  id: Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  parent: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  langs:
+  - csharp
+  - vb
+  name: Apply(Vector<Double>)
+  nameWithType: SoftmaxActivation.Apply(Vector<Double>)
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply(MathNet.Numerics.LinearAlgebra.Vector<System.Double>)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: Apply
+    path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+    startLine: 14
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths.Activations
+  syntax:
+    content: public override Vector<double> Apply(Vector<double> input)
+    parameters:
+    - id: input
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+    content.vb: Public Overrides Function Apply(input As Vector(Of Double)) As Vector(Of Double)
+  overridden: NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  overload: NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply*
+  nameWithType.vb: SoftmaxActivation.Apply(Vector(Of Double))
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply(MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))
+  name.vb: Apply(Vector(Of Double))
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  commentId: M:NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  id: ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  parent: NeuralNetLearning.Maths.Activations.SoftmaxActivation
+  langs:
+  - csharp
+  - vb
+  name: ApplyDerivative(Vector<Double>)
+  nameWithType: SoftmaxActivation.ApplyDerivative(Vector<Double>)
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector<System.Double>)
+  type: Method
+  source:
+    remote:
+      path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+      branch: master
+      repo: https://github.com/nikolaimerritt/NeuralNet.git
+    id: ApplyDerivative
+    path: NeuralNetLearning/Maths/Activations/SoftmaxActivation.cs
+    startLine: 26
+  assemblies:
+  - NeuralNet
+  namespace: NeuralNetLearning.Maths.Activations
+  syntax:
+    content: public override Matrix<double> ApplyDerivative(Vector<double> input)
+    parameters:
+    - id: input
+      type: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+    return:
+      type: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+    content.vb: Public Overrides Function ApplyDerivative(input As Vector(Of Double)) As Matrix(Of Double)
+  overridden: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  overload: NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative*
+  nameWithType.vb: SoftmaxActivation.ApplyDerivative(Vector(Of Double))
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))
+  name.vb: ApplyDerivative(Vector(Of Double))
+references:
+- uid: NeuralNetLearning.Maths.Activations
+  commentId: N:NeuralNetLearning.Maths.Activations
+  name: NeuralNetLearning.Maths.Activations
+  nameWithType: NeuralNetLearning.Maths.Activations
+  fullName: NeuralNetLearning.Maths.Activations
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: NeuralNetLearning.Maths.Activations.Activation
+  commentId: T:NeuralNetLearning.Maths.Activations.Activation
+  parent: NeuralNetLearning.Maths.Activations
+  name: Activation
+  nameWithType: Activation
+  fullName: NeuralNetLearning.Maths.Activations.Activation
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation.#ctor*
+  commentId: Overload:NeuralNetLearning.Maths.Activations.SoftmaxActivation.#ctor
+  name: SoftmaxActivation
+  nameWithType: SoftmaxActivation.SoftmaxActivation
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation.SoftmaxActivation
+- uid: NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  commentId: M:NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  parent: NeuralNetLearning.Maths.Activations.Activation
+  isExternal: true
+  name: Apply(Vector<Double>)
+  nameWithType: Activation.Apply(Vector<Double>)
+  fullName: NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector<System.Double>)
+  nameWithType.vb: Activation.Apply(Vector(Of Double))
+  fullName.vb: NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))
+  name.vb: Apply(Vector(Of Double))
+  spec.csharp:
+  - uid: NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+    name: Apply
+    nameWithType: Activation.Apply
+    fullName: NeuralNetLearning.Maths.Activations.Activation.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NeuralNetLearning.Maths.Activations.Activation.Apply(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+    name: Apply
+    nameWithType: Activation.Apply
+    fullName: NeuralNetLearning.Maths.Activations.Activation.Apply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply*
+  commentId: Overload:NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply
+  name: Apply
+  nameWithType: SoftmaxActivation.Apply
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation.Apply
+- uid: MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+  commentId: T:MathNet.Numerics.LinearAlgebra.Vector{System.Double}
+  parent: MathNet.Numerics.LinearAlgebra
+  definition: MathNet.Numerics.LinearAlgebra.Vector`1
+  name: Vector<Double>
+  nameWithType: Vector<Double>
+  fullName: MathNet.Numerics.LinearAlgebra.Vector<System.Double>
+  nameWithType.vb: Vector(Of Double)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Vector(Of System.Double)
+  name.vb: Vector(Of Double)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MathNet.Numerics.LinearAlgebra.Vector`1
+  commentId: T:MathNet.Numerics.LinearAlgebra.Vector`1
+  isExternal: true
+  name: Vector<T>
+  nameWithType: Vector<T>
+  fullName: MathNet.Numerics.LinearAlgebra.Vector<T>
+  nameWithType.vb: Vector(Of T)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Vector(Of T)
+  name.vb: Vector(Of T)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MathNet.Numerics.LinearAlgebra
+  commentId: N:MathNet.Numerics.LinearAlgebra
+  isExternal: true
+  name: MathNet.Numerics.LinearAlgebra
+  nameWithType: MathNet.Numerics.LinearAlgebra
+  fullName: MathNet.Numerics.LinearAlgebra
+- uid: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  commentId: M:NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+  parent: NeuralNetLearning.Maths.Activations.Activation
+  isExternal: true
+  name: ApplyDerivative(Vector<Double>)
+  nameWithType: Activation.ApplyDerivative(Vector<Double>)
+  fullName: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector<System.Double>)
+  nameWithType.vb: Activation.ApplyDerivative(Vector(Of Double))
+  fullName.vb: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector(Of System.Double))
+  name.vb: ApplyDerivative(Vector(Of Double))
+  spec.csharp:
+  - uid: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+    name: ApplyDerivative
+    nameWithType: Activation.ApplyDerivative
+    fullName: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative(MathNet.Numerics.LinearAlgebra.Vector{System.Double})
+    name: ApplyDerivative
+    nameWithType: Activation.ApplyDerivative
+    fullName: NeuralNetLearning.Maths.Activations.Activation.ApplyDerivative
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: MathNet.Numerics.LinearAlgebra.Vector`1
+    name: Vector
+    nameWithType: Vector
+    fullName: MathNet.Numerics.LinearAlgebra.Vector
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative*
+  commentId: Overload:NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative
+  name: ApplyDerivative
+  nameWithType: SoftmaxActivation.ApplyDerivative
+  fullName: NeuralNetLearning.Maths.Activations.SoftmaxActivation.ApplyDerivative
+- uid: MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+  commentId: T:MathNet.Numerics.LinearAlgebra.Matrix{System.Double}
+  parent: MathNet.Numerics.LinearAlgebra
+  definition: MathNet.Numerics.LinearAlgebra.Matrix`1
+  name: Matrix<Double>
+  nameWithType: Matrix<Double>
+  fullName: MathNet.Numerics.LinearAlgebra.Matrix<System.Double>
+  nameWithType.vb: Matrix(Of Double)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Matrix(Of System.Double)
+  name.vb: Matrix(Of Double)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+  commentId: T:MathNet.Numerics.LinearAlgebra.Matrix`1
+  isExternal: true
+  name: Matrix<T>
+  nameWithType: Matrix<T>
+  fullName: MathNet.Numerics.LinearAlgebra.Matrix<T>
+  nameWithType.vb: Matrix(Of T)
+  fullName.vb: MathNet.Numerics.LinearAlgebra.Matrix(Of T)
+  name.vb: Matrix(Of T)
+  spec.csharp:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: MathNet.Numerics.LinearAlgebra.Matrix`1
+    name: Matrix
+    nameWithType: Matrix
+    fullName: MathNet.Numerics.LinearAlgebra.Matrix
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

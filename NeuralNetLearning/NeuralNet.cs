@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using NeuralNetLearning.Serialization;
 using NeuralNetLearning.Maths.GradientDescenders;
 
 namespace NeuralNetLearning
@@ -22,6 +23,7 @@ namespace NeuralNetLearning
         private readonly CostFunction _cost;
         private readonly Activation[] _activators;
         private readonly GradientDescender _gradientDescender;
+        private readonly HyperParameterSerializer _serializer = new();
         private static readonly Random _rng = new();
 
         /// <summary>
@@ -159,18 +161,18 @@ namespace NeuralNetLearning
                 Directory.CreateDirectory(directoryPath);
 
             _param.WriteToDirectory($"{directoryPath}/{NeuralNetFactory.ParamsFolder}");
-            WriteActivatorsToDirectory($"{directoryPath}/{NeuralNetFactory.ActivatorsFolder}");
-            _gradientDescender.ExpWriteToDirectory($"{directoryPath}/{NeuralNetFactory.GradientDescenderFolder}");
-            _cost.WriteToFile($"{directoryPath}/{NeuralNetFactory.CostFile}");
+            WriteActivationsToDirectory($"{directoryPath}/{NeuralNetFactory.ActivationsFolder}");
+            _serializer.WriteToDirectory(_gradientDescender, $"{directoryPath}/{NeuralNetFactory.GradientDescenderFolder}");
+            _serializer.WriteToDirectory(_cost, $"{directoryPath}/{NeuralNetFactory.CostFolder}");
         }
 
-        private void WriteActivatorsToDirectory(string directoryPath)
+        private void WriteActivationsToDirectory(string directoryPath)
         {
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
             for (int i = 0; i < _activators.Length; i++)
-                _activators[i].WriteToFile($"{directoryPath}/activator {i + 1}.txt");
+                _serializer.WriteToDirectory(_activators[i], $"{directoryPath}/activation {i + 1}");
         }
 
         /// <summary>
