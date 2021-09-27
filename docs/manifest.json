@@ -4,15 +4,24 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
       "type": "ManagedReference",
       "source_relative_path": "api/NeuralNetLearning.Activations.Activation.yml",
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Activations.Activation.html",
-          "hash": "8Ogp2wR1XN7qwCGY8D0MU4CB/Jlr1NCsx4PBLv82tlo="
+          "hash": "ciZlv84OXg8PN/UwoNCL1hBpN3IHikKgACUGQnL3ut4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +30,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Activations.IdentityActivation.html",
-          "hash": "n3eB+UUIID+PZOL3GahrGUUNcRuIQ0AGwI0EdQgYeis="
+          "hash": "dbXfbcmzbLCWY4IZ31d9srKHmYtvF47kMdzJI35tQ9U="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +42,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Activations.ReluActivation.html",
-          "hash": "PgEXpIJZ9h2gmIP/OjsWkKAbHo55ugxt5L/f3syQGwk="
+          "hash": "FMROqBvJrhN9YRh5Nd2gZIREdq4GcZWWIS7XY9jc9OA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +54,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Activations.SoftmaxActivation.html",
-          "hash": "HuGMEstC1YehYXs66LdT4yl3yndLME3aWhssVyPU0gc="
+          "hash": "u96a5IDHTyI8qqwV2bVatMSu9jn0SWFnOLPsz1BK5Ak="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +66,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Activations.TanhActivation.html",
-          "hash": "S39xzrXcI4lnmhykKzFYdrr8PEhEyJgQwtHHlMiMjA8="
+          "hash": "jnHczFGWEzg+Jg2Fp5daXrbkLug0i+5sdAgGj7berrM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +78,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Activations.html",
-          "hash": "YaQpxSECiUtj3pFUjmazBoxIr9Bqttm4dPQa1dihfQ4="
+          "hash": "PQY4CRYLPxbZadKrJOvTIDI75R4cfDavE4iKSKIrJVs="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +90,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.CostFunctions.CostFunction.html",
-          "hash": "qSKiflGPNAbD63jrVyMVmTkFQj3dJn4i6rQFoowfQBQ="
+          "hash": "JQEXmVYgAhxooiV7z16lIwo1zQ6G+rg1GgF1RJrOsis="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +102,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.CostFunctions.CrossEntropyCost.html",
-          "hash": "UwZQuZroLMvuimfWP+V58rEkgYYl7qBr7WFa7pS9VsU="
+          "hash": "L90YMvs3pDP5m/MlU9hhcq1iiMXeLrgDnDbKceXA7q4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +114,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.CostFunctions.HuberCost.html",
-          "hash": "29A8hfPk+faz4GJaQReJjekLUyIZW7EQgYxl/76hPAA="
+          "hash": "J9ID6/5tpBlfEaj6/0aMyhX4dizmia5Mx76msrlnv0Q="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +126,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.CostFunctions.MSECost.html",
-          "hash": "V3Yot2fYAccPGOhNyKuhOavi6A2zi6bbpyF7xx9SRbM="
+          "hash": "SVJ9rejWDeI20oRQbtvanSzmPjfWx3PlT27GXGcNxRo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,10 +138,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.CostFunctions.html",
-          "hash": "qN8520mUnZT+prLga522Qm9Itc7L/q95MpCTj0vwIHg="
+          "hash": "vfTO7FqpPLzbFL64YNRgs27zJNAJfsGfOOgJGIMX3aU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +150,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.GradientDescent.AdamGradientDescender.html",
-          "hash": "kXpEfExo8TmRPs0vRoHSMeh8UyspTP6C0Fg6t3y5jZ8="
+          "hash": "vp227+ltsb/OydyZ5e3/zLjubivgUTFMKOIbgk7V0JA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +162,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.GradientDescent.GradientDescender.html",
-          "hash": "IRw2X9/w74e+F/Q70fww4XnuPIesBWJ3xkYwdUIk/88="
+          "hash": "23u1pdPdc88tJTmOoCUCueGn4cvpavvH+sM+zlDqWc8="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +174,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.GradientDescent.StochasticGradientDescender.html",
-          "hash": "7RephBT0s6a910ihjCVtMAWEUsuzB7b8zoNS4HDcDTc="
+          "hash": "QBR9hgKXwfsQZO+30tOoEJTM5nOQQqGKo4FkU8fkLzY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +186,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.GradientDescent.html",
-          "hash": "rDG5hdPixn9s9LZry5MLAZ1RI55MVMNI1mI03m5k3UE="
+          "hash": "+kevXpKdPdsbyoLyBOGFeMpAkwULttzfkLJmYyd7HWo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +198,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Internal.MatrixFunctions.html",
-          "hash": "1WDdqvNIhoGqSjPXm8w7wfTGz//2ZFUnKDdOFccnixM="
+          "hash": "bJJFe34R3Po8l3PsIzr0Z3fBs63mYf1PUhRJhStztXE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -201,10 +210,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Internal.Parameter.html",
-          "hash": "cSqThECgE6NwIV0L1SiQXudSwHv0nrbLqKgtmiCb8no="
+          "hash": "GyOdJL0oekoOdr6QkwZDRV9XBl0r6GExxCdp5mi1OoY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -213,10 +222,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Internal.VectorFunctions.html",
-          "hash": "0UOXEemJHfRoQ/0Ltoo5gvQeGHsjbH3Ag6zUaDDiTiE="
+          "hash": "v5wpFPCq1tAdzetpJ20/aCe4yI+Skra+Vi81LggN6hQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -225,10 +234,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Internal.html",
-          "hash": "nQre5yryF2XPobQBrMvKDg8XgkDdGbEqSZFCVQ3C+Os="
+          "hash": "lgWMgBD0AyIMxNwM+ehX68pVCMDjs8J/FDp+p9sZnwM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,10 +246,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.LayerConfig.HiddenLayer.html",
-          "hash": "HP0DVhsVHhHp1eCt12E9UvP1uvHD4ujQ3tFIaMLQzY8="
+          "hash": "sVXZbCTn/pbvWZ6HJrVOwbNF2ssOZ/uY/v13pOwTKPI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -249,10 +258,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.LayerConfig.InputLayer.html",
-          "hash": "3t3bX7kCCLheDJippirOnTNgHprdPpXpbPcK57GipZ8="
+          "hash": "vPmdkVkC+3U+6H0wf/Y77e5ZlpSZVGSAzxnBPkTCXR4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -261,10 +270,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.LayerConfig.NeuralLayerConfig.html",
-          "hash": "s6IGuKdAivVVZn8rasDyRNmfR/GC7DyQiYVMi+tE0xA="
+          "hash": "74Es2yw/kNX04HuzmTIohF5cKsOpfAASoA1Af8gssXc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -273,10 +282,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.LayerConfig.OutputLayer.html",
-          "hash": "wrN0IgwN60tIXGErCBQsLgZdDcJvv3jG+HiqiVQL2Y0="
+          "hash": "9Sr9UHdBljte5t5QkqAWu7qk0pUn+VFvOy4EZf7UBdA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -285,10 +294,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.LayerConfig.html",
-          "hash": "QzmO2uBtwgpLFV304JKjXxtqG9HJNn5V/UhBm5SlWqU="
+          "hash": "heIo+Nci9geG2z8psA7eMNU9RH5IscuMtjxuVFU0mXY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -297,10 +306,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Activations.Activation.html",
-          "hash": "BdVX+CrlS6z7y9V7Jc3qnCUgvzk6Pguu1KLL27hnI2U="
+          "hash": "cbt7J2tinMglTs1zxRYVQA0xUli9lHu5cAK47LYSUUQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -309,10 +318,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Activations.IdentityActivation.html",
-          "hash": "1Kpn17A68MNKJMsC12qhB+9NqPsq+nkUE7GkeNROrvE="
+          "hash": "N4Tpz/neC69cxPrSU2N89vk5CAluSrezBOL6dWrBQTI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -321,10 +330,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Activations.ReluActivation.html",
-          "hash": "lv9prAzyaFA7/ICx7Hqkma5nHzLp3+HxeRb/hqQK5VA="
+          "hash": "FTIki0BoSIc/RhLyakD3sMdQmd2nEqiwC/1Lvo81t10="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -333,10 +342,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Activations.SoftmaxActivation.html",
-          "hash": "59IpwBwvJMy+qErHDV/FF9JsB/RuOqPtwyY+BVdo2Lc="
+          "hash": "YD/IOH7q/hJVcrVVuWpEvbdQbB3Dq+RNca3zgflcrys="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -345,10 +354,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Activations.TanhActivation.html",
-          "hash": "xdgyxOecRQmWqJSCN7U0unOSyyVsDdFSxVoh6vMv5K4="
+          "hash": "chC1lTfi3z7C0OR384YKC7D960N2m2RY18Od9M3qBOk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -357,10 +366,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Activations.html",
-          "hash": "CGUd+pTOeuKNSX9m9o6EUdzwByGvdusmUjztoXGqH4E="
+          "hash": "ns+/ITsGvalGkCRtd14lCaRfYInnSAWiAHvbrk/TtJM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -369,10 +378,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.CostFunction.html",
-          "hash": "bquudUzFYeer/XWREeK33tPYYpwa40979WsYlbn+biY="
+          "hash": "zdaSZsxCp7MefZGWoGxuE22lxMLU2J7vHct35LUD3SU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -381,10 +390,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.CrossEntropyCost.html",
-          "hash": "aBB0sFhmjvmdlCkB/710AZbX2lWb+oShKGPu4b4lJCI="
+          "hash": "g8m6dYQbDGnNY+IMIJlWaOwPccvhGb8CUYc5emgDV9o="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -393,10 +402,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.HuberCost.html",
-          "hash": "uVSpeGCIc0tOSM6m+JFSOHVWHFYaUO8EUj+vY2TOgpA="
+          "hash": "C8aEmQlHh21OxrLNcPOu1gb6MVK4snrRc8r590kk8/8="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -405,10 +414,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.MSECost.html",
-          "hash": "NFzcQoaRFD/r7ZLc6UAgUmioIkM+lbGx7rAap9IPOOU="
+          "hash": "QOv88yV1J8Xp6GlKp5Mqrdvj2jPWdRsf0Jp68HdWmK0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -417,10 +426,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.CostFunctions.html",
-          "hash": "PYkLy+stkA8dCvbuNbIqGPWY86kokZaJz5XazDH8jd8="
+          "hash": "ff9vj3GTQjk9dIJXAbobTRXMT7RT0bjKX2XkDxzm0ok="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -429,10 +438,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.GradientDescent.AdamGradientDescender.html",
-          "hash": "c1tFnPMuhbS8UK8Po/JyMfKbMmmLGts1ikOSV2uTg7Q="
+          "hash": "7vRwTmqGPUJM/NKnQUrvcGZE5grx71AoYLdU/IR2JRA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -441,10 +450,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.GradientDescent.GradientDescender.html",
-          "hash": "ECiaXrJu6f0fm4WtbhMUreZIyUkeYq64rpnN9sKT0vI="
+          "hash": "wEaXuM0p3HrSoIJY2TjnGIHJuBiCaZfVmcVj0mdbYGY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -453,10 +462,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.GradientDescent.StochasticGradientDescender.html",
-          "hash": "PgfUHDIwtpvRHfCgyZARGBP/f2dwRlHD7jfnXQ+D5ds="
+          "hash": "UDLnVEGZbKtiHa+TDRpei44wWJvOMI6tKEVpuyN5laY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -465,10 +474,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.GradientDescent.html",
-          "hash": "GN+nn7Egqqfs7Q0UektoCOFquRYvzrnZX4t/C22KAuw="
+          "hash": "ZDX0Nhu4vCoJpU05ebda4u/PIPUH2SjW7KXFieep8NM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -477,10 +486,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.MatrixFunctions.html",
-          "hash": "Iw6ilCjFqYUqFhA9ey1EIMuNqmE7NZ2dRovDZFd+8xU="
+          "hash": "jhjlZI7GKvU3jIziiih8RE/ZNhxvirwgH4j5hahzhZI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -489,10 +498,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.Parameter.html",
-          "hash": "ZMw0cZXEx7ox0ylaiyRvDvH91gsbAMoUA8XB97DmcFI="
+          "hash": "DdNXQF7uPDdvKBu2q1uoxp8nf0Y26Vnxmsa2xyi5v1M="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -501,10 +510,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.ParameterFactory.html",
-          "hash": "fHzwbZjHkUuKtoZU6MH8WTgPnIeoz00w8OdLNDcB5C8="
+          "hash": "q7VnmJwoGFbqyK9vH80O0M5yqY4p2/I1kcsydzhmUps="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -513,10 +522,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.VectorFunctions.html",
-          "hash": "gB1tbA6XIJwJSLpeRN/DEo2kLhI0pMDaufrgx151LfE="
+          "hash": "XkuY1aWAX/tCx1d+VCq8J8hMWUy73pdgiUJ0sPByfiM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -525,10 +534,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Maths.html",
-          "hash": "gJdvsbUpLLFXE0ecHC2l6DEmjo1jaSSN3j+Q5G+KhzM="
+          "hash": "7TLwyUhIVl3+sD/hBGwlPsYoc44jQ+3DqOiDOm4cVec="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -537,10 +546,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.NeuralNet.html",
-          "hash": "3omPr4ozmuUQFMJY5CgvSMdwRN3+q0l8KOrFt28/Rqg="
+          "hash": "GOFZvGe7CP+N0M1LfGp6kE6WaVsyyprCFlLfO/ZY0+I="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -549,10 +558,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.NeuralNetFactory.html",
-          "hash": "bawsaQ0TVr1PCEAoAm0GyO66o3D32K3dik0IBYhRuA0="
+          "hash": "zNeAT+zXGv2jsNyM3sFOK/w78Zid2A48ati2z/ifoYI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -561,10 +570,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Serialization.SerializableHyperParameter.html",
-          "hash": "G6Xk6Yms3DW3IHMDgO/no1zzr0KFLf22SBRG8OaQkMM="
+          "hash": "R/idDO2nuSMU6MxXO69Sm7+UoXMbHGlc33SmqQOAP2E="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -573,10 +582,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.Serialization.html",
-          "hash": "ZFpYREqjZBOFQV7BMjp/4V3QrDIM1hF/ABT8x1gy8WM="
+          "hash": "Hvd7hS65l0CG/yla73VpjtjrlCIfsbg4LeaxaH1DjZ0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -585,10 +594,10 @@
       "output": {
         ".html": {
           "relative_path": "api/NeuralNetLearning.html",
-          "hash": "XJRoO7lY8z/LZAlGZ91ozTpQtexxG7E0Qdkej4lRc9E="
+          "hash": "ReNBI4s7hfpBVAfBGBGYbUyw7Xnh1InOwNS1Q+qRDbE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -597,7 +606,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "p/CehsbJdlepg4H7VNQCPcfb0pqB0/iGeArykYQ0WNg="
+          "hash": "yZi4aWvjZQu6KDrUFd6oyqaT4dE1gVGoyiqXNAHsCBE="
         }
       },
       "is_incremental": false,
@@ -624,10 +633,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/activation.html",
-          "hash": "5cqFf6EpE783KipevnTw88JphYkKPICEU/CapU5tgC4="
+          "hash": "YL5vF5s8rD1OvSeR49Lz7SWbOJZxVCGg2Cb2fQYpN2U="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -636,10 +645,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/cost-function.html",
-          "hash": "yT9NIRNlUKp9GrgUp9ym3khTaAQtQzK20fmmHG8lpPA="
+          "hash": "cv5xqZoa8EyvXwHcDgPQ4FY6sZ+6ucCd+pJsaBz2r3s="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -652,10 +661,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/creating-neural-network.html",
-          "hash": "Z2Sy372XqgtE5Rgh28vgU2U7IpZyNDekLvwzrTzXo5E="
+          "hash": "pk2wzskUCZvoxAJiTgys5QsirGK8te2iT4IwniMnJ+A="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -664,10 +673,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/gradient-descender.html",
-          "hash": "bOw/r5vHlL4qU4bKpRX3g8WGu1ABOd8FHijN7MFuiM0="
+          "hash": "DvC9spswTywLjIWBXXRMUtgut7kV6/DT8m5HYoCGdOA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -676,7 +685,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "Mg/6VXZ2SgR7rnn80Musgmc7ocnBsin9qnWd+CWiwKc="
+          "hash": "Px16KsAken2fzr5xe9cVZAb0E/y0rKQhVsmj9/RdiCI="
         }
       },
       "is_incremental": false,
@@ -691,10 +700,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/neural-layer-config.html",
-          "hash": "cO7AJeOp63bksJO2K+Fiq0rqtyfphgmdKJ6uzfIdeGw="
+          "hash": "tX8Uol73x9omeONHv0K44RZGTzBogiQoTk/2aAtdaDM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -703,10 +712,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/neural-net-factory.html",
-          "hash": "Hr/NLRptL4qC0onKLV2ICsPyHMHNV9d1+sRdfi5ikYA="
+          "hash": "YhecNKkdtP5m8YydeywuBRJ8XIB2fyc4imk0Waq9CzA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -715,10 +724,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/neural-net.html",
-          "hash": "uQsS8M+/JjYjfl+mxZWwa4cnvPyl1RvPkH2QYyJsvfU="
+          "hash": "s6nH3t9FKnr0A0FT2/QSeCarvz67p2LJvesjqCWwdIA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -727,10 +736,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/parameter.html",
-          "hash": "SLh0kP2pQj5c9eR9u7PBGtz/vheEAvKVqMVuDmUHsAI="
+          "hash": "M2h9c7bJd6mwwMpmtgvHB5vpdthMgiby1oywgbJFfjc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -742,10 +751,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/serializable-hyper-parameter.html",
-          "hash": "68nazyqNsP+/iLsXBIjA52tFCqSkTmjtPB8KY0QbVwM="
+          "hash": "0UJHh5/Nr11s7sV6pRY/EQG5aLJWyn7VpDnsbaCo1ic="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -755,6 +764,17 @@
         ".html": {
           "relative_path": "articles/toc.html",
           "hash": "Xb3YiJxOONBuO5T/vZKJNvkyw/udJCuVISj3yGqlpWo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
         }
       },
       "is_incremental": false,
@@ -832,10 +852,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "Yh9DEn7Xc+Xcmz0Rb0SejFG4niXeL0CxWl0QSQGqrqU="
+          "hash": "LmHIbWNwLRhEvX8640iviePDIkiDoCrY3m/il4FJEzA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -854,23 +874,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because config changed.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ConfigChanged"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 12,
-          "skipped_file_count": 10
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 49,
-          "skipped_file_count": 49
+          "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
@@ -890,8 +912,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0
