@@ -1,5 +1,0 @@
-AdamGradientDescender
-learning rate: 0.001
-momentum decay: 0.9
-variance decay: 0.999
-step: 1
