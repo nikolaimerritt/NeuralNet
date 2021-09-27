@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "NeuralNet": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Users\\tiamat\\Code\\C#\\ConnectFour\\bin\\Release\\net5.0\\ConnectFour.exe",
-      "nativeDebugging": true
-    }
-  }
-}
