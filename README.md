@@ -5,4 +5,5 @@ The library is built on the [`Vector<double>`](https://numerics.mathdotnet.com/M
 
 Read the **official documentation** [here](https://nikolaimerritt.github.io/NeuralNet)!
 
-Check out the **nuget package** [here](https://www.nuget.org/packages/NeuralNet/)!
+## Installation instructions
+Get started quickly in an IDE that supports NuGet package by adding a reference to the `NeuralNet` NuGet package. This package can be found on NuGet Gallery [here](https://www.nuget.org/packages/NeuralNet/)
